@@ -16,6 +16,9 @@ package com.starrocks.qe;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
+import com.starrocks.autodop.AutoDopController;
+import com.starrocks.autodop.AutoDopResult;
+import com.starrocks.autodop.AutoDopTraceManager;
 import com.starrocks.catalog.ResourceGroup;
 import com.starrocks.catalog.ResourceGroupClassifier;
 import com.starrocks.catalog.ResourceGroupMgr;
@@ -245,8 +248,14 @@ public class CoordinatorPreprocessor {
 
     @VisibleForTesting
     void computeFragmentInstances() throws StarRocksException {
-        for (ExecutionFragment execFragment : executionDAG.getFragmentsInPostorder()) {
-            fragmentAssignmentStrategyFactory.create(execFragment, workerProvider).assignFragmentToWorker(execFragment);
+        AutoDopResult autoDopResult = null;
+        if (AutoDopController.isEnabled(connectContext)) {
+            AutoDopController.checkSupported(connectContext, jobSpec);
+            assignAllPlacements();
+            autoDopResult = AutoDopController.decideAndInstall(connectContext, jobSpec, executionDAG);
+            materializeAllFragments();
+        } else {
+            assignAllFragments();
         }
         if (LOG.isDebugEnabled()) {
             executionDAG.getFragmentsInPreorder().forEach(
@@ -258,6 +267,28 @@ public class CoordinatorPreprocessor {
 
         executionDAG.prepareCaptureVersion(enablePhasedSchedule);
         executionDAG.finalizeDAG();
+        if (autoDopResult != null) {
+            AutoDopTraceManager.register(autoDopResult);
+            AutoDopTraceManager.captureActualDop(jobSpec.getQueryId(), executionDAG);
+        }
+    }
+
+    private void assignAllPlacements() throws StarRocksException {
+        for (ExecutionFragment execFragment : executionDAG.getFragmentsInPostorder()) {
+            fragmentAssignmentStrategyFactory.create(execFragment, workerProvider).assignPlacement(execFragment);
+        }
+    }
+
+    private void materializeAllFragments() throws StarRocksException {
+        for (ExecutionFragment execFragment : executionDAG.getFragmentsInPostorder()) {
+            fragmentAssignmentStrategyFactory.create(execFragment, workerProvider).materializeInstances(execFragment);
+        }
+    }
+
+    private void assignAllFragments() throws StarRocksException {
+        for (ExecutionFragment execFragment : executionDAG.getFragmentsInPostorder()) {
+            fragmentAssignmentStrategyFactory.create(execFragment, workerProvider).assignFragmentToWorker(execFragment);
+        }
     }
 
     public void assignIncrementalScanRangesToFragmentInstances(ExecutionFragment execFragment) throws

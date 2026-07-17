@@ -25,6 +25,7 @@ import com.starrocks.qe.SessionVariableConstants;
 import com.starrocks.qe.scheduler.WorkerProvider;
 import com.starrocks.qe.scheduler.dag.ExecutionFragment;
 import com.starrocks.qe.scheduler.dag.FragmentInstance;
+import com.starrocks.qe.scheduler.dag.FragmentPlacement;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -59,7 +60,8 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
     }
 
     @Override
-    public void assignFragmentToWorker(ExecutionFragment execFragment) throws StarRocksException {
+    public void assignPlacement(ExecutionFragment execFragment) throws StarRocksException {
+        execFragment.getPlacement().clear();
         final PlanFragment fragment = execFragment.getPlanFragment();
 
         // If left child is MultiCastDataFragment(only support left now), will keep same instance with child.
@@ -78,17 +80,20 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
         assignRemoteFragmentToWorker(execFragment);
     }
 
-    private void assignCTEConsumerFragmentToWorker(ExecutionFragment execFragment) {
-        ExecutionFragment childFragment = execFragment.getChild(0);
-        for (FragmentInstance childInstance : childFragment.getInstances()) {
-            execFragment.addInstance(new FragmentInstance(childInstance.getWorker(), execFragment));
+    @Override
+    public void materializeInstances(ExecutionFragment execFragment) {
+        for (long workerId : execFragment.getPlacement().getWorkerIds()) {
+            execFragment.addInstance(new FragmentInstance(workerProvider.getWorkerById(workerId), execFragment));
         }
     }
 
+    private void assignCTEConsumerFragmentToWorker(ExecutionFragment execFragment) {
+        ExecutionFragment childFragment = execFragment.getChild(0);
+        execFragment.getPlacement().getWorkerIds().addAll(childFragment.getPlacement().getWorkerIds());
+    }
+
     private void assignGatherFragmentToWorker(ExecutionFragment execFragment) throws StarRocksException {
-        long workerId = workerProvider.selectNextWorker();
-        FragmentInstance instance = new FragmentInstance(workerProvider.getWorkerById(workerId), execFragment);
-        execFragment.addInstance(instance);
+        execFragment.getPlacement().addWorker(workerProvider.selectNextWorker());
     }
 
     private void assignRemoteFragmentToWorker(ExecutionFragment execFragment) {
@@ -99,6 +104,7 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
         // of hostSet, that it to say, each backend has exactly one fragment.
         Set<Long> workerIdSet = Sets.newHashSet();
         int maxParallelism = 0;
+        FragmentPlacement placement = execFragment.getPlacement();
 
         List<Long> selectedComputedNodes = workerProvider.selectAllComputeNodes();
         if (workerProvider.isPreferComputeNode() && !selectedComputedNodes.isEmpty()
@@ -111,9 +117,7 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
             // if output fragment isn't gather, all fragment must keep 1 instance
             for (int i = 0; i < execFragment.childrenSize(); i++) {
                 ExecutionFragment childExecFragment = execFragment.getChild(i);
-                childExecFragment.getInstances().stream()
-                        .map(FragmentInstance::getWorkerId)
-                        .forEach(workerIdSet::add);
+                workerIdSet.addAll(childExecFragment.getPlacement().getWorkerIds());
             }
             maxParallelism = workerIdSet.size() * fragment.getParallelExecNum();
         } else {
@@ -121,7 +125,7 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
             // input fragment which has a higher instance_number
             int maxIndex = 0;
             for (int i = 0; i < execFragment.childrenSize(); i++) {
-                int curInputFragmentParallelism = execFragment.getChild(i).getInstances().size();
+                int curInputFragmentParallelism = execFragment.getChild(i).getPlacement().getWorkerIds().size();
                 // when dop adaptation enabled, numInstances * pipelineDop is equivalent to numInstances in
                 // non-pipeline engine and pipeline engine(dop adaptation disabled).
                 if (enableDopAdaption) {
@@ -135,9 +139,7 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
             }
 
             ExecutionFragment maxFragment = execFragment.getChild(maxIndex);
-            Set<Long> childUsedHost = maxFragment.getInstances().stream()
-                    .map(FragmentInstance::getWorkerId)
-                    .collect(Collectors.toSet());
+            Set<Long> childUsedHost = Sets.newHashSet(maxFragment.getPlacement().getWorkerIds());
             workerIdSet = adaptiveChooseNodes(fragment, workerProvider.getAllAvailableNodes(), childUsedHost);
 
             // The adaptive choose nodes process may change the selected nodes number.
@@ -168,15 +170,9 @@ public class RemoteFragmentAssignmentStrategy implements FragmentAssignmentStrat
         }
 
         for (int i = 0; i < maxParallelism; i++) {
-            Long workerId = workerIds.get(i % workerIds.size());
-            FragmentInstance instance = new FragmentInstance(workerProvider.getWorkerById(workerId), execFragment);
-            execFragment.addInstance(instance);
+            placement.addWorker(workerIds.get(i % workerIds.size()));
         }
-
-        // When group by cardinality is smaller than number of backend, only some backends always
-        // process while other has no data to process.
-        // So we shuffle instances to make different backends handle different queries.
-        execFragment.shuffleInstances(random);
+        Collections.shuffle(placement.getWorkerIds(), random);
 
         // TODO: switch to unpartitioned/coord execution if our input fragment
         // is executed that way (could have been downgraded from distributed)

@@ -162,6 +162,14 @@ public class Config extends ConfigBase {
     public static long qe_slow_log_ms = 5000;
     @ConfField(mutable = true)
     public static boolean enable_qe_slow_log = true;
+    @ConfField(mutable = true)
+    public static boolean enable_auto_dop = false;
+    @ConfField(mutable = true)
+    public static String auto_dop_endpoint = "http://127.0.0.1:18080";
+    @ConfField(mutable = true)
+    public static int auto_dop_timeout_ms = 50;
+    @ConfField(mutable = true)
+    public static String auto_dop_trace_dir = "log/autodop";
     @ConfField
     public static String audit_log_roll_interval = "DAY";
     @ConfField

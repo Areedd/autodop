@@ -14,7 +14,6 @@
 
 package com.starrocks.qe.scheduler.assignment;
 
-import com.google.common.collect.Sets;
 import com.starrocks.common.Config;
 import com.starrocks.common.StarRocksException;
 import com.starrocks.common.util.ListUtil;
@@ -28,6 +27,7 @@ import com.starrocks.qe.SessionVariable;
 import com.starrocks.qe.scheduler.WorkerProvider;
 import com.starrocks.qe.scheduler.dag.ExecutionFragment;
 import com.starrocks.qe.scheduler.dag.FragmentInstance;
+import com.starrocks.qe.scheduler.dag.FragmentPlacement;
 import com.starrocks.system.ComputeNode;
 import com.starrocks.thrift.TScanRangeParams;
 import org.apache.logging.log4j.LogManager;
@@ -53,8 +53,6 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
     private final boolean usePipeline;
     private final boolean isLoadType;
 
-    private final Set<Integer> replicatedScanIds = Sets.newHashSet();
-
     private final boolean useIncrementalScanRanges;
 
     public LocalFragmentAssignmentStrategy(ConnectContext connectContext, WorkerProvider workerProvider,
@@ -69,24 +67,31 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
     }
 
     @Override
-    public void assignFragmentToWorker(ExecutionFragment execFragment) throws StarRocksException {
+    public void assignPlacement(ExecutionFragment execFragment) throws StarRocksException {
+        FragmentPlacement placement = execFragment.getPlacement();
+        placement.clear();
         for (ScanNode scanNode : execFragment.getScanNodes()) {
-            assignScanRangesToWorker(execFragment, scanNode);
+            assignScanRangesToWorker(execFragment, scanNode, placement.getReplicatedScanIds());
         }
+        collectWorkerIds(execFragment, placement);
+        if (placement.getWorkerIds().isEmpty()) {
+            placement.addWorker(workerProvider.selectNextWorker());
+        }
+    }
 
+    @Override
+    public void materializeInstances(ExecutionFragment execFragment) throws StarRocksException {
         assignScanRangesToFragmentInstancePerWorker(execFragment);
-
-        // The fragment which only contains scan nodes without scan ranges,
-        // such as SchemaScanNode, is assigned to an arbitrary worker.
         if (execFragment.getInstances().isEmpty()) {
-            long workerId = workerProvider.selectNextWorker();
+            long workerId = execFragment.getPlacement().getWorkerIds().get(0);
             ComputeNode worker = workerProvider.getWorkerById(workerId);
             FragmentInstance instance = new FragmentInstance(worker, execFragment);
             execFragment.addInstance(instance);
         }
     }
 
-    private void assignScanRangesToWorker(ExecutionFragment execFragment, ScanNode scanNode) throws StarRocksException {
+    private void assignScanRangesToWorker(ExecutionFragment execFragment, ScanNode scanNode,
+                                          Set<Integer> replicatedScanIds) throws StarRocksException {
         BackendSelector backendSelector = BackendSelectorFactory.create(
                 scanNode, isLoadType, execFragment, workerProvider, connectContext, replicatedScanIds, useIncrementalScanRanges);
 
@@ -95,6 +100,31 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
         if (LOG.isDebugEnabled()) {
             LOG.debug(execFragment.getScanRangeAssignment().toDebugString());
         }
+    }
+
+    private void collectWorkerIds(ExecutionFragment execFragment, FragmentPlacement placement) {
+        ColocatedBackendSelector.Assignment colocatedAssignment = execFragment.getColocatedAssignment();
+        boolean colocated = execFragment.isColocated()
+                && colocatedAssignment != null && !colocatedAssignment.getSeqToWorkerId().isEmpty();
+        boolean bucketShuffle = execFragment.isLocalBucketShuffleJoin() && colocatedAssignment != null;
+        int instanceCount = Math.max(1, execFragment.getPlanFragment().getParallelExecNum());
+        if (colocated || bucketShuffle) {
+            Map<Long, List<Integer>> workerBuckets = colocatedAssignment.getSeqToWorkerId().entrySet().stream()
+                    .collect(Collectors.groupingBy(
+                            Map.Entry::getValue,
+                            Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
+            workerBuckets.forEach((workerId, buckets) ->
+                    ListUtil.splitBySize(buckets, instanceCount).forEach(group -> placement.addWorker(workerId)));
+            return;
+        }
+
+        execFragment.getScanRangeAssignment().forEach((workerId, scanRangesPerWorker) ->
+                scanRangesPerWorker.forEach((scanId, scanRanges) -> {
+                    if (!placement.getReplicatedScanIds().contains(scanId)) {
+                        ListUtil.splitBySize(scanRanges, instanceCount)
+                                .forEach(group -> placement.addWorker(workerId));
+                    }
+                }));
     }
 
     private void assignScanRangesToFragmentInstancePerWorker(ExecutionFragment execFragment) {
@@ -142,8 +172,9 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
                 enableAssignScanRangesPerDriverSeq(scanRanges, fragment.getPipelineDop());
     }
 
-    private boolean needAddScanRanges(Set<Integer> visitedReplicatedScanIds, Integer scanId) {
-        if (!replicatedScanIds.contains(scanId)) {
+    private boolean needAddScanRanges(ExecutionFragment execFragment,
+                                      Set<Integer> visitedReplicatedScanIds, Integer scanId) {
+        if (!execFragment.getPlacement().getReplicatedScanIds().contains(scanId)) {
             return true;
         }
         return visitedReplicatedScanIds.add(scanId);
@@ -195,7 +226,7 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
                     bucketSeqsOfInstance.forEach(bucketSeq -> {
                         instance.addBucketSeq(bucketSeq);
                         bucketSeqToScanRange.get(bucketSeq).forEach((scanId, scanRanges) -> {
-                            if (needAddScanRanges(instanceReplicatedScanIds, scanId)) {
+                            if (needAddScanRanges(execFragment, instanceReplicatedScanIds, scanId)) {
                                 instance.addScanRanges(scanId, scanRanges);
                             }
                         });
@@ -228,7 +259,7 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
                         bucketSeqsPerDriverSeq.get(driverSeq).forEach(bucketSeq -> {
                             instance.addBucketSeqAndDriverSeq(bucketSeq, finalDriverSeq);
                             bucketSeqToScanRange.get(bucketSeq).forEach((scanId, scanRanges) -> {
-                                if (needAddScanRanges(instanceReplicatedScanIds, scanId)) {
+                                if (needAddScanRanges(execFragment, instanceReplicatedScanIds, scanId)) {
                                     instance.addScanRanges(scanId, finalDriverSeq, scanRanges);
                                 }
                             });
@@ -256,7 +287,7 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
         assignment.forEach((workerId, scanRangesPerWorker) -> {
             // 1. Handle normal scan node firstly
             scanRangesPerWorker.forEach((scanId, scanRangesOfNode) -> {
-                if (replicatedScanIds.contains(scanId)) {
+                if (execFragment.getPlacement().getReplicatedScanIds().contains(scanId)) {
                     return;
                 }
 
@@ -317,7 +348,7 @@ public class LocalFragmentAssignmentStrategy implements FragmentAssignmentStrate
             boolean isReplicated = execFragment.isReplicated();
             if (isReplicated) {
                 scanRangesPerWorker.forEach((scanId, scanRangesPerNode) -> {
-                    if (!replicatedScanIds.contains(scanId)) {
+                    if (!execFragment.getPlacement().getReplicatedScanIds().contains(scanId)) {
                         return;
                     }
 

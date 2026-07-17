@@ -310,6 +310,8 @@ public class SessionVariable implements Serializable, Writable, Cloneable {
     public static final String ENABLE_SHARED_SCAN = "enable_shared_scan";
     public static final String PIPELINE_DOP = "pipeline_dop";
     public static final String MAX_PIPELINE_DOP = "max_pipeline_dop";
+    public static final String ENABLE_AUTO_DOP = "enable_auto_dop";
+    public static final String AUTO_DOP_MAX_DOP = "auto_dop_max_dop";
 
     public static final String PROFILE_TIMEOUT = "profile_timeout";
     public static final String RUNTIME_PROFILE_REPORT_INTERVAL = "runtime_profile_report_interval";
@@ -1326,6 +1328,12 @@ public class SessionVariable implements Serializable, Writable, Cloneable {
      */
     @VariableMgr.VarAttr(name = MAX_PIPELINE_DOP)
     private int maxPipelineDop = 64;
+
+    @VariableMgr.VarAttr(name = ENABLE_AUTO_DOP)
+    private boolean enableAutoDop = false;
+
+    @VariableMgr.VarAttr(name = AUTO_DOP_MAX_DOP)
+    private int autoDopMaxDop = 0;
 
     @VariableMgr.VarAttr(name = PROFILE_TIMEOUT, flag = VariableMgr.INVISIBLE)
     private int profileTimeout = 10;
@@ -3922,6 +3930,22 @@ public class SessionVariable implements Serializable, Writable, Cloneable {
 
     public int getMaxPipelineDop() {
         return this.maxPipelineDop;
+    }
+
+    public boolean isEnableAutoDop() {
+        return enableAutoDop;
+    }
+
+    public void setEnableAutoDop(boolean enableAutoDop) {
+        this.enableAutoDop = enableAutoDop;
+    }
+
+    public int getAutoDopMaxDop() {
+        return autoDopMaxDop;
+    }
+
+    public void setAutoDopMaxDop(int autoDopMaxDop) {
+        this.autoDopMaxDop = autoDopMaxDop;
     }
 
     // TODO(murphy) support this variable

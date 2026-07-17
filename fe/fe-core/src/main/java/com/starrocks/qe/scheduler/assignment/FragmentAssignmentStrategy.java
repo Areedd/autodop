@@ -37,5 +37,12 @@ public interface FragmentAssignmentStrategy {
      * @param executionFragment the fragment need to be assigned.
      * @throws StarRocksException if there is no available worker.
      */
-    void assignFragmentToWorker(ExecutionFragment executionFragment) throws StarRocksException;
+    default void assignFragmentToWorker(ExecutionFragment executionFragment) throws StarRocksException {
+        assignPlacement(executionFragment);
+        materializeInstances(executionFragment);
+    }
+
+    void assignPlacement(ExecutionFragment executionFragment) throws StarRocksException;
+
+    void materializeInstances(ExecutionFragment executionFragment) throws StarRocksException;
 }

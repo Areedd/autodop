@@ -70,6 +70,7 @@ public class ExecutionFragment {
     private final List<FragmentInstance> instances;
 
     private final FragmentScanRangeAssignment scanRangeAssignment;
+    private final FragmentPlacement placement;
     private ColocatedBackendSelector.Assignment colocatedAssignment = null;
 
     public static class BucketSeqAssignment {
@@ -104,6 +105,7 @@ public class ExecutionFragment {
 
         this.instances = Lists.newArrayList();
         this.scanRangeAssignment = new FragmentScanRangeAssignment();
+        this.placement = new FragmentPlacement();
     }
 
     public String getExplainString() {
@@ -161,6 +163,10 @@ public class ExecutionFragment {
 
     public FragmentScanRangeAssignment getScanRangeAssignment() {
         return scanRangeAssignment;
+    }
+
+    public FragmentPlacement getPlacement() {
+        return placement;
     }
 
     public ColocatedBackendSelector.Assignment getColocatedAssignment() {

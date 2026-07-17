@@ -1,0 +1,1 @@
+"""Minimal AutoDOP research pipeline."""

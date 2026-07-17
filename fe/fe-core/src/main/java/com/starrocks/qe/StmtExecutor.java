@@ -55,6 +55,7 @@ import com.starrocks.authorization.AccessDeniedException;
 import com.starrocks.authorization.ObjectType;
 import com.starrocks.authorization.PrivilegeException;
 import com.starrocks.authorization.PrivilegeType;
+import com.starrocks.autodop.AutoDopTraceManager;
 import com.starrocks.catalog.Column;
 import com.starrocks.catalog.Database;
 import com.starrocks.catalog.ExternalOlapTable;
@@ -3243,11 +3244,13 @@ public class StmtExecutor {
      */
     public void addFinishedQueryDetail() {
         if (!Config.enable_collect_query_detail_info) {
+            AutoDopTraceManager.finishAndPersist(context, null, getQueryStatisticsForAuditLog());
             return;
         }
         ConnectContext ctx = context;
         QueryDetail queryDetail = ctx.getQueryDetail();
         if (queryDetail == null || !queryDetail.getQueryId().equals(DebugUtil.printId(ctx.getQueryId()))) {
+            AutoDopTraceManager.finishAndPersist(ctx, null, getQueryStatisticsForAuditLog());
             return;
         }
 
@@ -3289,6 +3292,7 @@ public class StmtExecutor {
         }
         queryDetail.setCatalog(ctx.getCurrentCatalog());
 
+        AutoDopTraceManager.finishAndPersist(ctx, queryDetail, statistics);
         QueryDetailQueue.addQueryDetail(queryDetail);
     }
 
