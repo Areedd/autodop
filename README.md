@@ -1,145 +1,252 @@
+# AutoDOP 使用方法
 
- <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=e8355b6b-a9fc-4d4e-8ed8-b3157aa1827d" />
- <p align="center">
- <a href="https://starrocks.io/index">
-    <img  width="900" src="https://cdn.starrocks.io/static/github/starrocks.png?t=12234">
-   </a>
-</p>
-<p align="center">
-  <a href="https://starrocks.io/download/community">Download</a> | <a href="https://docs.starrocks.io/">Docs</a> | <a href="https://starrocks.io/blog/benchmark-test">Benchmarks</a> | <a href="https://github.com/StarRocks/demo">Demo</a>
-</p>
-<p align="center">
+## 1. 环境准备
 
- <img src="https://img.shields.io/badge/Made%20with-JAVA%20%26%20C%2B%2B-red" alt="JAVA&C++">
-    </a>
-    <img src="https://img.shields.io/github/commit-activity/m/StarRocks/starrocks" alt="Commit Activities">
-    </a>
-   <a href="https://github.com/StarRocks/starrocks/issues">
-    <img src="https://img.shields.io/github/issues-raw/StarRocks/starrocks" alt="Open Issues">
-  </a>
-  </a>
-   <a href="https://starrocks.io/index">
-    <img src="https://img.shields.io/badge/Visit%20StarRocks-Website-green" alt="Website">
-  </a>
-  </a>
-   <a href="https://try.starrocks.com/join-starrocks-on-slack">
-    <img src="https://img.shields.io/badge/Join-Slack-ff69b4" alt="Slack">
-  </a>
-  </a>
-   <a href="https://twitter.com/StarRocksLabs">
-    <img src="https://img.shields.io/twitter/follow/StarRocksLabs?style=social" alt="Twitter">
-  </a>
-  <a href="https://gurubase.io/g/starrocks">
-    <img src="https://img.shields.io/badge/Gurubase-Ask%20StarRocks%20Guru-006BFF" alt="Gurubase">
-  </a>
- </p>
+AutoDOP 的执行侧改动位于 FE，需要编译并部署本仓库的 FE：
 
-<div align="center"> 
+```bash
+./build.sh --fe
+```
 
-</div>
-StarRocks is the world's fastest open query engine for sub-second, ad-hoc analytics both on and off the data lakehouse. With average query performance 3x faster than other popular alternatives, StarRocks is a query engine that eliminates the need for denormalization and adapts to your use cases, without having to move your data or rewrite SQL. A Linux Foundation project. <br></br>
+准备 Python 环境：
 
-Learn more 👉🏻 [What Is StarRocks: Features and Use Cases](https://www.youtube.com/watch?v=RfXO5GOnbW4&ab_channel=CelerData)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r tools/autodop/requirements-autodop.txt
+```
 
-<br>
- <p align="center">
-    <img src="https://cdn.starrocks.io/static/github/community.gif">
-   </a>
-</p>
-</br>
+运行 AutoDOP 还需要：
 
-## Features
+- 一个使用本仓库 FE 的可运行 StarRocks 集群；
+- MySQL 客户端和 curl；
+- 待执行的 SELECT 查询及其数据。
 
-* **🚀 Native vectorized SQL engine:** StarRocks adopts vectorization technology to make full use of the parallel computing power of CPU, achieving sub-second query returns in multi-dimensional analyses, which is 5 to 10 times faster than previous systems.
-* **📊 Standard SQL:** StarRocks supports ANSI SQL syntax (fully supported TPC-H and TPC-DS). It is also compatible with the MySQL protocol. Various clients and BI software can be used to access StarRocks.
-* **💡 Smart query optimization:** StarRocks can optimize complex queries through CBO (Cost Based Optimizer). With a better execution plan, the data analysis efficiency will be greatly improved.
-* **⚡ Real-time update:** The updated model of StarRocks can perform upsert/delete operations according to the primary key, and achieve efficient query while concurrent updates.
-* **🪟 Intelligent materialized view:** The materialized view of StarRocks can be automatically updated during the data import and automatically selected when the query is executed.
-* **✨ Querying data in data lakes directly**: StarRocks allows direct access to data from Apache Hive™, Apache Iceberg™, Delta Lake™ and Apache Hudi™ without importing.
-* **🎛️ Resource management**: This feature allows StarRocks to limit resource consumption for queries and implement isolation and efficient use of resources among tenants in the same cluster.
-* **💠 Easy to maintain**: Simple architecture makes StarRocks easy to deploy, maintain and scale out. StarRocks tunes its query plan agilely, balances the resources when the cluster is scaled in or out, and recovers the data replica under node failure automatically.
+AutoDOP 仅支持启用 pipeline engine 的 SELECT 查询，并要求关闭 runtime adaptive DOP。
 
+## 2. 启动决策服务
 
+决策服务提供固定配置、算子子图和 PolicyModel 三种互斥模式。
 
-<br>
-  
-## Architecture Overview
+### 算子子图模式
 
- <p align="center">
-    <img src="images/arch.png">
-   </a>
-</p>
+下面的命令将包含 <code>INTERSECT</code> 的 fragment 及其输入 fragment 设为 DOP 4，其余 fragment 设为 DOP 1：
 
+```bash
+python3 tools/autodop/autodop_server.py \
+    --operator-subgraph INTERSECT \
+    --operator-dop 4 \
+    --default-dop 1 \
+    --verbose
+```
 
-StarRocks’s streamlined architecture is mainly composed of two modules: Frontend (FE) and Backend (BE).  The entire system eliminates single points of failure through seamless and horizontal scaling of FE and BE, as well as replication of metadata and data.
+<code>--operator-subgraph</code> 可以替换为执行计划中需要单独调节的算子名称。
 
-Starting from version 3.0, StarRocks supports a new shared-data architecture, which can provide better scalability and lower costs.
+### 固定配置模式
 
- <p align="center">
-    <img src="docs/en/_assets/shared-data.png" width="55%" height="55%">
-   </a>
-</p>
+<code>*</code> 表示未单独指定的 fragment：
 
+```bash
+python3 tools/autodop/autodop_server.py \
+    --fragment-dops "*=1,F02=4,F03=4" \
+    --verbose
+```
 
-<br>
+fragment ID 可以从 FE 生成的 AutoDOP trace 中读取。
 
-## Resources
+### PolicyModel 模式
 
-### 📚 Read the docs
+```bash
+python3 tools/autodop/autodop_server.py \
+    --policy-model /tmp/autodop/policy.pt \
+    --verbose
+```
 
-| Section | Description |
-|-|-|
-| [Quick Starts](https://docs.starrocks.io/docs/quick_start/)| How-tos and Tutorials. |
-| [Deploy](https://docs.starrocks.io/docs/deployment/deployment_overview/) | Learn how to run and configure StarRocks.|
-| [Docs](https://docs.starrocks.io/)| Full documentation. |
-| [Blogs](https://www.starrocks.io/blog) | StarRocks deep dive and user stories.  |
+检查服务是否正常：
 
-### ❓ Get support  
-[<img align="right" width="150" src="https://firstcontributions.github.io/assets/Readme/join-slack-team.png">](https://try.starrocks.com/join-starrocks-on-slack)
--  [Slack community: ](https://try.starrocks.com/join-starrocks-on-slack) join technical discussions, ask questions, and meet other users!
--  [YouTube channel:](https://www.youtube.com/channel/UC38wR-ogamk4naaWNQ45y7Q/featured) subscribe to the latest video tutorials and webcasts.
--  [GitHub issues:](https://github.com/StarRocks/starrocks/issues) report an issue with StarRocks.
+```bash
+curl http://127.0.0.1:18080/health
+```
 
+FE 与决策服务不在同一主机时，通过 <code>--host</code> 监听 FE 可访问的地址，并同步修改 FE 的 <code>auto_dop_endpoint</code>。
 
-<br>  
-  
-## Contributing to StarRocks
+## 3. 配置 FE 并执行查询
 
-We welcome all kinds of contributions from the community, individuals and partners. We owe our success to your active involvement.
+连接 StarRocks：
 
-1. See [Contributing.md](https://github.com/StarRocks/starrocks/blob/main/CONTRIBUTING.md) to get started.
-2. Set up StarRocks development environment:
-* [IDE Setup](https://docs.starrocks.io/docs/developers/development-environment/ide-setup/) 
-* [Compile StarRocks with Docker](https://docs.starrocks.io/docs/developers/build-starrocks/Build_in_docker/) 
-* [Deploy StarRocks manually](https://docs.starrocks.io/docs/deployment/deploy_manually/) 
-3. Understand our [GitHub workflow](https://github.com/StarRocks/community/blob/main/Contributors/guide/workflow.md) for opening a pull request; use this [PR Template](https://github.com/StarRocks/starrocks/blob/main/.github/PULL_REQUEST_TEMPLATE.md) when submitting a pull request.
-4. Pick a [good first issue](https://github.com/StarRocks/starrocks/labels/good%20first%20issue) and start contributing. 
+```bash
+mysql -h 127.0.0.1 -P 9030 -uroot
+```
 
-**📝 License:** StarRocks is licensed under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+配置决策服务和 trace 目录：
 
-**👥 Community Membership:** Learn more about different [contributor roles](community/membership.md) in StarRocks community.
+```sql
+ADMIN SET FRONTEND CONFIG ("auto_dop_endpoint" = "http://127.0.0.1:18080");
+ADMIN SET FRONTEND CONFIG ("auto_dop_timeout_ms" = "500");
+ADMIN SET FRONTEND CONFIG ("auto_dop_trace_dir" = "/tmp/autodop/traces");
+```
 
-**💬 Developer Group：** Please join our [Google Groups](https://groups.google.com/g/starrocks-dev) to discuss StarRocks features, project directions, issues, pull requests, or share suggestions.
-  
-<br>
-  
-## Used By
+在需要使用 AutoDOP 的 session 中执行：
 
-This project is used by the following companies. Learn more about their use cases:
+```sql
+SET enable_pipeline_engine = true;
+SET enable_runtime_adaptive_dop = false;
+SET enable_auto_dop = true;
+SET auto_dop_max_dop = 8;
+SET pipeline_dop = 1;
 
-- [Airbnb](https://www.youtube.com/watch?v=AzDxEZuMBwM&ab_channel=StarRocks_labs)
-- [Pinterest](https://medium.com/pinterest-engineering/delivering-faster-analytics-at-pinterest-a639cdfad374)
-- [Coinbase](https://www.youtube.com/watch?v=3Z9jSCaHnYg&list=PL0eWwaesODdhBhKSnvpfIEAB9sgk8rKmy)
-- [Tencent(Games)](https://www.starrocks.io/blog/tencent-unifies-their-gaming-analytics-with-starrocks)
-- [Tencent(LLM)](https://www.youtube.com/watch?v=WVHXFks9EQk)
-- [Demandbase](https://starrocks.medium.com/demandbase-ditches-denormalization-by-switching-off-clickhouse-44195d795a83)
-- [Airtable](https://medium.com/airtable-eng/live-shard-data-archive-export-and-ingestion-to-starrocks-for-validation-6af555e8b3fe)
-- [Shopee](https://celerdata.com/blog/how-shopee-3xed-their-query-performance-with-starrocks)
-- [Naver](https://starrocks.medium.com/how-join-changed-how-we-approach-data-infra-at-naver-3a5bb1dac49f)
-- [Xiaohongshu/RedNote](https://www.youtube.com/watch?v=2cvIZY4EDak&list=PL0eWwaesODdiJ0aXLzSTyNfkjjIFYpOTf)
-- [HerdWatch](https://medium.com/p/a7916a7e87bf)
-- [TRM Labs](https://www.trmlabs.com/post/from-bigquery-to-lakehouse-how-we-built-a-petabyte-scale-data-analytics-platform-part-1)
-- [Verisoul](https://celerdata.com/blog/verisoul-enables-real-time-analytics-by-transitioning-off-bigquery)
-- [Trip.com](https://starrocks.medium.com/trip-com-starrocks-efficiently-supports-high-concurrent-queries-dramatically-reduces-labor-and-1e1921dd6bf8) 
-- [Didi](https://www.starrocks.io/blog/reduced-80-cost-didis-journey-from-multiple-olap-engines-to-starrocks)
-- [Grab](https://engineering.grab.com/building-a-spark-observability)
+USE your_database;
+SOURCE /absolute/path/to/query.sql;
+```
+
+<code>auto_dop_max_dop=8</code> 时，每个 fragment 的候选 DOP 为 <code>1, 2, 4, 8</code>。候选值始终为 2 的幂，最大不超过 32。
+
+固定配置和算子子图模式只需保证返回值不超过该上限。当前 PolicyModel 的类别集合为 <code>1, 2, 4, 8, 16, 32</code>，运行 PolicyModel 时应改为：
+
+```sql
+SET auto_dop_max_dop = 32;
+```
+
+决策服务必须为每个 fragment 返回一个候选集合内的 DOP。服务不可达、超时、协议不匹配或返回非法 DOP 时，查询会明确失败。
+
+## 4. 检查实际 DOP
+
+FE 在 <code>auto_dop_trace_dir</code> 下生成按日期命名的文件：
+
+```text
+/tmp/autodop/traces/autodop_trace_YYYY-MM-DD.jsonl
+```
+
+每条 trace 包含决策请求、服务响应、原始 DOP、安装后的 DOP、实际 instance DOP、决策耗时和查询运行指标。
+
+重点检查以下字段：
+
+- <code>auto_dop.decided_dop</code>：决策服务返回的 fragment DOP；
+- <code>auto_dop.installed_dop</code>：FE 安装到执行计划中的 DOP；
+- <code>auto_dop.actual_instance_dop</code>：实际发送到 BE instance 的 DOP；
+- <code>state</code> 和 <code>error_message</code>：查询终态。
+
+三组 DOP 应逐个 fragment 一致。该检查可以确认修改发生在 fragment/instance 级，而不是只改变全局 <code>pipeline_dop</code>。
+
+## 5. 与全局 DOP 对比
+
+关闭 AutoDOP 后，<code>pipeline_dop</code> 即固定的全局 DOP：
+
+```sql
+SET enable_auto_dop = false;
+SET pipeline_dop = 1;
+SOURCE /absolute/path/to/query.sql;
+
+SET pipeline_dop = 2;
+SOURCE /absolute/path/to/query.sql;
+
+SET pipeline_dop = 4;
+SOURCE /absolute/path/to/query.sql;
+
+SET pipeline_dop = 8;
+SOURCE /absolute/path/to/query.sql;
+```
+
+测试 fragment 级配置时，先启动对应的固定配置、算子子图或 PolicyModel 服务，然后执行：
+
+```sql
+SET pipeline_dop = 1;
+SET enable_auto_dop = true;
+SET auto_dop_max_dop = 8;
+SOURCE /absolute/path/to/query.sql;
+```
+
+对所有模式使用相同 SQL、数据、session 配置、预热次数和重复次数，并交错执行不同模式。并发实验应固定连接数，并同时记录单查询延迟和整批查询完成时间。
+
+## 6. 训练 PolicyModel
+
+训练流程从 FE 生成的 AutoDOP trace 开始。
+
+### 6.1 采集多种 DOP 配置
+
+先使用固定配置模式运行同一查询的多个配置。例如依次启动：
+
+```bash
+python3 tools/autodop/autodop_server.py --fragment-dops "*=1"
+python3 tools/autodop/autodop_server.py --fragment-dops "*=2"
+python3 tools/autodop/autodop_server.py --fragment-dops "*=4"
+python3 tools/autodop/autodop_server.py --fragment-dops "*=8"
+```
+
+每次只启动一个服务，并在对应配置下重复执行相同查询。获得首条 trace 后，可根据 <code>request.fragments</code> 中的 fragment ID 继续采集局部配置：
+
+```bash
+python3 tools/autodop/autodop_server.py \
+    --fragment-dops "*=1,F02=4,F03=4"
+```
+
+将同一批训练查询产生的 trace 放在一个独立目录中。每个计划至少需要两个延迟存在稳定差异的 DOP 配置，才能构造排序样本。
+
+### 6.2 构建数据集
+
+```bash
+python3 tools/autodop/scripts/build_dataset.py \
+    --input /tmp/autodop/traces \
+    --output /tmp/autodop/dataset \
+    --pair-threshold 0.03
+```
+
+输出包括 <code>samples.jsonl</code>、<code>pairs.jsonl</code> 和 <code>metadata.json</code>。<code>pair-threshold</code> 用于忽略延迟差异过小的排序对。
+
+### 6.3 训练 CostModel
+
+```bash
+python3 tools/autodop/scripts/train_cost.py \
+    --dataset /tmp/autodop/dataset \
+    --output /tmp/autodop/cost.pt \
+    --epochs 50 \
+    --batch-size 16
+```
+
+### 6.4 生成 DOP 标签
+
+使用 CostModel 和 MCTS 搜索：
+
+```bash
+python3 tools/autodop/scripts/search_mcts.py \
+    --dataset /tmp/autodop/dataset \
+    --cost-model /tmp/autodop/cost.pt \
+    --iterations 500 \
+    --output /tmp/autodop/mcts_labels.jsonl
+```
+
+若只在实测配置中搜索，可增加 <code>--measured-only</code>。若直接使用每个计划的最低实测延迟作为标签，可以执行：
+
+```bash
+python3 tools/autodop/scripts/search_mcts.py \
+    --dataset /tmp/autodop/dataset \
+    --measured-best \
+    --output /tmp/autodop/measured_labels.jsonl
+```
+
+### 6.5 训练 PolicyModel
+
+```bash
+python3 tools/autodop/scripts/train_policy.py \
+    --dataset /tmp/autodop/dataset \
+    --labels /tmp/autodop/mcts_labels.jsonl \
+    --cost-model /tmp/autodop/cost.pt \
+    --output /tmp/autodop/policy.pt \
+    --epochs 50 \
+    --global-context \
+    --position-encoding
+```
+
+训练完成后，按“PolicyModel 模式”启动服务，并在查询 session 中设置 <code>enable_auto_dop=true</code> 和 <code>auto_dop_max_dop=32</code>。
+
+## 7. 关键配置
+
+| 配置 | 作用 | 默认值 |
+| --- | --- | --- |
+| FE <code>enable_auto_dop</code> | 为所有符合条件的查询启用 AutoDOP；实验中更推荐使用同名 session 变量 | <code>false</code> |
+| FE <code>auto_dop_endpoint</code> | 决策服务地址 | <code>http://127.0.0.1:18080</code> |
+| FE <code>auto_dop_timeout_ms</code> | FE 调用决策服务的超时时间 | <code>50</code> |
+| FE <code>auto_dop_trace_dir</code> | FE 写入 JSONL trace 的目录 | <code>log/autodop</code> |
+| Session <code>enable_auto_dop</code> | 为当前连接启用 AutoDOP | <code>false</code> |
+| Session <code>auto_dop_max_dop</code> | fragment 候选 DOP 的上限 | <code>0</code>，继承其他并行度上限 |
+| Session <code>pipeline_dop</code> | AutoDOP 调整前的基础 DOP；关闭 AutoDOP 时即全局 DOP | 由 StarRocks 决定 |
