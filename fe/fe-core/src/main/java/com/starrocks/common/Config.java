@@ -170,6 +170,30 @@ public class Config extends ConfigBase {
     public static int auto_dop_timeout_ms = 50;
     @ConfField(mutable = true)
     public static String auto_dop_trace_dir = "log/autodop";
+    // Interval of the AutoDOP resource view sampling task, in milliseconds.
+    // The view reads the resource usage reported by BE (cpu_used_permille / mem_used_bytes) and
+    // exposes per-worker smoothed load to both the load correction (DD03) and the instance-level
+    // adjustment (DD04) paths.
+    @ConfField(mutable = true)
+    public static int auto_dop_resource_view_interval_ms = 2000;
+    // EWMA smoothing factor applied to raw per-worker load samples.
+    @ConfField(mutable = true)
+    public static double auto_dop_load_ewma_alpha = 0.25;
+    // CPU usage dead-zone threshold: below it the correction factor stays 1.
+    @ConfField(mutable = true)
+    public static double auto_dop_load_cpu_threshold = 0.4;
+    // Memory usage dead-zone threshold: below it the correction factor stays 1.
+    @ConfField(mutable = true)
+    public static double auto_dop_load_mem_threshold = 0.65;
+    // Floor of the fragment-level load correction factor (fully loaded nodes touch this value).
+    @ConfField(mutable = true)
+    public static double auto_dop_load_factor_floor = 0.1;
+    // Floor of the instance-level DOP adjustment factor (more conservative than the fragment-level floor).
+    @ConfField(mutable = true)
+    public static double auto_dop_instance_adjust_floor = 0.5;
+    // Master switch of the instance-level DOP adjustment.
+    @ConfField(mutable = true)
+    public static boolean auto_dop_instance_adjust_enabled = true;
     @ConfField
     public static String audit_log_roll_interval = "DAY";
     @ConfField

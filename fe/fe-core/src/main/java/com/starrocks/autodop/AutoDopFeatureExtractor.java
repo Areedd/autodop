@@ -55,7 +55,16 @@ public final class AutoDopFeatureExtractor {
         for (ExecutionFragment execFragment : executionDAG.getFragmentsInPreorder()) {
             request.edges.addAll(extractEdges(execFragment.getPlanFragment(), originalDop));
         }
+        fillWorkerLoads(request, executionDAG);
         return request;
+    }
+
+    private static void fillWorkerLoads(AutoDopRequest request, ExecutionDAG executionDAG) {
+        LinkedHashSet<Long> workerIds = new LinkedHashSet<>();
+        for (ExecutionFragment execFragment : executionDAG.getFragmentsInPreorder()) {
+            workerIds.addAll(execFragment.getPlacement().getWorkerIds());
+        }
+        AutoDopResourceView.fillWorkerLoads(request, workerIds);
     }
 
     private static void fillSessionInfo(AutoDopRequest request, ConnectContext context, JobSpec jobSpec) {

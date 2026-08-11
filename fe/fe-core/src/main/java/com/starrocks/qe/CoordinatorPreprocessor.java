@@ -17,6 +17,7 @@ package com.starrocks.qe;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 import com.starrocks.autodop.AutoDopController;
+import com.starrocks.autodop.AutoDopInstanceAdjuster;
 import com.starrocks.autodop.AutoDopResult;
 import com.starrocks.autodop.AutoDopTraceManager;
 import com.starrocks.catalog.ResourceGroup;
@@ -253,7 +254,13 @@ public class CoordinatorPreprocessor {
             AutoDopController.checkSupported(connectContext, jobSpec);
             assignAllPlacements();
             autoDopResult = AutoDopController.decideAndInstall(connectContext, jobSpec, executionDAG);
+            AutoDopTraceManager.register(autoDopResult);
             materializeAllFragments();
+            AutoDopTraceManager.captureInstanceDop(jobSpec.getQueryId(), executionDAG,
+                    AutoDopTraceManager.InstanceDopStage.BASELINE);
+            AutoDopInstanceAdjuster.adjust(executionDAG, autoDopResult);
+            AutoDopTraceManager.captureInstanceDop(jobSpec.getQueryId(), executionDAG,
+                    AutoDopTraceManager.InstanceDopStage.ADJUSTED);
         } else {
             assignAllFragments();
         }
@@ -268,7 +275,6 @@ public class CoordinatorPreprocessor {
         executionDAG.prepareCaptureVersion(enablePhasedSchedule);
         executionDAG.finalizeDAG();
         if (autoDopResult != null) {
-            AutoDopTraceManager.register(autoDopResult);
             AutoDopTraceManager.captureActualDop(jobSpec.getQueryId(), executionDAG);
         }
     }

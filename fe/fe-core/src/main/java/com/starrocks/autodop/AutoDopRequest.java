@@ -37,6 +37,32 @@ public class AutoDopRequest {
     @SerializedName("edges")
     public List<EdgeInfo> edges = new ArrayList<>();
 
+    // Per-worker resource snapshot (smoothed by the FE resource view). Key = worker id.
+    // Workers without a snapshot are omitted: the decision service treats them as neutral
+    // (no load correction).
+    @SerializedName("worker_loads")
+    public Map<String, WorkerLoad> workerLoads = new LinkedHashMap<>();
+
+    public static class WorkerLoad {
+        @SerializedName("cpu_used")
+        public double cpuUsed;
+
+        @SerializedName("mem_used_pct")
+        public double memUsedPct;
+
+        @SerializedName("fresh")
+        public boolean fresh;
+
+        public WorkerLoad() {
+        }
+
+        public WorkerLoad(double cpuUsed, double memUsedPct, boolean fresh) {
+            this.cpuUsed = cpuUsed;
+            this.memUsedPct = memUsedPct;
+            this.fresh = fresh;
+        }
+    }
+
     public static class SessionInfo {
         @SerializedName("pipeline_enabled")
         public boolean pipelineEnabled;

@@ -81,23 +81,82 @@ public final class AutoDopTraceManager {
         }
 
         Map<String, List<Integer>> actualInstanceDop = new LinkedHashMap<>();
-        List<ActualFragmentDop> fragments = Lists.newArrayList();
+        Map<String, ActualFragmentDop> fragmentsById = new java.util.HashMap<>();
+        for (ActualFragmentDop actual : record.actualFragments) {
+            fragmentsById.put(actual.fragmentId, actual);
+        }
         for (ExecutionFragment execFragment : executionDAG.getFragmentsInCreatedOrder()) {
             PlanFragment fragment = execFragment.getPlanFragment();
-            ActualFragmentDop actual = new ActualFragmentDop();
-            actual.fragmentId = fragment.getFragmentId().toString();
-            actual.planDop = fragment.getPipelineDop();
+            ActualFragmentDop actual = fragmentsById.get(fragment.getFragmentId().toString());
+            if (actual == null) {
+                actual = new ActualFragmentDop();
+                actual.fragmentId = fragment.getFragmentId().toString();
+                actual.planDop = fragment.getPipelineDop();
+                for (FragmentInstance instance : execFragment.getInstances()) {
+                    actual.workerIds.add(instance.getWorkerId());
+                    actual.scanRangeCounts.add(scanRangeCount(instance));
+                    actual.driverSeqScanRangeCounts.add(driverSeqScanRangeCount(instance));
+                }
+                record.actualFragments.add(actual);
+            }
             for (FragmentInstance instance : execFragment.getInstances()) {
-                actual.workerIds.add(instance.getWorkerId());
                 actual.instanceDops.add(instance.getPipelineDop());
-                actual.scanRangeCounts.add(scanRangeCount(instance));
-                actual.driverSeqScanRangeCounts.add(driverSeqScanRangeCount(instance));
             }
             actualInstanceDop.put(actual.fragmentId, actual.instanceDops);
-            fragments.add(actual);
         }
         record.autoDop.actualInstanceDop = actualInstanceDop;
-        record.actualFragments = fragments;
+    }
+
+    /**
+     * Captures a per-instance DOP snapshot at one of the two intermediate stages of the
+     * decision window: {@link InstanceDopStage#BASELINE} right after instances are materialized
+     * (before the instance-level adjustment) and {@link InstanceDopStage#ADJUSTED} right after
+     * {@link AutoDopInstanceAdjuster} runs. The final snapshot is captured by
+     * {@link #captureActualDop} after {@code finalizeDAG}.
+     */
+    public static void captureInstanceDop(TUniqueId queryId, ExecutionDAG executionDAG,
+                                          InstanceDopStage stage) {
+        TraceRecord record = TRACES.get(DebugUtil.printId(queryId));
+        if (record == null || executionDAG == null) {
+            return;
+        }
+        if (record.actualFragments.isEmpty()) {
+            for (ExecutionFragment execFragment : executionDAG.getFragmentsInCreatedOrder()) {
+                ActualFragmentDop actual = new ActualFragmentDop();
+                actual.fragmentId = execFragment.getFragmentId().toString();
+                actual.planDop = execFragment.getPlanFragment().getPipelineDop();
+                for (FragmentInstance instance : execFragment.getInstances()) {
+                    actual.workerIds.add(instance.getWorkerId());
+                    actual.scanRangeCounts.add(scanRangeCount(instance));
+                    actual.driverSeqScanRangeCounts.add(driverSeqScanRangeCount(instance));
+                }
+                record.actualFragments.add(actual);
+            }
+        }
+        Map<String, ActualFragmentDop> fragmentsById = new java.util.HashMap<>();
+        for (ActualFragmentDop actual : record.actualFragments) {
+            fragmentsById.put(actual.fragmentId, actual);
+        }
+        for (ExecutionFragment execFragment : executionDAG.getFragmentsInCreatedOrder()) {
+            ActualFragmentDop actual = fragmentsById.get(execFragment.getFragmentId().toString());
+            if (actual == null) {
+                continue;
+            }
+            List<Integer> snapshot = new java.util.ArrayList<>();
+            for (FragmentInstance instance : execFragment.getInstances()) {
+                snapshot.add(instance.getPipelineDop());
+            }
+            if (stage == InstanceDopStage.BASELINE) {
+                actual.baselineInstanceDops = snapshot;
+            } else {
+                actual.adjustedInstanceDops = snapshot;
+            }
+        }
+    }
+
+    public enum InstanceDopStage {
+        BASELINE,
+        ADJUSTED
     }
 
     public static void finishAndPersist(ConnectContext context, QueryDetail queryDetail, PQueryStatistics statistics) {
@@ -125,6 +184,14 @@ public final class AutoDopTraceManager {
 
     public static void setTraceDirForTest(String traceDir) {
         traceDirForTest = traceDir;
+    }
+
+    /**
+     * Test hook: exposes the three-stage instance DOP snapshots of the active trace record.
+     */
+    public static List<ActualFragmentDop> traceFragmentsForTest(TUniqueId queryId) {
+        TraceRecord record = TRACES.get(DebugUtil.printId(queryId));
+        return record == null ? null : record.actualFragments;
     }
 
     public static void clearForTest() {
@@ -232,6 +299,15 @@ public final class AutoDopTraceManager {
         @SerializedName("plan_dop")
         public int planDop;
 
+        // Instance DOP right after materialization, before the instance-level adjustment.
+        @SerializedName("baseline_instance_dops")
+        public List<Integer> baselineInstanceDops;
+
+        // Instance DOP right after the instance-level adjustment, before finalizeDAG.
+        @SerializedName("adjusted_instance_dops")
+        public List<Integer> adjustedInstanceDops;
+
+        // Instance DOP after finalizeDAG: the actual DOP sent to the BE.
         @SerializedName("instance_dops")
         public List<Integer> instanceDops = Lists.newArrayList();
 

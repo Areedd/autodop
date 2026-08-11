@@ -15,8 +15,13 @@
 package com.starrocks.qe;
 
 import com.google.api.client.util.Lists;
+import com.starrocks.autodop.AutoDopController;
+import com.starrocks.autodop.AutoDopRequest;
+import com.starrocks.autodop.AutoDopResponse;
+import com.starrocks.autodop.AutoDopTraceManager;
 import com.starrocks.common.ConfigBase;
 import com.starrocks.common.FeConstants;
+import com.starrocks.common.StarRocksException;
 import com.starrocks.qe.scheduler.assignment.RemoteFragmentAssignmentStrategy;
 import com.starrocks.qe.scheduler.dag.ExecutionDAG;
 import com.starrocks.sql.plan.DistributedEnvPlanTestBase;
@@ -34,6 +39,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -122,6 +130,67 @@ public class AdaptiveChooseNodesTest extends DistributedEnvPlanTestBase {
         Assertions.assertEquals(1, dag.getFragmentsInCreatedOrder().get(1).getInstances()
                 .stream().map(e -> e.getWorkerId()).collect(Collectors.toSet()).size());
         Assertions.assertEquals(1, dag.getFragmentsInCreatedOrder().get(1).getNumSendersPerExchange().size());
+    }
+
+    @Test
+    @Order(3)
+    void testAutoDopKeepsPlacement() throws Exception {
+        AtomicReference<AutoDopRequest> capturedRequest = new AtomicReference<>();
+        AutoDopController.setClientForTest(request -> {
+            capturedRequest.set(request);
+            AutoDopResponse response = new AutoDopResponse();
+            response.queryId = request.queryId;
+            for (AutoDopRequest.FragmentInfo fragment : request.fragments) {
+                response.decisions.add(new AutoDopResponse.Decision(fragment.fragmentId, 2, "test"));
+            }
+            return response;
+        });
+        connectContext.getSessionVariable().setEnableAutoDop(true);
+        connectContext.getSessionVariable().setEnablePipelineEngine(true);
+        connectContext.getSessionVariable().setEnableRuntimeAdaptiveDop(false);
+        connectContext.setExecutionId(new TUniqueId(0x44, 0x0));
+
+        try {
+            ExecPlan execPlan = getExecPlan("select count(*) from lineorder_new_l group by P_SIZE");
+            CoordinatorPreprocessor prepare = new CoordinatorPreprocessor(
+                    execPlan.getFragments(), execPlan.getScanNodes(), connectContext);
+            prepare.computeFragmentInstances();
+
+            Map<String, Set<Long>> actualWorkers = prepare.getExecutionDAG().getFragmentsInPreorder().stream()
+                    .collect(Collectors.toMap(
+                            fragment -> fragment.getFragmentId().toString(),
+                            fragment -> fragment.getInstances().stream()
+                                    .map(instance -> instance.getWorkerId()).collect(Collectors.toSet())));
+            for (AutoDopRequest.FragmentInfo fragment : capturedRequest.get().fragments) {
+                Assertions.assertEquals(Set.copyOf(fragment.workerIds), actualWorkers.get(fragment.fragmentId));
+                Assertions.assertEquals(fragment.instanceCount,
+                        prepare.getExecutionDAG().getFragmentsInPreorder().stream()
+                                .filter(execFragment -> execFragment.getFragmentId().toString().equals(fragment.fragmentId))
+                                .findFirst().orElseThrow().getInstances().size());
+            }
+        } finally {
+            connectContext.getSessionVariable().setEnableAutoDop(false);
+            AutoDopController.resetClientForTest();
+            AutoDopTraceManager.clearForTest();
+        }
+    }
+
+    @Test
+    @Order(4)
+    void testAutoDopRejectsRuntimeAdaptiveDop() throws Exception {
+        connectContext.getSessionVariable().setEnableAutoDop(true);
+        connectContext.getSessionVariable().setEnableRuntimeAdaptiveDop(true);
+        connectContext.setExecutionId(new TUniqueId(0x45, 0x0));
+
+        try {
+            ExecPlan execPlan = getExecPlan("select count(*) from lineorder_new_l");
+            CoordinatorPreprocessor prepare = new CoordinatorPreprocessor(
+                    execPlan.getFragments(), execPlan.getScanNodes(), connectContext);
+            Assertions.assertThrows(StarRocksException.class, prepare::computeFragmentInstances);
+        } finally {
+            connectContext.getSessionVariable().setEnableAutoDop(false);
+            connectContext.getSessionVariable().setEnableRuntimeAdaptiveDop(false);
+        }
     }
 
     @ParameterizedTest
