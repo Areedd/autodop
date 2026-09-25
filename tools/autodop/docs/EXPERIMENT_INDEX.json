@@ -1,5 +1,5 @@
 {
-  "scope": "Top-level reports and status files only; raw nested logs/data remain in runs/.",
+  "scope": "Top-level reports of 104 experiments, plus report90 subexperiment reports and full/pilot summaries; raw nested logs/data remain in runs/.",
   "experiments": [
     {
       "directory": "runs/ablation_cost_20260912",
@@ -690,6 +690,3233 @@
           "name": "RESULT.json",
           "bytes": 115743,
           "sha256": "3db09af1e5da30e5af58ed1f263da2bd41885dd55f43b32f9b842d365d1767f0"
+        }
+      ]
+    }
+  ],
+  "report90_subexperiments": [
+    {
+      "directory": "runs/report90_20260912/basic_four_control_20260920",
+      "records": [
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/full/FINAL_AUDIT.json",
+          "bytes": 2236,
+          "sha256": "275efa89154bea509bb5e73e9cc66666cb1c7c67dceddcab629fae6820271d0b"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/full/REPORT.md",
+          "bytes": 3810,
+          "sha256": "edc1beb92e905c4c515d8b933324da7fc9a55282d3f56aeb71e0ed94d5d72fde"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/full/RESULT.json",
+          "bytes": 191616,
+          "sha256": "faab117ad70eabb2051bd239af2e93a2d2574252c57138ed1613735289758369"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/full/STATUS.json",
+          "bytes": 78,
+          "sha256": "4085273477d1c3e8c3833994347d673eb0f8656a417549a1cde2523a4a2ecba6"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/full/UNIFIED_REPORT.md",
+          "bytes": 3810,
+          "sha256": "edc1beb92e905c4c515d8b933324da7fc9a55282d3f56aeb71e0ed94d5d72fde"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/pilot/FINAL_AUDIT.json",
+          "bytes": 1239,
+          "sha256": "e6fd8b011e688e5bac4a4220d11071970b489c99245cee09eb8f471d84e0f3b7"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/pilot/REPORT.md",
+          "bytes": 188,
+          "sha256": "0100b07382419e4c7b8863a810c6ce5ac60c14e398e7e3a72c7f20250ca39cc9"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/pilot/RESULT.json",
+          "bytes": 46928,
+          "sha256": "f74eace6a088060d70602252bc417723a6496222acdaa7150a5363b4e0ac1b42"
+        },
+        {
+          "path": "runs/report90_20260912/basic_four_control_20260920/pilot/STATUS.json",
+          "bytes": 76,
+          "sha256": "c2121b44efc999d430f641a2facfa5f993f0cada0b2bc6b4104f4987c764aab2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/batched_cost_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/batched_cost_pilot/PROTOCOL.json",
+          "bytes": 2007,
+          "sha256": "73f93b6b67459fdd1e754506bc605ca6ba68dc8382d0be994ff648f689cafd2b"
+        },
+        {
+          "path": "runs/report90_20260912/batched_cost_pilot/REPORT.md",
+          "bytes": 777,
+          "sha256": "157c2b1a169c4c7864791abe3ea35536326db536891bfca467e728bdb5ff2f08"
+        },
+        {
+          "path": "runs/report90_20260912/batched_cost_pilot/RESULT.json",
+          "bytes": 5521,
+          "sha256": "27cdb7e9ced8c10f67a26b9ca8df6370b83189031be94f90c11fccec9ac5fd81"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/batched_cost_verification",
+      "records": [
+        {
+          "path": "runs/report90_20260912/batched_cost_verification/PROTOCOL.json",
+          "bytes": 2827,
+          "sha256": "749410ac448dac7caeeea5e1a6934bff83ba126f748b7fb385548b4a2eee3c26"
+        },
+        {
+          "path": "runs/report90_20260912/batched_cost_verification/REPORT.md",
+          "bytes": 1093,
+          "sha256": "cdb13d3f68032521c5d156769b4283df0a35eb244981fa0d5eee8187012bcac1"
+        },
+        {
+          "path": "runs/report90_20260912/batched_cost_verification/RESULT.json",
+          "bytes": 5810,
+          "sha256": "3e98e34d9a6141775a316a3dce4274b6d11c5f12ecdb9dfa4a0a2d622fa98238"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/budget_rounding_analysis",
+      "records": [
+        {
+          "path": "runs/report90_20260912/budget_rounding_analysis/REPORT.md",
+          "bytes": 1149,
+          "sha256": "385483c3d49842164778c3e7529c727114c93b60e9f3c7255581712fe270d608"
+        },
+        {
+          "path": "runs/report90_20260912/budget_rounding_analysis/RESULT.json",
+          "bytes": 101135,
+          "sha256": "60ec660393e6327fc345ff5fa7986da446ae4383a16a7f22fbd9a277ddd76a4a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/candidate_pipeline_cost",
+      "records": [
+        {
+          "path": "runs/report90_20260912/candidate_pipeline_cost/PROTOCOL.json",
+          "bytes": 2581,
+          "sha256": "bd3de8e55c5f9a1db0a4209a19d6da6e5d7881ed6fdb7a355163abeb8bf923d0"
+        },
+        {
+          "path": "runs/report90_20260912/candidate_pipeline_cost/REPORT.md",
+          "bytes": 1059,
+          "sha256": "ffd950109a479c7c3e15f10ccfa20d02f701474e27ae64120903e1bd6d5c5ef7"
+        },
+        {
+          "path": "runs/report90_20260912/candidate_pipeline_cost/RESULT.json",
+          "bytes": 20784,
+          "sha256": "ffb8d2642486aa1c2a86863c65fae1d5cb5e7cd5199866eb340dfed902844c78"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/checkpoint_fixed_observation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/checkpoint_fixed_observation/PROTOCOL.json",
+          "bytes": 332,
+          "sha256": "6ebb07fe8f86ec01d890ead641ffa0513cae7a11f4a76593c0bb93cc1a1321da"
+        },
+        {
+          "path": "runs/report90_20260912/checkpoint_fixed_observation/RESULT.json",
+          "bytes": 287,
+          "sha256": "f8a9c7ff9e8d8b87b8c39ba4d4723358b77a5c83f8c61f1af0c680551789a8d9"
+        },
+        {
+          "path": "runs/report90_20260912/checkpoint_fixed_observation/STATUS.json",
+          "bytes": 27,
+          "sha256": "a738232f080ef2af308af4672ecd9215771bd565b7dbf962ad1df21b60c74fc8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/checkpoint_fixed_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/checkpoint_fixed_restart/PROTOCOL.json",
+          "bytes": 507,
+          "sha256": "83d8c3f331362ec72e47ecce72f6cfe1294e9823864e0f6fcd85a91f9d5af842"
+        },
+        {
+          "path": "runs/report90_20260912/checkpoint_fixed_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "fa9a261deff56b95c5109c3858ca4f0f02a803915cd1e9324290bb3d877cf36b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/checkpoint_variable_regression",
+      "records": [
+        {
+          "path": "runs/report90_20260912/checkpoint_variable_regression/REPORT.md",
+          "bytes": 1373,
+          "sha256": "ce634c991d15adc4d41046ad1b39289761ea684f3af502257eafa000cd4b5526"
+        },
+        {
+          "path": "runs/report90_20260912/checkpoint_variable_regression/RESULT.json",
+          "bytes": 1575,
+          "sha256": "0ed85cc8922a99daa0e963d13e37cf624ddd2cabe1e32f289ca52d715b1c8f1e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/complex_development24",
+      "records": [
+        {
+          "path": "runs/report90_20260912/complex_development24/PROTOCOL.json",
+          "bytes": 2191,
+          "sha256": "16a09247acad42978a604a34d6a99192c32522792102d4f2f5137cf282613a2a"
+        },
+        {
+          "path": "runs/report90_20260912/complex_development24/RECOVERY_NOTE.md",
+          "bytes": 2937,
+          "sha256": "4e32673076f0f3756dcda6d8fab1d6718d58f72ab56ec51210873277be1f1f4f"
+        },
+        {
+          "path": "runs/report90_20260912/complex_development24/REPORT.md",
+          "bytes": 3538,
+          "sha256": "7f70d0a7a0ff05995bf8412c332b3ece5d11b612db48b2569afcac14245f8eb1"
+        },
+        {
+          "path": "runs/report90_20260912/complex_development24/STATUS.json",
+          "bytes": 121,
+          "sha256": "5f7965022895b5945b0f23a22d3b998c4af054e6d68a628e7f4f3200335be85a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/convergence_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/convergence_20260913/PROTOCOL.json",
+          "bytes": 1066,
+          "sha256": "96618f9818d9bf4a155e0b646555a51252f962277fdd076358de223c3bd9f1a4"
+        },
+        {
+          "path": "runs/report90_20260912/convergence_20260913/REPORT.md",
+          "bytes": 1585,
+          "sha256": "c34587d83ef74097d7d563012310b696379c654feee2b4d2f85c93ba41432638"
+        },
+        {
+          "path": "runs/report90_20260912/convergence_20260913/full/RESULT.json",
+          "bytes": 131646,
+          "sha256": "0689cad38214b772bae1b3a53e82305346e7d774c82724492db182cded0a2401"
+        },
+        {
+          "path": "runs/report90_20260912/convergence_20260913/pilot/RESULT.json",
+          "bytes": 5085,
+          "sha256": "cbd549abe280adb336f00acaec8e4341c62936b243264c1ae937c29d175d252e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/convergence_execution_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/convergence_execution_20260913/PROTOCOL.json",
+          "bytes": 1949,
+          "sha256": "58348e9fcce9ca6ee9f4477d332fbd15de13fb6b552d082221ba06ce3425f590"
+        },
+        {
+          "path": "runs/report90_20260912/convergence_execution_20260913/STATUS.json",
+          "bytes": 111,
+          "sha256": "870bbc0157f70de61f5486e7acefcfca8cd03187fe33f0b447cb3fc01093854a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/cpu_capacity_fix",
+      "records": [
+        {
+          "path": "runs/report90_20260912/cpu_capacity_fix/REPORT.md",
+          "bytes": 4581,
+          "sha256": "7c4fe805700b07eaee2a9ff32a79f4a04d246d8e55afd3b3f4d4dd82b601fa84"
+        },
+        {
+          "path": "runs/report90_20260912/cpu_capacity_fix/RESULT.json",
+          "bytes": 4720,
+          "sha256": "1eefb52785820d5d778b98f631772beb8281ac5454d9f7ca480674d0de5eba77"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_budget_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_budget_full/DECISION_AUDIT.md",
+          "bytes": 1075,
+          "sha256": "84d8ed7922fbba1a3194080472f77d80c4f3935def91dce3b4fcc03dba37ba61"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_full/FACTORIAL_SUMMARY.md",
+          "bytes": 1272,
+          "sha256": "3d8662ae6c09535cd1110fa2b3154050e71ace3eeb81a5d5735fe0f3c4f4849c"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_full/PROTOCOL.json",
+          "bytes": 1875,
+          "sha256": "8c30abff3db9f5e426d1b55e26f4df2c5346acdd09978c6c035156ce7b1ff3e4"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_full/REPORT.md",
+          "bytes": 1192,
+          "sha256": "63ee0826188ca9f2a6a90db89cafd31cf62a8efaf3e847ea8df18803dfb98a9c"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_full/RESULT.json",
+          "bytes": 2458,
+          "sha256": "d147fa3b543844f5af26944f9385980d3b742514e992264c7ff5ece069acd515"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_full/STATUS.json",
+          "bytes": 58,
+          "sha256": "5cee5a2aae1cdaa1eafd63935cc054573bfea074ac680f10cc87d4f2552f6ab4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_budget_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/DECISION_AUDIT.md",
+          "bytes": 959,
+          "sha256": "06828a3279d4c93a6a16f057a4bc2bc54ad5521dcad757ff1036e869ac2182a0"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/FACTORIAL_SUMMARY.md",
+          "bytes": 1268,
+          "sha256": "3c3ddc5fd0a33095773d8cccfdc017a6c5a8ea73c285762f0547768588111ef1"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/PROTOCOL.json",
+          "bytes": 1874,
+          "sha256": "fdf4e05a7a641296e04c73b9ec5807801c905beb752fda9082f3d0ab143ce18d"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/REPORT.md",
+          "bytes": 1190,
+          "sha256": "d572acdc6471dc4c2fcc60baf3dcfc1296cae78477bd64b48a72938b41054bf7"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/RESULT.json",
+          "bytes": 2454,
+          "sha256": "14683613f75b90c4f7a3773affb9b2552bd35d4a2819d72f2fa398288e07f182"
+        },
+        {
+          "path": "runs/report90_20260912/development17_budget_pilot/STATUS.json",
+          "bytes": 58,
+          "sha256": "5cee5a2aae1cdaa1eafd63935cc054573bfea074ac680f10cc87d4f2552f6ab4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_calibration",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_calibration/README.md",
+          "bytes": 1890,
+          "sha256": "3a4bbd0159b45dba354e8a25897365a4c58cb495400f6b024ce9913613bade6d"
+        },
+        {
+          "path": "runs/report90_20260912/development17_calibration/REPORT.md",
+          "bytes": 1585,
+          "sha256": "b658ffc4c3a37686ee9930b550e0e2562c969a1a2dcda8004c325b779700348f"
+        },
+        {
+          "path": "runs/report90_20260912/development17_calibration/RESULT.json",
+          "bytes": 24197,
+          "sha256": "641d0b66c746a52a535ac864999ebc2509fdfbdd3f503b383a2005d6923e8a92"
+        },
+        {
+          "path": "runs/report90_20260912/development17_calibration/STATUS.json",
+          "bytes": 96,
+          "sha256": "bf70e5df489d63631778bfc59cc04b1247eaf586eb7a0e71427f7be6b904ec28"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_cpu_threshold",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_cpu_threshold/PROTOCOL.json",
+          "bytes": 1377,
+          "sha256": "cb729f8f46a1bbf5c1bdeca3b62a90c18c61e1f5e38ada36c8cc07fcd2ae4db5"
+        },
+        {
+          "path": "runs/report90_20260912/development17_cpu_threshold/REPORT.md",
+          "bytes": 1175,
+          "sha256": "7b71434211eaef299a05beefb702900c9f6f498fbb8383864eff81f92d47fe2f"
+        },
+        {
+          "path": "runs/report90_20260912/development17_cpu_threshold/RESULT.json",
+          "bytes": 1780,
+          "sha256": "3ba92382cc72d497dff3b240c1a191d205e09b2dce2e3817751587865489765c"
+        },
+        {
+          "path": "runs/report90_20260912/development17_cpu_threshold/STATUS.json",
+          "bytes": 97,
+          "sha256": "8e913e9d17543c002317191bdcf9698e7856e864e7effd31f6bde12ab9c77e04"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_duration_screen",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_duration_screen/PROTOCOL.json",
+          "bytes": 751,
+          "sha256": "197c0f3b6a627969435743f2cd2cdd0cb744e5c87938c4b887f0265b71f764c6"
+        },
+        {
+          "path": "runs/report90_20260912/development17_duration_screen/REPORT.md",
+          "bytes": 943,
+          "sha256": "8b26891c742a9902f5b7c0259957f20a73926f205e9371f5450009cb0e0c76c4"
+        },
+        {
+          "path": "runs/report90_20260912/development17_duration_screen/RESULT.json",
+          "bytes": 82921,
+          "sha256": "2bdfbbc9a532478ebabb3fa3d17bc45bc1614e0410697b1563e6ef71acd454cc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_duration_screen_input_attempt1",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_duration_screen_input_attempt1/PROTOCOL.json",
+          "bytes": 751,
+          "sha256": "197c0f3b6a627969435743f2cd2cdd0cb744e5c87938c4b887f0265b71f764c6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_memory_observed",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/DECISION_AUDIT.md",
+          "bytes": 1185,
+          "sha256": "075992648c9c10504e630d57fb15e2602ef2f087126c93757e6ca406ac512212"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/DIRECT_MEMORY_ANALYSIS.md",
+          "bytes": 937,
+          "sha256": "e2412ab27475c763d470a5117d134007cc9b6875f1c9f886effaf0ee75a42a4a"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/PROTOCOL.json",
+          "bytes": 1767,
+          "sha256": "9b2ea9d04b6696ea96322d16d628eebcb2d70a76927de433cf8e5a9346c90fad"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/REPORT.md",
+          "bytes": 1030,
+          "sha256": "52d56ce37687a38653c1beb63275dddcea813f056a197d70cd91abf27c482f53"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/RESULT.json",
+          "bytes": 1868,
+          "sha256": "8e5321beb769272dda6a79f7e91ad4349f2dece4d3d2425137b6f3595648d4fd"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_observed/STATUS.json",
+          "bytes": 58,
+          "sha256": "5cee5a2aae1cdaa1eafd63935cc054573bfea074ac680f10cc87d4f2552f6ab4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_memory_profiles_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_full/MEMORY_PROFILE_CHECK.md",
+          "bytes": 6121,
+          "sha256": "020a340fdca04b99b060d9e7142335333c47911a0d84832b00bcdcbeafcd1a40"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_full/MEMORY_SUMMARY.md",
+          "bytes": 884,
+          "sha256": "7f3e2da2576327ecf257d3ef365ddd89192ba7b868185bc200a232c2ffaade23"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_full/PROTOCOL.json",
+          "bytes": 489,
+          "sha256": "930d3cc96224bde2f8abf87d1d97fb190087b205293a73cc7cb02d1c46905888"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_full/STATUS.json",
+          "bytes": 158,
+          "sha256": "718af3ef8ee89f02ed5aeb8cc4b4275d4c0ecd07f4eee78a7d9eb2d579b03f41"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_memory_profiles_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_pilot/MEMORY_PROFILE_CHECK.md",
+          "bytes": 1093,
+          "sha256": "53015e67de526b1835cd6aa564625cbf7b746230e1b192af77239c15e8e17ca1"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_pilot/PROTOCOL.json",
+          "bytes": 488,
+          "sha256": "1baf70b251e07cc5878435e963b437d6a2e791ce7f3cc75cf5d6c65ab492bd70"
+        },
+        {
+          "path": "runs/report90_20260912/development17_memory_profiles_pilot/STATUS.json",
+          "bytes": 157,
+          "sha256": "2ffe1a2b691a2b4d174a96fc46debf0f63517acc9a6c2bbb8c8f6652a74e6b0b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_pressure",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_pressure/PROTOCOL.json",
+          "bytes": 1653,
+          "sha256": "4637f656d0f442194ce0c4e3609bec92402ea51e8e2e294b211b256a2e3ec3f7"
+        },
+        {
+          "path": "runs/report90_20260912/development17_pressure/REPORT.md",
+          "bytes": 1958,
+          "sha256": "49f319b49125ec1c796680663b3d420eeaf373cb9243ba7f1c8ae71df40b1a92"
+        },
+        {
+          "path": "runs/report90_20260912/development17_pressure/STATUS.json",
+          "bytes": 78,
+          "sha256": "6f724474819e8e9ad9f638a854bf6f399ff7d2259cc907ca8fca8dddfe14a387"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/development17_retry",
+      "records": [
+        {
+          "path": "runs/report90_20260912/development17_retry/DECISION_AUDIT.md",
+          "bytes": 1194,
+          "sha256": "4e364aebdc8438f3fc6d495e2c40dfae2fc3b5bf646080422c4b088ddf5c57a6"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/METRIC_CADENCE_AUDIT.md",
+          "bytes": 1113,
+          "sha256": "8f11bed44b4388b047fb9b37acd7c09f89370f8133ac074abc261b4c9b14fdb9"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/PROTOCOL.json",
+          "bytes": 1767,
+          "sha256": "7d184f5bf983517ee15e406267354bde2c6368212a682a5c8bc4ef42c76b8efc"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/REPORT.md",
+          "bytes": 1032,
+          "sha256": "055045f8a2f18797fae18db8f89a8fb14c5d4eaed170d134319639f47b175c8a"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/RESOURCE_TIMELINE_AUDIT.md",
+          "bytes": 1523,
+          "sha256": "2f4e0bb6c4adc06cb0ce6f37ee628cf6ab7c2ad03972b2c2ea09ebdd587cd512"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/RESULT.json",
+          "bytes": 1867,
+          "sha256": "20d9e8a9ed5503a84fd889d6d0313d10258cf5b3edc7e48024d407e329b2a1d6"
+        },
+        {
+          "path": "runs/report90_20260912/development17_retry/STATUS.json",
+          "bytes": 58,
+          "sha256": "5cee5a2aae1cdaa1eafd63935cc054573bfea074ac680f10cc87d4f2552f6ab4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/distillation_concurrency_extension",
+      "records": [
+        {
+          "path": "runs/report90_20260912/distillation_concurrency_extension/PROGRESS.md",
+          "bytes": 1938,
+          "sha256": "dec4bc345fe3b6cd51d06e17c372dbecc8d1f629ffdedef810b56413be2d142d"
+        },
+        {
+          "path": "runs/report90_20260912/distillation_concurrency_extension/REPORT.md",
+          "bytes": 7932,
+          "sha256": "208f7553817853b484a1d86290a1c7f9c02095cf324e5a226b4e2100be06a46b"
+        },
+        {
+          "path": "runs/report90_20260912/distillation_concurrency_extension/REPRODUCE.md",
+          "bytes": 3736,
+          "sha256": "72e5bc55ee22e0414c00cf347ed88f50bad06972f0d588e77601a31b12c18a79"
+        },
+        {
+          "path": "runs/report90_20260912/distillation_concurrency_extension/STATUS.json",
+          "bytes": 2780,
+          "sha256": "eceff9acc52f93c6ce853b2f2dd8d3d78c1576de0fa4798b13fe46e2f46bb5f2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_bounded_development",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_bounded_development/PROTOCOL.json",
+          "bytes": 13252,
+          "sha256": "97766fda54a446fe7fc214dbde4773200d9e989d8f7fb572c3b8bb09c92ae9fd"
+        },
+        {
+          "path": "runs/report90_20260912/duration_bounded_development/pilot/REPORT.md",
+          "bytes": 2397,
+          "sha256": "4873086733ab973a50edfe40f7ea356aed4202ee0024c93a5c9a7f753162f846"
+        },
+        {
+          "path": "runs/report90_20260912/duration_bounded_development/pilot/STATUS.json",
+          "bytes": 83,
+          "sha256": "23c68313bdb32adb2b5c10d14e401171308ea2b9d30344efeb1ad81c914f5c4f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_bounded_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_bounded_restart/PROTOCOL.json",
+          "bytes": 627,
+          "sha256": "f8ca3d774af6e81af4ee4c892d35d43ec932555febf17699a806e7fe2d54adfb"
+        },
+        {
+          "path": "runs/report90_20260912/duration_bounded_restart/STATUS.json",
+          "bytes": 59,
+          "sha256": "f4f2a960079c233e52259873e85f088eeaf359c018986d7525ea207b4032c4bb"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_concurrent_development",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_concurrent_development/PROTOCOL.json",
+          "bytes": 12644,
+          "sha256": "f4648f622d3280a142ac8ad63921a05bae027cea42c2d03a8106a9ea8c679698"
+        },
+        {
+          "path": "runs/report90_20260912/duration_concurrent_development/pilot/REPORT.md",
+          "bytes": 2454,
+          "sha256": "0821c51b2bcd37c2e81344e59ad86bb79309c45e938b4274fdfe903ecd011f80"
+        },
+        {
+          "path": "runs/report90_20260912/duration_concurrent_development/pilot/STATUS.json",
+          "bytes": 83,
+          "sha256": "23c68313bdb32adb2b5c10d14e401171308ea2b9d30344efeb1ad81c914f5c4f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_concurrent_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_concurrent_restart/PROTOCOL.json",
+          "bytes": 604,
+          "sha256": "482c42d8d4445ceb189e68d9575e6d22a2d484e969edd20cf6d0e055c5ae6d71"
+        },
+        {
+          "path": "runs/report90_20260912/duration_concurrent_restart/STATUS.json",
+          "bytes": 59,
+          "sha256": "c70473a6b68c8f295f33f71fb6fb5ba657650f87b853c5a9b9c8e0d1d24e4c95"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789307360156741448",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789307360156741448/RESULT.json",
+          "bytes": 900,
+          "sha256": "2591956a11b37ced07ad85b1d2b0fce27a943da98f0705f1f941a199ac6056e6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789307382296285005",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789307382296285005/RESULT.json",
+          "bytes": 900,
+          "sha256": "bed0eab3a87430aec93782796143e51d90e3185cebf53635b4ea49a804a5b8e5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789307432793071305",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789307432793071305/RESULT.json",
+          "bytes": 900,
+          "sha256": "7095b743f96a28a6642e1366ea72e00338bd35d10a947ad8d9585526d82bbf36"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789307648121768105",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789307648121768105/RESULT.json",
+          "bytes": 900,
+          "sha256": "79083e796484d259bd321ffbf24281997b31dc6d2261fb9964efbf10f90e7294"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789308219449998679",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789308219449998679/RESULT.json",
+          "bytes": 883,
+          "sha256": "235abe6a3e083fd2aaed1ffe92b5d61d29204c040c3edfb6a5f5ced1ccd33096"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789308246365866864",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789308246365866864/RESULT.json",
+          "bytes": 900,
+          "sha256": "1984f144b157e830f1a632ea10fdd39c0ed4ca9bbf74189a35bc993b058a9e85"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_integration_1789308962699864413",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_integration_1789308962699864413/RESULT.json",
+          "bytes": 900,
+          "sha256": "12f384ebd9dc8d3120adb874eb3e38001dddd7f4ac665b5c81e05d8eaa9bfdfb"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_native_live_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart/PROTOCOL.json",
+          "bytes": 527,
+          "sha256": "6be6ed9f15e35e449e2d44640dfa0f5286f20a8712d84dff515c2e53246ecea2"
+        },
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart/STATUS.json",
+          "bytes": 210,
+          "sha256": "9798e1d9f6199d35ccf1b7207e22ad349e685d7442c565be56baab9d5a564548"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_native_live_restart02",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart02/PROTOCOL.json",
+          "bytes": 527,
+          "sha256": "72b1c7c7ad7a253cd5f3fef3b8a4cf9cda9de5c5c11eface4006c634f2d5e020"
+        },
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart02/STATUS.json",
+          "bytes": 210,
+          "sha256": "f60c1b36f9d5b087f809cbd5608d4429701f6fcd1743108e47efec837153cffb"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_native_live_restart03",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart03/PROTOCOL.json",
+          "bytes": 527,
+          "sha256": "50a874d36ba0946b7d19ddd061ae6bed5a052aee9e050d0c4ab06b17cb76362a"
+        },
+        {
+          "path": "runs/report90_20260912/duration_native_live_restart03/STATUS.json",
+          "bytes": 50,
+          "sha256": "f859755f50795a0bd22fcfef05f58a568c1a0abcf58a2702a4bb13e23ea274b0"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/duration_queue_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/duration_queue_validation/REPORT.md",
+          "bytes": 8297,
+          "sha256": "6d3a7bf611583c3be3c8c8b8c65309b7b5c5ae9b8c9f945e8d7d70d01c7e5b9f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/failure_capture_smoke",
+      "records": [
+        {
+          "path": "runs/report90_20260912/failure_capture_smoke/README.md",
+          "bytes": 769,
+          "sha256": "5391e7bfae38853322a9406d1b94993bcac9f7a6d439ded969cd2e6be2292462"
+        },
+        {
+          "path": "runs/report90_20260912/failure_capture_smoke/RESULT.json",
+          "bytes": 899,
+          "sha256": "c2877558c18b507659518a5976084a2fa1a8033208115cfa20c0bd0ccf5b5d42"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/fe_timing",
+      "records": [
+        {
+          "path": "runs/report90_20260912/fe_timing/RESULT.json",
+          "bytes": 1113,
+          "sha256": "280c0a91b853f1aab4e97c4bb9568047f259115f2c7fc063f9c755a654afce98"
+        },
+        {
+          "path": "runs/report90_20260912/fe_timing/STATUS.json",
+          "bytes": 100,
+          "sha256": "84015805e18c66cd3f54ca22fbc3d4675346cf33228686de8e1d41e5ca4e4815"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/fifo_queue_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/fifo_queue_validation/REPORT.md",
+          "bytes": 996,
+          "sha256": "c33b88c740a1a605a847acb9873f6656cb2bb613d1b8e1763991455204673da3"
+        },
+        {
+          "path": "runs/report90_20260912/fifo_queue_validation/RESULT.json",
+          "bytes": 1484,
+          "sha256": "e6c50955e7d9a90dafece463b2fab58485224ad9da01f0e2afd924d78531d314"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/graph_construction_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/graph_construction_pilot/PROTOCOL.json",
+          "bytes": 2028,
+          "sha256": "c392bde37aab45641a74c88f5242a7906835959d9f5cd0b0e4aec1d64536cc9b"
+        },
+        {
+          "path": "runs/report90_20260912/graph_construction_pilot/REPORT.md",
+          "bytes": 805,
+          "sha256": "fe94b9e776cead81de5164e0cbe452528b71e201804756a07948992ec2cb54ce"
+        },
+        {
+          "path": "runs/report90_20260912/graph_construction_pilot/RESULT.json",
+          "bytes": 4737,
+          "sha256": "9245d9069f8e514dd803014e803e230c8da1059c908a7b42ce20fea5e5f28c01"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/graph_construction_verification",
+      "records": [
+        {
+          "path": "runs/report90_20260912/graph_construction_verification/PROTOCOL.json",
+          "bytes": 1317,
+          "sha256": "0dac7bda968aa8bf275fbfe1120de45752f1af6211f856cd4d9cfd16a3a8baef"
+        },
+        {
+          "path": "runs/report90_20260912/graph_construction_verification/RESULT.json",
+          "bytes": 210,
+          "sha256": "fd2c725ef7852960e2127130278b2ab5ecec669932cf7790da6234cafdd75121"
+        },
+        {
+          "path": "runs/report90_20260912/graph_construction_verification/STATUS.json",
+          "bytes": 210,
+          "sha256": "fd2c725ef7852960e2127130278b2ab5ecec669932cf7790da6234cafdd75121"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/historical_admission_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/historical_admission_audit/REPORT.md",
+          "bytes": 2483,
+          "sha256": "32fb15d956bd8947f868e127abf1410c81187e12c4d44b262ad4e74fe60ad3d3"
+        },
+        {
+          "path": "runs/report90_20260912/historical_admission_audit/RESULT.json",
+          "bytes": 26643502,
+          "sha256": "b3fa660b61bb6e295962c9644023f04a88d529a0d75d951fcb8730246c66c9d6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/idle_wait_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/idle_wait_validation/RESULT.json",
+          "bytes": 186,
+          "sha256": "f3c78c794ceb4964d9b8cf6e18357185a3d2d42463aaeaa836259490f40182d5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/integer_predictor_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/integer_predictor_validation/RESULT.json",
+          "bytes": 757,
+          "sha256": "2b5c88bb99bc2320ffc0d6cce9e821cdf633024f2357842e976bcae6b780788c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/integer_slot_estimator_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/integer_slot_estimator_validation/REPORT.md",
+          "bytes": 1201,
+          "sha256": "423fb4d87584ff8c3d6d14c0dc0aad564ced42e4842dce81520387d48f01f8f7"
+        },
+        {
+          "path": "runs/report90_20260912/integer_slot_estimator_validation/RESULT.json",
+          "bytes": 488,
+          "sha256": "e0043a758575e4c273e23875e3d162b2de014a2dcc6bde6b4ac873017d43153b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/load_quantization_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/load_quantization_audit/REPORT.md",
+          "bytes": 1322,
+          "sha256": "af2fff52c9cb3dfd0632b71811c784d5e7cda72b55598fc16d6fda08e3d94319"
+        },
+        {
+          "path": "runs/report90_20260912/load_quantization_audit/RESULT.json",
+          "bytes": 490761,
+          "sha256": "ae231a70dbf4fb39ecb8608fe17174a6335bc1d0d0d1edd4043e70c95894466f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/matched_development_duration",
+      "records": [
+        {
+          "path": "runs/report90_20260912/matched_development_duration/PROTOCOL.json",
+          "bytes": 954,
+          "sha256": "567b321730dddca0880550d9983f8e14eabe261301256f8c9d9603fa429ce5d7"
+        },
+        {
+          "path": "runs/report90_20260912/matched_development_duration/README.md",
+          "bytes": 1053,
+          "sha256": "726b3dd36d9383b6fa41d76c6b43f6136016545dae1054ddb38119e4f126bb93"
+        },
+        {
+          "path": "runs/report90_20260912/matched_development_duration/full/RESULT.json",
+          "bytes": 8047025,
+          "sha256": "b183eca353be4ca965dec534a849adf4063fd99c34677cd01e1d00f1cac60878"
+        },
+        {
+          "path": "runs/report90_20260912/matched_development_duration/full/STATUS.json",
+          "bytes": 95,
+          "sha256": "bf00c96bb8f06824d1ed3905f11ba2a24fa73b07861ef529b75279a460b0a9f8"
+        },
+        {
+          "path": "runs/report90_20260912/matched_development_duration/pilot/RESULT.json",
+          "bytes": 439081,
+          "sha256": "211475612d3fdc999ed468a5ffe759288d68c30cc61e55a14fb639ebef2b02dd"
+        },
+        {
+          "path": "runs/report90_20260912/matched_development_duration/pilot/STATUS.json",
+          "bytes": 66,
+          "sha256": "eafe0e0565a42b15b16d3ee37f1ae93c5f525b240a9f0f810cda0164acc8aa56"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/memory_prediction_loo17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/memory_prediction_loo17/PROTOCOL.json",
+          "bytes": 1206,
+          "sha256": "50d2f5b65db84246942e560fbf6810a1c89883bf4f9062226ce84e567a0127d9"
+        },
+        {
+          "path": "runs/report90_20260912/memory_prediction_loo17/REPORT.md",
+          "bytes": 977,
+          "sha256": "d92e14d3a775f43c7adbd0d5c622dffa9589861e78dd6e0f330682d018c0114f"
+        },
+        {
+          "path": "runs/report90_20260912/memory_prediction_loo17/RESULT.json",
+          "bytes": 107673,
+          "sha256": "097e8d2cf52f73c4b8b31cced7dc48f2c38e436d4c151ade546c2aad13710224"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/memory_prediction_loo17_export_failed",
+      "records": [
+        {
+          "path": "runs/report90_20260912/memory_prediction_loo17_export_failed/PROTOCOL.json",
+          "bytes": 1206,
+          "sha256": "50d2f5b65db84246942e560fbf6810a1c89883bf4f9062226ce84e567a0127d9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/model_comparison_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/model_comparison_audit/REPORT.md",
+          "bytes": 4576,
+          "sha256": "d20b4a43f17652489a1c6930075bad423b478dc65c052f279e6a88a60fa16aac"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/models_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/models_full/RESULT.json",
+          "bytes": 118552,
+          "sha256": "0a439910721598a4e1f756ad621c055671de5f4b85c6356305298ffcb70fbd6c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/models_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/models_pilot/RESULT.json",
+          "bytes": 13253,
+          "sha256": "e1b7c6e54781fce8d32d9b0db24ef3811dfa61da80246656110d16dacba1e40a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_arrival_comparison",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_arrival_comparison/REPORT.md",
+          "bytes": 1451,
+          "sha256": "6f7d0ff69211ba33e04452ded352987d9a4820e75f0fabb982d64aba3f7008d8"
+        },
+        {
+          "path": "runs/report90_20260912/native_arrival_comparison/RESULT.json",
+          "bytes": 13849,
+          "sha256": "23aab660d1c57f45dd33b94b3424c5dd352f26e86be5263a6070b546f5dea461"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_arrival_control_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_arrival_control_audit/RESULT.json",
+          "bytes": 47293,
+          "sha256": "49c3f5d656b40b6c8beccf8102d9595bf2aad090dc83b7dd2ea10b618ce87e3d"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_arrival_phase_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_arrival_phase_audit/REPORT.md",
+          "bytes": 566,
+          "sha256": "332055011beb933dbf62aa8ac0fa1859a854a494cc4d9fe57382dddf3a652ca9"
+        },
+        {
+          "path": "runs/report90_20260912/native_arrival_phase_audit/RESULT.json",
+          "bytes": 1501,
+          "sha256": "8d5784ae4efbb6c44ede561979d739e213c213d7f5f439cc52211f95b194829f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed128",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed128/PROTOCOL.json",
+          "bytes": 2588,
+          "sha256": "f049e2877348f2808f83538e80f5ae944835fe7a1d7caac61f84428a43569764"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed128/REPORT.md",
+          "bytes": 1042,
+          "sha256": "2d6096d6a43d2cc6708fba8456fdc5dbad3e88eaaa59b6bf6e26bc4614621c4f"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed128/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed16_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed16_restart/PROTOCOL.json",
+          "bytes": 642,
+          "sha256": "5a2a42c981c52b9c6c27945c4b728983c4af42043813216caae715208c1829b3"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed16_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "12c5560fd4df78be7f92faa61863a29f38fe4a2cffc259951b0d8e1e1f3d93ea"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed16_restart_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed16_restart_preflight_busy/STATUS.json",
+          "bytes": 112,
+          "sha256": "f710985e6e8fd0d037bf60801a9b4b48ab5576e6080a62dac69e2b4f9a7dc22a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17/PROTOCOL.json",
+          "bytes": 2031,
+          "sha256": "4d04b5eac1cf0382a8233ad6eaa8d83b28456d90c372a44c94705f95d311c8d5"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17/REPORT.md",
+          "bytes": 1047,
+          "sha256": "d63b2956faaa0adc8fe425ef0f3b29bb6251eda18b916b85c243382ecf2f6a1c"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17/STATUS.json",
+          "bytes": 42,
+          "sha256": "1eee689621d97273828544a07e4552cc2b04ceacecca7d9d060f5e45b72a9016"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed17_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17_restart/PROTOCOL.json",
+          "bytes": 642,
+          "sha256": "1bc8d525f0e238e2524e5dec4cbd11aafd660fa5d1bc34df26479a263b41df63"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "a64dd7f2ae41b34a7947ef0a1c4994268e7d8f32d16605b52e3276ff1e0926c8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed17_restart_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed17_restart_preflight_busy/STATUS.json",
+          "bytes": 112,
+          "sha256": "2e80db63d675d9e5347bd191106905fde290a7dd508a70d8b62ce5d270d53769"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed32",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed32/PROTOCOL.json",
+          "bytes": 2582,
+          "sha256": "16a635c1dafe468e9cdfc089178dcd10bb1ef3efd9ad3e8c7d962205b3ff1168"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed32/REPORT.md",
+          "bytes": 1031,
+          "sha256": "a69843c4fa84632de4b19e9855112b47c527d85b77e55cb61480a7c2b3bf4c9e"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed32/STATUS.json",
+          "bytes": 41,
+          "sha256": "d446c439df9206e74b1911d9c2a50ee21769f89e0792dfc39b37d1674f25c65c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_fixed_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_fixed_restart/PROTOCOL.json",
+          "bytes": 476,
+          "sha256": "ab036e6c7da1cf9e4bc0853555d29e5ca20c597675dbd7b3fbccc6794ba68f6d"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_fixed_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "7149203346abe532583498d230e301ad324d46159302c27556c96b89b312f55b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_instrumented32",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_instrumented32/PROTOCOL.json",
+          "bytes": 2570,
+          "sha256": "ef7876ccbc28c607d51af467ae8a85bf6335e2ac6d39e9de57a1b4b9978bdd64"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_instrumented32/REPORT.md",
+          "bytes": 1677,
+          "sha256": "6a2fbf9571947cfb95c24d0c8d9184f20f168bb158d0cf06bc1c9c3a7f57d37c"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_instrumented32/STATUS.json",
+          "bytes": 47,
+          "sha256": "d10be1561fdc8e66259ffa454b681739d021338a8889f89555500b9d0c636eb2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_pilot/PROTOCOL.json",
+          "bytes": 2530,
+          "sha256": "8cb32e961f2d9581e9f0e66b30c2a85e15009ad70d09a296758a547fcdb0775c"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_pilot/REPORT.md",
+          "bytes": 1413,
+          "sha256": "f2c146af893669aaec411ea1fef2618cd50ced69efdf0be6cd4dd7f5e9c1d623"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_pilot/STATUS.json",
+          "bytes": 48,
+          "sha256": "47e060e4d3e298c071cd6fc824bbe567a95f9cc04ad8ece54c925c6b4f869c73"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_queue_hint_diagnostic",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_queue_hint_diagnostic/RESULT.json",
+          "bytes": 637,
+          "sha256": "453105c2e970072fc1d12bc3581c0fcf5188298f75e252da912f0f053465efde"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_budget_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_budget_restart/PROTOCOL.json",
+          "bytes": 645,
+          "sha256": "e2ec131662c3e8f9d1779979209e32fa2292666fb95f66059e8984d40ca46c74"
+        },
+        {
+          "path": "runs/report90_20260912/native_budget_restart/STATUS.json",
+          "bytes": 190,
+          "sha256": "fbe051e9e0d7b247c40411d155b008cbddba3d938b012c160edf69ae3e9052e7"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_journal_scheduler_comparison",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_journal_scheduler_comparison/REPORT.md",
+          "bytes": 849,
+          "sha256": "c25c363a3e841dad344a0979c1bd25dd8e1b77959d96dddb7642b6d6a4a5e87b"
+        },
+        {
+          "path": "runs/report90_20260912/native_journal_scheduler_comparison/RESULT.json",
+          "bytes": 5172,
+          "sha256": "d6fc3619f535a3ed8b990c47e55a9cab3ded0f3c14145159fa67748e13e320eb"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features17_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features17_full/PROTOCOL.json",
+          "bytes": 781,
+          "sha256": "5c1cb5b9f066da84d4732d72611bff780e12032c3f63f6090be4db056f1b66eb"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features17_full/RESULT.json",
+          "bytes": 4721051,
+          "sha256": "3fddc54e3adb7637f9ca9511c3539cc2c40517bcd0bbd03b4186af97577edf2d"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features17_full/STATUS.json",
+          "bytes": 62,
+          "sha256": "2b3c96157437b8dce84f87d99b800e88d7799d932f3186b38fc359a02e0faced"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features17_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features17_pilot/PROTOCOL.json",
+          "bytes": 781,
+          "sha256": "c7048bd0feffb8fc445f6f4efe4938fb8113f58fe2ec096b4512edf27934caa2"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features17_pilot/RESULT.json",
+          "bytes": 487793,
+          "sha256": "be03c24174b38bf994bc5d0b6bafa94ee034e0a3543cb6b2d2c9a7635a4ae7a0"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features17_pilot/STATUS.json",
+          "bytes": 61,
+          "sha256": "0b071f52732f814622a3b17ca3031018da60937ddf257765acdbc9c8ec6944b8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features90_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "efcbb1ab1d534bebe5b80e017ab0b2b6602fbe5ff0d7bb1acb91d6c8b9a42937"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full/RESULT.json",
+          "bytes": 29210124,
+          "sha256": "4f69ec53904708f3de201f2ef6c42488bf41245a6da3987dafae004c17b73e0f"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full/STATUS.json",
+          "bytes": 63,
+          "sha256": "c833df0ba49540734fbda9b19cc45f8aada03cc3c7342f7c6cbb4fca1a4cd1de"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features90_full_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "efcbb1ab1d534bebe5b80e017ab0b2b6602fbe5ff0d7bb1acb91d6c8b9a42937"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy/STATUS.json",
+          "bytes": 100,
+          "sha256": "c47235297c04ee3f36c9fdfebcc763e2961e32a34f99689211bc21e224f4fac7"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features90_full_preflight_busy2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy2/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "efcbb1ab1d534bebe5b80e017ab0b2b6602fbe5ff0d7bb1acb91d6c8b9a42937"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy2/STATUS.json",
+          "bytes": 100,
+          "sha256": "c47235297c04ee3f36c9fdfebcc763e2961e32a34f99689211bc21e224f4fac7"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features90_full_preflight_busy3",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy3/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "efcbb1ab1d534bebe5b80e017ab0b2b6602fbe5ff0d7bb1acb91d6c8b9a42937"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_full_preflight_busy3/STATUS.json",
+          "bytes": 100,
+          "sha256": "c47235297c04ee3f36c9fdfebcc763e2961e32a34f99689211bc21e224f4fac7"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_features90_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_features90_pilot/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "cb895560f73d13d916bc2298f4770ddef7c4525f379a29f5aca0333b189f4f0e"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_pilot/RESULT.json",
+          "bytes": 680884,
+          "sha256": "8d068bcf12a6d01df5608aec6e5a6ea19a6d9c06e3e2558e2ed67c986cf1ad74"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_features90_pilot/STATUS.json",
+          "bytes": 61,
+          "sha256": "0b071f52732f814622a3b17ca3031018da60937ddf257765acdbc9c8ec6944b8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_model_slot_compare17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_model_slot_compare17/REPORT.md",
+          "bytes": 738,
+          "sha256": "f5273ef18991471e3c71b606b4570472fab19e1f7564d6e0723e2582cad93bde"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_model_slot_compare17/RESULT.json",
+          "bytes": 44115,
+          "sha256": "d9d0f65ca21f605a42b521b1826a395f188a120ec78e5bf87ff8a72018467d73"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_nested_calibration17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_nested_calibration17/PROTOCOL.json",
+          "bytes": 564,
+          "sha256": "a313a274c0bd5b7a220f78dd7a86b6ac933772f10c819237f9895adca1fdd8e1"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_nested_calibration17/REPORT.md",
+          "bytes": 585,
+          "sha256": "900d1884cdaa8e9c4b507b97a4c58023beb3703a45f8eda419c68e5fe979dd9f"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_nested_calibration17/RESULT.json",
+          "bytes": 317181,
+          "sha256": "e73fb739477e1de89a74efc35b9eb281bb4022bac0cdca6c9bfe1b05a04b73d9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_memory_prediction_loo17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_memory_prediction_loo17/PROTOCOL.json",
+          "bytes": 1252,
+          "sha256": "adb32d4abd120985c744e71927cd226df1f22df67b237d8c6db1e7ffc8684b65"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_prediction_loo17/REPORT.md",
+          "bytes": 996,
+          "sha256": "c5c34cf2a658b72d1de9cc62d8b36adff1c25ab4480aaa8a18dd32ef4a2f3f29"
+        },
+        {
+          "path": "runs/report90_20260912/native_memory_prediction_loo17/RESULT.json",
+          "bytes": 107900,
+          "sha256": "e6b2c7c1c4568405849b50a15b00121dbf3d1752bd1b663f1418035729521306"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_mixed_plan_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_mixed_plan_audit/RESULT.json",
+          "bytes": 6148,
+          "sha256": "9bd0d52acb1c4ba040537a64c0da29ec1af9497a33ebdd46fc98139d7a051b69"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_mixed_scheduler_comparison",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_mixed_scheduler_comparison/REPORT.md",
+          "bytes": 1238,
+          "sha256": "e5126dbb2c440c515ca2087dfc1ac2516f2b717061ebf3e303c418c9e64b65dd"
+        },
+        {
+          "path": "runs/report90_20260912/native_mixed_scheduler_comparison/RESULT.json",
+          "bytes": 5458,
+          "sha256": "ecf651ce31ad7d14d36b381edb764325307cc11d06966143e5f5b7e7c9f689f0"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_mixed_scheduler_wait_analysis",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_mixed_scheduler_wait_analysis/REPORT.md",
+          "bytes": 1348,
+          "sha256": "79034089a67889ab1c2af4c3bc56048e683df23c9c4b4d5afbe5bd62cedfa974"
+        },
+        {
+          "path": "runs/report90_20260912/native_mixed_scheduler_wait_analysis/RESULT.json",
+          "bytes": 49752,
+          "sha256": "ac631fd5b1cc9b392ebf67235fac930ceda447268c6934d545ef8f749cc7d45e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_plan_stability_gate_probe",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_plan_stability_gate_probe/PROTOCOL.json",
+          "bytes": 622,
+          "sha256": "4335d9fb50e0eb43202750d52f914fb9610385606ca9d306775301c4eb4c0a95"
+        },
+        {
+          "path": "runs/report90_20260912/native_plan_stability_gate_probe/REPORT.md",
+          "bytes": 861,
+          "sha256": "f42d4e081cda5fa5995c6825e99726e87b14ecdbd2d5fc3c0a2485736fb5205f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_plan_stability_probe",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_plan_stability_probe/PROTOCOL.json",
+          "bytes": 495,
+          "sha256": "7b8aa7a278b2a02a6a42107a4bc757f195fff6f3b5feb1241ee69c033ce53d9d"
+        },
+        {
+          "path": "runs/report90_20260912/native_plan_stability_probe/REPORT.md",
+          "bytes": 1062,
+          "sha256": "38211ad4252e9717b0987098ce23ba50a0bff4a11627516dda911f26b9a89e85"
+        },
+        {
+          "path": "runs/report90_20260912/native_plan_stability_probe/RESULT.json",
+          "bytes": 4249,
+          "sha256": "f835fc1339d20c20a4131b1daf69601aece17b583efe74d7000e9b2d007d67a1"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_predictor_callback17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_predictor_callback17/PROTOCOL.json",
+          "bytes": 1167,
+          "sha256": "8aa996132c1e4906c1f95821c1516309927f27442804f9a55aa9a101a85a1f93"
+        },
+        {
+          "path": "runs/report90_20260912/native_predictor_callback17/REPORT.md",
+          "bytes": 721,
+          "sha256": "517728fbeeb8d0a31b81f9e92f47aa52be97c2f4243c143da5be3b5d1c7c841e"
+        },
+        {
+          "path": "runs/report90_20260912/native_predictor_callback17/RESULT.json",
+          "bytes": 970343,
+          "sha256": "b3fa0b50b2e4e2acc7f57838f1923ccc7c640f3e192684affdc09b3eb9706c3c"
+        },
+        {
+          "path": "runs/report90_20260912/native_predictor_callback17/STATUS.json",
+          "bytes": 61,
+          "sha256": "1dfaba526cc7e22821243ef01271b0b1bfd16afcad6999f366120fa810cff5e9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_instrumented_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_instrumented_restart/PROTOCOL.json",
+          "bytes": 669,
+          "sha256": "7f928a4d4757df105e4f77116d155a46f663f212ba2c926d8ff74c42ccb21720"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_instrumented_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "6b5e0cf4bb31ac6906ec29d71883dfff8e1a745465848ce5f468a4431911683e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_repro8",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_repro8/PROTOCOL.json",
+          "bytes": 278,
+          "sha256": "38bf0215d060fb699e2107a6f84b796ae3ddd4ad009edcf1a3bfd37a98d09a7b"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_repro8/REPORT.md",
+          "bytes": 622,
+          "sha256": "a1cdc04432c09d3cc0456e65cbd956dc7378c1914baf9c335014a1aeceaede9c"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_repro8/STATUS.json",
+          "bytes": 37,
+          "sha256": "617ad7208207f64f9bdc8c18c0d2aaa52e96540aa55fb32ca730c7a7e0979ba1"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_repro_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_repro_restart/PROTOCOL.json",
+          "bytes": 476,
+          "sha256": "1e0b65309b2fd5afd3a494c01040e5bfe56a48ded02788203feeacb7530d5485"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_repro_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "c681ba24583b96b536f627b40b2edd5547bf7cf8bc4b18ef11f2ddf26be6b150"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_repro_restart_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_repro_restart_preflight_busy/STATUS.json",
+          "bytes": 94,
+          "sha256": "c19c8719a2c0d94be6fc68c698827342f6c921d2f5cac8907bac50b12306da7e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_repro_restart_preflight_busy2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_repro_restart_preflight_busy2/STATUS.json",
+          "bytes": 101,
+          "sha256": "4e49e338ff7a48eb2140427681cbafebc6a505781e13744e180816a18018e4b5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_tail_analysis",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_tail_analysis/REPORT.md",
+          "bytes": 2034,
+          "sha256": "5246d6c906f8f1befc6d9875418eaba275f7b820f8b98ccd836283884b629313"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_tail_analysis/RESULT.json",
+          "bytes": 142340,
+          "sha256": "1376634e29ccdaa6368e32fa0c2c8f23f8726603fb8ba9434002a81714cb19e8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_timeline_summary",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_timeline_summary/REPORT.md",
+          "bytes": 2329,
+          "sha256": "a136717bfe483855c2ae524e547f698474ebc22f077b344bc8e731157920b318"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_timeline_summary/RESULT.json",
+          "bytes": 9922,
+          "sha256": "908edad363d3b5c657485817c43f16cfb61d2ce8fc652cb11fdd05043f475a9b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_write_observation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_write_observation/PROTOCOL.json",
+          "bytes": 308,
+          "sha256": "683dcbcbe8953d211dad49a104e390e606bbb81a1dddeb5907150c2e565ec7c8"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_write_observation/REPORT.md",
+          "bytes": 491,
+          "sha256": "93cfcb1734839d29d9a6f576d18f94b295c03519dc4a86ba1be703416ec6b1ff"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_write_observation/RESULT.json",
+          "bytes": 1213,
+          "sha256": "1dfbecd8096acd1923535e3aa52d29d643bce870a4edffa7fecd746132949795"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_write_observation/STATUS.json",
+          "bytes": 27,
+          "sha256": "a738232f080ef2af308af4672ecd9215771bd565b7dbf962ad1df21b60c74fc8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_write_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_write_restart/PROTOCOL.json",
+          "bytes": 479,
+          "sha256": "dc02240f4315b16c4e1e845a4cbf0be7fae64f0406877b66627138d865dcfaea"
+        },
+        {
+          "path": "runs/report90_20260912/native_queue_write_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "08c943ba6142e0010d0890cef3324ff85046237adb8c1be00e2e92552d0662d8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_queue_write_restart_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_queue_write_restart_preflight_busy/STATUS.json",
+          "bytes": 94,
+          "sha256": "b22973cfec29f24e369f634412b5d72016d37f471648221de76fa95c24bb1028"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_rounding_comparison",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_rounding_comparison/REPORT.md",
+          "bytes": 1007,
+          "sha256": "798a09946dd5b89bdb1d69c901f510d016a33941214c54b8e9afd38d3a25de0a"
+        },
+        {
+          "path": "runs/report90_20260912/native_rounding_comparison/RESULT.json",
+          "bytes": 5557,
+          "sha256": "e1038f7e8b93cfb8f5aa1641af09867413be40224cb7b4c2ac8ca1b4eb19a2bd"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_rounding_control_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_rounding_control_audit/RESULT.json",
+          "bytes": 46905,
+          "sha256": "284085de9ef15dcab4d28995b0975c1b51bc040877e0e8709348ab1f47b59b79"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_rounding_phase_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_rounding_phase_audit/REPORT.md",
+          "bytes": 566,
+          "sha256": "332055011beb933dbf62aa8ac0fa1859a854a494cc4d9fe57382dddf3a652ca9"
+        },
+        {
+          "path": "runs/report90_20260912/native_rounding_phase_audit/RESULT.json",
+          "bytes": 1486,
+          "sha256": "8f5cf3e57fb57a878d70931e4d3fbfdce1e0011b6eb19583bc225c0014d7fd9d"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_rounding_timing_diagnostic",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_rounding_timing_diagnostic/REPORT.md",
+          "bytes": 1731,
+          "sha256": "41f8e37db0acf2b27a64ad8b760f6f097ea2958abc9886614fd657554a151570"
+        },
+        {
+          "path": "runs/report90_20260912/native_rounding_timing_diagnostic/RESULT.json",
+          "bytes": 156959,
+          "sha256": "2a4f57b0e5e0349bde0f5d7d15472cffad3b7514ec865e3bd0847aacfa2653e9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_rounding_wait_analysis",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_rounding_wait_analysis/REPORT.md",
+          "bytes": 1389,
+          "sha256": "067496d4212b1cf9caff62a1525a2a7dd66b119223c099f44e83d7aa1916fd2c"
+        },
+        {
+          "path": "runs/report90_20260912/native_rounding_wait_analysis/RESULT.json",
+          "bytes": 53954,
+          "sha256": "b27be0f0b5e950656a22c9f3ab9f26e20dfef965450961fa7c53b892832f9b25"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_live17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_live17/PROTOCOL.json",
+          "bytes": 1176,
+          "sha256": "f406e6a8c3e8400b01bf2434c2102ed0015b20492f394eadd14d5e7c85edf2ca"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_live17/REPORT.md",
+          "bytes": 2011,
+          "sha256": "1292993a79247b6399371dccfe91e44179c27eda171d60550f1fbf39fb4b462d"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_live17/RESULT.json",
+          "bytes": 970344,
+          "sha256": "8178fc83103d46cecf202dd21f6e3b89a0c960876084564b93e4e431cd80ee0f"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_live17/STATUS.json",
+          "bytes": 37,
+          "sha256": "c0b49c08cc58dd1d7b2c21495ee47c3317cefa73f7d19b12b14174a47b78de26"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_live17_health_bootstrap_failed",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_live17_health_bootstrap_failed/PROTOCOL.json",
+          "bytes": 1176,
+          "sha256": "a0c3295afd4596a5d83f06fd6075b78fdaa485c644da8b4e0469cee8459ff05c"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_live17_health_bootstrap_failed/STATUS.json",
+          "bytes": 96,
+          "sha256": "9284dbfb3b913e937321a6a3f1c55dbe99c5f24f6d8ebf9f2eed384798ede1b5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_mapping17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_mapping17/REPORT.md",
+          "bytes": 1270,
+          "sha256": "155af11d96e41d736107c082d1c02ec5c3f62580ddd7a6552806fe2f92e6ff1f"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_mapping17/RESULT.json",
+          "bytes": 23573,
+          "sha256": "0d8dd3969ef76ab2e363e0bd461b88f372951edc3496edcb64d5fd6cda5e7747"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_restart17",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_restart17/PROTOCOL.json",
+          "bytes": 601,
+          "sha256": "f1f111a6c62ed5a42ee4476d34bcb7090d9a7aa4f1a0d50c892a5450717aa12e"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_restart17/STATUS.json",
+          "bytes": 193,
+          "sha256": "091486038dbfdc0f9572c23b4dc04750954331f58d930675800d95c7f89d6913"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_restart17_health_bootstrap_failed",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_restart17_health_bootstrap_failed/PROTOCOL.json",
+          "bytes": 601,
+          "sha256": "59f0b2ed2b82ff7565ec025ba611543a34b23c1b0ec1fcb517c76578536bb678"
+        },
+        {
+          "path": "runs/report90_20260912/native_slot_restart17_health_bootstrap_failed/STATUS.json",
+          "bytes": 207,
+          "sha256": "44973d5ca6fcea6ae0ebaf443feefa191f1abe2c60d7b43d91f281dfa5250376"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_slot_restart17_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_slot_restart17_preflight_busy/STATUS.json",
+          "bytes": 167,
+          "sha256": "5e54d44bfb42808ebd34647de8a9864506b5c7bf5721b6520dd5771cbbb0dc62"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_stable_control_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_stable_control_audit/RESULT.json",
+          "bytes": 46556,
+          "sha256": "baf493736c46a08f647113a82a7d79b1b2b33dbea0e835f504adbc03e5af43a8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_stable_phase_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_stable_phase_audit/REPORT.md",
+          "bytes": 566,
+          "sha256": "332055011beb933dbf62aa8ac0fa1859a854a494cc4d9fe57382dddf3a652ca9"
+        },
+        {
+          "path": "runs/report90_20260912/native_stable_phase_audit/RESULT.json",
+          "bytes": 1462,
+          "sha256": "0390a716f16370ea3d255f18380357e1adc6d022f564e3278f7fcc4974e5d0da"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_stable_scheduler_comparison",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_stable_scheduler_comparison/REPORT.md",
+          "bytes": 898,
+          "sha256": "3d551b79c268b234e97203f352cacd10c1b291f2f1a90922f0cffd8997be5dbb"
+        },
+        {
+          "path": "runs/report90_20260912/native_stable_scheduler_comparison/RESULT.json",
+          "bytes": 5394,
+          "sha256": "ecec36fff0cb61f44346e2f1a8ec91a0425e0d46e285e43843056313c6999d4d"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/native_stable_scheduler_wait_analysis",
+      "records": [
+        {
+          "path": "runs/report90_20260912/native_stable_scheduler_wait_analysis/REPORT.md",
+          "bytes": 1349,
+          "sha256": "6e2d0e8035ede1b3b757d12d7a7fbf15c77b7e794a1207191baec8557fbf2eb7"
+        },
+        {
+          "path": "runs/report90_20260912/native_stable_scheduler_wait_analysis/RESULT.json",
+          "bytes": 49817,
+          "sha256": "89145eb5722c8b7c12df8853641dd1a8686cab6a85612b8fda0850201a497073"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/organized_results",
+      "records": [
+        {
+          "path": "runs/report90_20260912/organized_results/FIGURES.md",
+          "bytes": 1474,
+          "sha256": "adbbdce1640ca8e0cd1e7830eb2a4f026157ab8c1b6886856d607b732f429320"
+        },
+        {
+          "path": "runs/report90_20260912/organized_results/README.md",
+          "bytes": 15283,
+          "sha256": "789b87a56383b9f9b838c091151e8ebfbf1f87c03e7d213adcfca7ac6bd05e8d"
+        },
+        {
+          "path": "runs/report90_20260912/organized_results/TABLES.md",
+          "bytes": 22144,
+          "sha256": "09cc5645f8acbf62c9468de51857a0af04c6cefe3689d051bf208faa045d7665"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/original_teacher_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/original_teacher_audit/REPORT.md",
+          "bytes": 6969,
+          "sha256": "543963a8ac1969737635907c6f82bfce4b6c35ef3781a7494f6dafd515834562"
+        },
+        {
+          "path": "runs/report90_20260912/original_teacher_audit/RESULT.json",
+          "bytes": 120983,
+          "sha256": "6a5a32e4d7bee1c70e79f21da76ea8eb48bf9da13d0ac77a456302d992903b6b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/plan_stability_gate_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/plan_stability_gate_validation/RESULT.json",
+          "bytes": 233,
+          "sha256": "eb339925f02f94911193559f8274881bde2dbd8c47eaab9aa5ca0245a6a6cb23"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/policy_final_stage_ablation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/policy_final_stage_ablation/PROTOCOL.json",
+          "bytes": 3529,
+          "sha256": "240a3a0bfd57ec237b891b5a7c50b3bedb44b60aa322f094d0d373820053b5c7"
+        },
+        {
+          "path": "runs/report90_20260912/policy_final_stage_ablation/README.md",
+          "bytes": 4315,
+          "sha256": "be5956479db534db4e4845b11fb35f440fefcadf49e02542b051b1b1c5ea7c25"
+        },
+        {
+          "path": "runs/report90_20260912/policy_final_stage_ablation/full/RESULT.json",
+          "bytes": 311129,
+          "sha256": "96bf6815f8f2827034df2ae9bf4fa2145cfef2237866f854a4652f3577db3449"
+        },
+        {
+          "path": "runs/report90_20260912/policy_final_stage_ablation/full/STATUS.json",
+          "bytes": 136,
+          "sha256": "fe14278bf0365de975e2376647c3d7bc8297b9f98ac2323c1e8bad7c08540d50"
+        },
+        {
+          "path": "runs/report90_20260912/policy_final_stage_ablation/full/TRAINING_REPORT.md",
+          "bytes": 732,
+          "sha256": "6f62a8c39ea1583371f1620d7a693112b36490bfbd2644db50f5fd8e5051ca2c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/policy_lineage_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/policy_lineage_audit/REPORT.md",
+          "bytes": 1020,
+          "sha256": "f41d88682c7b2194b553f3d3b6ad37b0a5718edd11d20132abdfa974e5c5b703"
+        },
+        {
+          "path": "runs/report90_20260912/policy_lineage_audit/RESULT.json",
+          "bytes": 1303579,
+          "sha256": "d8843ec5ca2ce8807d08fde76a253eca319c072481dcc1c820bd58c55c5d2c73"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/predictor_logging_cost",
+      "records": [
+        {
+          "path": "runs/report90_20260912/predictor_logging_cost/REPORT.md",
+          "bytes": 1103,
+          "sha256": "2cb49e1e9307d2b786953a0a427eff5a4128bd4020f8a03fa50a739c7b1ccc73"
+        },
+        {
+          "path": "runs/report90_20260912/predictor_logging_cost/RESULT.json",
+          "bytes": 1649,
+          "sha256": "b0f3b262052761339ed35c849eecb05e29935da0b9efb26b5bc6d107937e7c9e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/prepared_graph_verification",
+      "records": [
+        {
+          "path": "runs/report90_20260912/prepared_graph_verification/PROTOCOL.json",
+          "bytes": 1201,
+          "sha256": "1e7dc399cdd6d4444e015b07a5fa5dc31c7b53b4cc93b3ad20bb1b40f3862787"
+        },
+        {
+          "path": "runs/report90_20260912/prepared_graph_verification/REPORT.md",
+          "bytes": 502,
+          "sha256": "466466f12122bd489f6023653cbbab3ecd24b5a1716bda3601220572702ae8f7"
+        },
+        {
+          "path": "runs/report90_20260912/prepared_graph_verification/RESULT.json",
+          "bytes": 465,
+          "sha256": "6ec9a5d96863f0326f8a8a1ef481e56e21f8e67577f5859e4fbde0f486b555cf"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/prepared_search_cost",
+      "records": [
+        {
+          "path": "runs/report90_20260912/prepared_search_cost/PROTOCOL.json",
+          "bytes": 2453,
+          "sha256": "a57dbe47ed5e6c21e73df39620e74e7c83c3d4199d5c355ab2af05c62c8a94f3"
+        },
+        {
+          "path": "runs/report90_20260912/prepared_search_cost/REPORT.md",
+          "bytes": 959,
+          "sha256": "6da48ba01a965e2381d43e49cf4d0289da1b676ee7af466b21a342b043dc84fc"
+        },
+        {
+          "path": "runs/report90_20260912/prepared_search_cost/RESULT.json",
+          "bytes": 792557,
+          "sha256": "c8342103d8f524dbccf7c3f97e3fa588eb1267218f023d2c8c77a23e9fa37986"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/queue_cpu_corrected_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/queue_cpu_corrected_20260913/PROTOCOL.json",
+          "bytes": 3194,
+          "sha256": "1a0c31e20c18507c609185cab59391a100d80d82a9f03b5a4af4bb6316c4f954"
+        },
+        {
+          "path": "runs/report90_20260912/queue_cpu_corrected_20260913/STATUS.json",
+          "bytes": 71,
+          "sha256": "ed5f09f2fbf1402ca8e50e8b015707cd23b63ecbf514a22d18243ed7aa2b26b9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/queue_extension_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913/PROTOCOL.json",
+          "bytes": 1240,
+          "sha256": "41f7d50151acbe9c47fc47a68ed1a6b0602b9c955a7203c7034dc648a385c01b"
+        },
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913/STATUS.json",
+          "bytes": 93,
+          "sha256": "f5bd687c536a36eee9a1abb589a438d897c3c81a1463f7f1c95384e023b645c6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/queue_extension_20260913_attempt2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913_attempt2/PROTOCOL.json",
+          "bytes": 1240,
+          "sha256": "cc177550443e9510f256284e0299ab74104c8c8c6ae80a29c31efcc72b1f7f57"
+        },
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913_attempt2/STATUS.json",
+          "bytes": 109,
+          "sha256": "db3bef8a58c7ea297b7ff16d7c8277f259d60a78a634f439e8bd8be9a6826fb3"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/queue_extension_20260913_attempt3",
+      "records": [
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913_attempt3/PROTOCOL.json",
+          "bytes": 1240,
+          "sha256": "4a15c85f25580022bb8abd63d4ff7da08d3693d9bd7c05fd025d25d0d66badb7"
+        },
+        {
+          "path": "runs/report90_20260912/queue_extension_20260913_attempt3/STATUS.json",
+          "bytes": 71,
+          "sha256": "172b03350d8b7b36dd18297eb56667b1145ce734311c0e5a9eda0af06393baaa"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/queue_timeline_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/queue_timeline_validation/REPORT.md",
+          "bytes": 1040,
+          "sha256": "baacf145d273f264586a08ab9361d8d1e86e31b82f349611bfcf06c4dd0aba03"
+        },
+        {
+          "path": "runs/report90_20260912/queue_timeline_validation/RESULT.json",
+          "bytes": 1273,
+          "sha256": "173d1982f9ba8970f80203a5f41920c4b2a4d4e392ccb58b5c85f697c2086830"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_frozen_budget_evaluation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_frozen_budget_evaluation/REPORT.md",
+          "bytes": 1062,
+          "sha256": "0e290a3c225603b557f0d596b78280699037437e5ba8a8491c5ef2d94c8663bb"
+        },
+        {
+          "path": "runs/report90_20260912/report90_frozen_budget_evaluation/RESULT.json",
+          "bytes": 125638,
+          "sha256": "b93603fdf078ca17fd75cbe5c95b98d9f1d80c8329774f570790cfc0613af122"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_memory_profiles_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_full/MEMORY_PROFILE_CHECK.md",
+          "bytes": 25457,
+          "sha256": "429f95a2e2e2a77bc6198c2683d61ffd47f419e8b70da59dbc861d717d2a43b5"
+        },
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_full/PROTOCOL.json",
+          "bytes": 483,
+          "sha256": "7ca8c51f696372eb3e48bb76ce995bc22e77c29e08701790b6c1154c88c86ad9"
+        },
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_full/STATUS.json",
+          "bytes": 159,
+          "sha256": "613561032eaf12b6b3830b21f99a13278df68d57f525b651540a25644f3ddfdb"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_memory_profiles_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_pilot/MEMORY_PROFILE_CHECK.md",
+          "bytes": 974,
+          "sha256": "085144d776f091203c04824e9846e21be4aa72b7a46958d6b0c347a102f1175c"
+        },
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_pilot/PROTOCOL.json",
+          "bytes": 481,
+          "sha256": "21e94c94c563928b484d2568cea6755a199ed6c1745894cd5c6b83b926592db4"
+        },
+        {
+          "path": "runs/report90_20260912/report90_memory_profiles_pilot/STATUS.json",
+          "bytes": 157,
+          "sha256": "2ffe1a2b691a2b4d174a96fc46debf0f63517acc9a6c2bbb8c8f6652a74e6b0b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_arrival_high_first",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_high_first/PROTOCOL.json",
+          "bytes": 3845,
+          "sha256": "477d07cc19348b10c08618c4ca79aba592bde4d7f4b7efde65bf7987d24c5caa"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_high_first/REPORT.md",
+          "bytes": 1205,
+          "sha256": "c6571f16477fdd4d1ca1cea25da4359e73c695c1b0e33e5dfe15910b7e85cee8"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_high_first/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_arrival_low_first",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_low_first/PROTOCOL.json",
+          "bytes": 3844,
+          "sha256": "aa99520c61e17901c72dbb873a9b59b35ae946f2f297f984695c09865efd2fb2"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_low_first/REPORT.md",
+          "bytes": 1205,
+          "sha256": "a3c6f6f70ebf6016c40430fd9fb8700504461b71245246234443fc6fb6e81c10"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_low_first/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_arrival_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_restart/PROTOCOL.json",
+          "bytes": 1407,
+          "sha256": "01a6956809779ad86e58e8e7beaa98e2c77cada3be7dd5dc02591e517dfb1c87"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "9058419db3236fa27cf98482c98d4e1b58bb1ab4b6de7c53d2bda8ce0de289d5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_arrival_restart_preflight_busy01",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_arrival_restart_preflight_busy01/STATUS.json",
+          "bytes": 108,
+          "sha256": "1221dd017ad95ae27a487416e3b9f867724a7cdd4e76a4254c1ef649194c5814"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_cap4_full",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_full/PROTOCOL.json",
+          "bytes": 2278,
+          "sha256": "a373496b85f899f5c94c2f72bcb754f1d0e428a0d516224bddfa9e51a6b53487"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_full/REPORT.md",
+          "bytes": 1565,
+          "sha256": "f41f04b2ffd788984310534f42adeaeb021f8e5078857f43ed59d377a36f10cb"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_full/STATUS.json",
+          "bytes": 42,
+          "sha256": "597a6e1e68fbda45bbddf2fde5a8249cda91614aaa5cdf865dc25374c6f602b5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_cap4_full_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_full_restart/PROTOCOL.json",
+          "bytes": 675,
+          "sha256": "3340e11d74d1373f0d3ff9afe508d35e25fdff11be93fef6d377bb5c6595d33c"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_full_restart/STATUS.json",
+          "bytes": 49,
+          "sha256": "63b00eff9782e3efacbd443781e8894d142788adf21e961df5f099bb19c751a6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_cap4_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_pilot/PROTOCOL.json",
+          "bytes": 2287,
+          "sha256": "e92d01b237f4d00a4a1cd996fcd41916ef6e47c815a8754121013b216280b65a"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_pilot/REPORT.md",
+          "bytes": 1096,
+          "sha256": "85fdc13bd83a67cbee6e3622129336cd512540ef39f516b763989a8637cf21d6"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_pilot/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_cap4_pilot_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_pilot_restart/PROTOCOL.json",
+          "bytes": 678,
+          "sha256": "20dac9ae66dddbbab1ba29cbf63de90c39fd2337dc2a90d971d7c832821b85be"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_cap4_pilot_restart/STATUS.json",
+          "bytes": 48,
+          "sha256": "ddbbd4725b48c68cb6f265c31cb030011c1f05696f3b63521ce1eeec3e07b426"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_fifo",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo/PROTOCOL.json",
+          "bytes": 2626,
+          "sha256": "4f3fa2bb744f4c9d04f7a8c34fdc4e12ae7f6d43ef3dd4565fb56c441eef2c1e"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo/REPORT.md",
+          "bytes": 1173,
+          "sha256": "439f2df0ba6c0e2466109c62f19cfc493094cdf31802b30f04cafbe2d5d2c150"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy01",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy01/PROTOCOL.json",
+          "bytes": 2626,
+          "sha256": "4f3fa2bb744f4c9d04f7a8c34fdc4e12ae7f6d43ef3dd4565fb56c441eef2c1e"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy01/STATUS.json",
+          "bytes": 142,
+          "sha256": "5d9d85f7e887cfb0b95d69c71075959997fc29d8d704d107679ba56a8394bbe1"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy02",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy02/PROTOCOL.json",
+          "bytes": 2626,
+          "sha256": "4f3fa2bb744f4c9d04f7a8c34fdc4e12ae7f6d43ef3dd4565fb56c441eef2c1e"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_preflight_busy02/STATUS.json",
+          "bytes": 126,
+          "sha256": "b49174545382c57c4bc9cef236438791eb1dd67db7eb19c7c07aa902cb3608e4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_fifo_resume",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_resume/PROTOCOL.json",
+          "bytes": 769,
+          "sha256": "50807d2ca37f84ffcd2163381762b2d833b3a8944641bb791ea24b61920ab100"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_resume/STATUS.json",
+          "bytes": 197,
+          "sha256": "9885e81ad4ca1f1ff5c018a673c78cf9a50140fcd57c7960d825e8b88e9b6113"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_fifo_wait_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_wait_restart/PROTOCOL.json",
+          "bytes": 1085,
+          "sha256": "38bc12c7ee1aad505bfe133ee42d5051f48b1d042c48e39acb294881a32f91de"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_fifo_wait_restart/STATUS.json",
+          "bytes": 49,
+          "sha256": "1dc291703cf97a63d9d472799a27069a3cebbdde416e1018c7c8dfad090fd803"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_restart/PROTOCOL.json",
+          "bytes": 723,
+          "sha256": "e9e8d515d420431b6439756eec5ebdf194614fc50f43abd892a229dfd11a72a9"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_restart/STATUS.json",
+          "bytes": 197,
+          "sha256": "7bd13a3bbbba428a924cee5e60e66316fba193b251f7c4116c7f78adb0df2d69"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_journal_swrr",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_swrr/PROTOCOL.json",
+          "bytes": 2626,
+          "sha256": "62c7108faf46e373041eebc660aa741f0ecc335b471d6a91310368654d57b1bc"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_swrr/REPORT.md",
+          "bytes": 1173,
+          "sha256": "08730a7334c891d663c0d8246a621c6e2444b305659cb0aaaefcee5cf1e95df7"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_journal_swrr/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_mixed_fifo",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_fifo/PROTOCOL.json",
+          "bytes": 2854,
+          "sha256": "4a50faafcf9532fe290a779a6ffc58d103c3557e2b4ec8a656e53b932718acb8"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_fifo/REPORT.md",
+          "bytes": 1198,
+          "sha256": "827f27517b47262710151ac6dfd9e3e975fa73e9f427d902aa771d4bb38d6e09"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_fifo/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_mixed_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_restart/PROTOCOL.json",
+          "bytes": 1028,
+          "sha256": "d4e33bc765080d2bf9f705cb7953eabd5d1c4cc65fd7761a069911b2b8dd0d59"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_restart/STATUS.json",
+          "bytes": 49,
+          "sha256": "54c957f6b80874334d408e9875a3f7f6531667cb568b1f3d3f2ebd33ea3841b1"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_mixed_swrr",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_swrr/PROTOCOL.json",
+          "bytes": 2854,
+          "sha256": "e083ae999d71c4595e714780bfe5f923daac8bc23e685797800c52c652a27cb1"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_swrr/REPORT.md",
+          "bytes": 1198,
+          "sha256": "f11f0c74b6a5b4e71a50fb7a285d7f94f0225a3953fbadcc62a9a52c98878334"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_mixed_swrr/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot/PROTOCOL.json",
+          "bytes": 2088,
+          "sha256": "b0a5330e836ec4fd4082dc09950b5968469b33718b6f777e60e87964806baab3"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot/REPORT.md",
+          "bytes": 979,
+          "sha256": "1117bb4a08ecbd78519e702b4dbf9c7a8125ddec4dd8b1558fd9eecb2fe5dbda"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot/STATUS.json",
+          "bytes": 56,
+          "sha256": "f3034cfdcd143efe85036e607dd530a0f6cedfe0a72f2eeed40983b4e1ededc3"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_pilot_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot_restart/PROTOCOL.json",
+          "bytes": 636,
+          "sha256": "e40bfe9ea2f93260f00dc98ebfe9c658ef08add1a980fd255b826ebb6f0b1c1e"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot_restart/STATUS.json",
+          "bytes": 188,
+          "sha256": "727ed99bdec611227b662ae28ac7b231ec743294991caf689307fdfba91715b6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_pilot_restart_preflight_busy",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_pilot_restart_preflight_busy/STATUS.json",
+          "bytes": 84,
+          "sha256": "bf01c1100658ecdb90102fda1b4062c782aaacfb4bac6f9fa3fc4a274ca3a70a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_rounding_integer",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_integer/PROTOCOL.json",
+          "bytes": 3184,
+          "sha256": "a1bd0cd0df1a9e76c19a4139600bd34bf4aff4183a24ba816d13f2e665e6f21b"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_integer/REPORT.md",
+          "bytes": 1205,
+          "sha256": "5746be24a4054badea27bcec5221348503bf16a6053f1671896fca81966bacb4"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_integer/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_rounding_power2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_power2/PROTOCOL.json",
+          "bytes": 3178,
+          "sha256": "409f93113ad8beb3dca867abe68d0c1e8489c7ac425fe78eeb4e4d4d04353e9a"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_power2/REPORT.md",
+          "bytes": 1205,
+          "sha256": "ae977c31395a7a79ff7b46f3e2670ffaf4e35d42e7243a2f1951bfdf19a07348"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_power2/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_rounding_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_restart/PROTOCOL.json",
+          "bytes": 1387,
+          "sha256": "22fb559606714c891947edee9dffd3d85947b65fea525f7c9db318b3ad548d21"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_rounding_restart/STATUS.json",
+          "bytes": 200,
+          "sha256": "7fad57667ae731b4aa5506b1d3831c3a58978d31a7f1f5e3c4b861a08a2f3211"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_stable_fifo",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_fifo/PROTOCOL.json",
+          "bytes": 2855,
+          "sha256": "4b2ce513c0484b3cc207ecdda5a610a5ba756b58e6a3fcc53705236f34d58e62"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_fifo/REPORT.md",
+          "bytes": 1198,
+          "sha256": "93aa81301076ef9f181f91b02e5bbd23be096748bff06e76d14f118087acc4eb"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_fifo/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_stable_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_restart/PROTOCOL.json",
+          "bytes": 1346,
+          "sha256": "96660c757797b03e0585761b057a9ba3e6ee82d7669f45d8e55f56ae4ac49a15"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_restart/STATUS.json",
+          "bytes": 197,
+          "sha256": "4c534e1b20234b764ddcf22117ab05b8c56e82ca0841d58d76a6523fe4dd5e25"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_stable_swrr",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_swrr/PROTOCOL.json",
+          "bytes": 2855,
+          "sha256": "fb5ef7f3fb7a0b569aeddb98c4a6d4165f79e65269f718895c78773ff7fb0935"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_swrr/REPORT.md",
+          "bytes": 1198,
+          "sha256": "f897a384a3ed745b183def9c2819cc080729e71bf54b14e021945a6696fbe560"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_stable_swrr/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_timeline_power2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_timeline_power2/PROTOCOL.json",
+          "bytes": 3229,
+          "sha256": "31dee3de73a622fd1b46094956266df2827e7bdae75102256a2c30f3e7d2f96c"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_timeline_power2/REPORT.md",
+          "bytes": 1205,
+          "sha256": "ed5701013294c88cd6252465209a9b54a0c68a29a68637b0689e83d837aac23b"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_timeline_power2/STATUS.json",
+          "bytes": 42,
+          "sha256": "8421edb0c6ebaad5f944a8c2e48fa767a8049cf2b071813736c0a92dee0510b2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/report90_native_budget_timeline_restart",
+      "records": [
+        {
+          "path": "runs/report90_20260912/report90_native_budget_timeline_restart/PROTOCOL.json",
+          "bytes": 1398,
+          "sha256": "f8d2c862c71a439d28a715a0f58b5522e8a27d256acd652f4a71506fe44c6aac"
+        },
+        {
+          "path": "runs/report90_20260912/report90_native_budget_timeline_restart/STATUS.json",
+          "bytes": 50,
+          "sha256": "cd5ec0875ea7e44e2de4d6954f5cd855c16b872fafa94560a38ba005dc22a2ff"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/request_journal_validation",
+      "records": [
+        {
+          "path": "runs/report90_20260912/request_journal_validation/REPORT.md",
+          "bytes": 950,
+          "sha256": "e839536df2dd40f2e1a92feae8cdf45fcd2ed1f13f4a9426b258c34ae92ef06e"
+        },
+        {
+          "path": "runs/report90_20260912/request_journal_validation/RESULT.json",
+          "bytes": 1293,
+          "sha256": "266ae109cccc4a6d1fdb9f652d8123c3dad50aea0463b7b197726c2fc7a0cfb8"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/retrieval_efficiency",
+      "records": [
+        {
+          "path": "runs/report90_20260912/retrieval_efficiency/REPORT.md",
+          "bytes": 2065,
+          "sha256": "5eb6cc27af15210871873766346e4e1213d2d7120e050ee1afc3d159574be920"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_efficiency/RESULT.json",
+          "bytes": 28490,
+          "sha256": "d5d61be97af6cb885989b17a4d6fb1fdb0c4a9f651bc0aa9ed19da110391083d"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/retrieval_independent_development",
+      "records": [
+        {
+          "path": "runs/report90_20260912/retrieval_independent_development/PROTOCOL.json",
+          "bytes": 31250,
+          "sha256": "2ce1e0ff61dbaf7f8c3ee992456c42f96b34d5fae21e20ae4c125a159af30298"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_development/REPORT.md",
+          "bytes": 3233,
+          "sha256": "4c963a733563a231195f54a5f623e0797059e7bdb26865fb8ed92354daf94280"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_development/RESULT.json",
+          "bytes": 3605725,
+          "sha256": "96299dab48fc5d0ce97802c79291c13141d2d6424a25b4d4c6fc2c6434927e75"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_development/SUMMARY.json",
+          "bytes": 73008,
+          "sha256": "4956efb15fa42a841ea8973a3ad37e7c468bc12f8e570bdbef443942d560f970"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/retrieval_independent_report90",
+      "records": [
+        {
+          "path": "runs/report90_20260912/retrieval_independent_report90/FINAL_AUDIT.json",
+          "bytes": 1554,
+          "sha256": "e3b5eda269a1b878eef8867cdc3c069ab8520282f37849d29c00627d6deb8815"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_report90/PROTOCOL.json",
+          "bytes": 635217,
+          "sha256": "acb4878e46921ac487d3da9c1c7d788a2879256d54af7e4707514a5222f4ffe8"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_report90/REPORT.md",
+          "bytes": 3385,
+          "sha256": "cdb951e5a17e013f4a0cf92da62edb3fb7f0cdfd800f15a55c2f14dcaabd1d78"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_report90/RESULT.json",
+          "bytes": 70312567,
+          "sha256": "959bdd4d2076658845764cfd955040486ce8febc2c033ddf831f60a4d9b23436"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_independent_report90/SUMMARY.json",
+          "bytes": 1385493,
+          "sha256": "8758290bd0f02e8c9cd7b2ac4fd394f2e6896dcfb7f45e85ea8c8d0dcad4f709"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/retrieval_timing_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/retrieval_timing_pilot/PROTOCOL.json",
+          "bytes": 43780,
+          "sha256": "425431f7901b68d6e24a63ff1cf6627db8e2a340d8ef3bc00acb91fda4d4d7ae"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_timing_pilot/REPORT.md",
+          "bytes": 3188,
+          "sha256": "e4692109ce8117c13ea8262d7c0e6529734fde3fd875ebaaad02f37877930d5e"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_timing_pilot/RESULT.json",
+          "bytes": 10816707,
+          "sha256": "10326cd26ed3464afabac86c1a6e78a8ef44c1ca5d6843bb2e8c9547ccf39799"
+        },
+        {
+          "path": "runs/report90_20260912/retrieval_timing_pilot/SUMMARY.json",
+          "bytes": 74909,
+          "sha256": "b8a77b2662385856db0701c62890f05c21a650b3f92d8fcf71530f0dee37723f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_batch_cost",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_batch_cost/PROTOCOL.json",
+          "bytes": 2630,
+          "sha256": "4b2a78ff9fd83c6d67e79b1611b66bbb52a1dbdec998015dd3b42a22f65e5471"
+        },
+        {
+          "path": "runs/report90_20260912/search_batch_cost/REPORT.md",
+          "bytes": 1862,
+          "sha256": "395664524587bafadab0348a6ad2d720465a008b988781cd65644b85492e0dfc"
+        },
+        {
+          "path": "runs/report90_20260912/search_batch_cost/RESULT.json",
+          "bytes": 601172,
+          "sha256": "790f4fb63bc87311f043dd9af8527cdc19aa6a0f53c33dff20e7a0adcd64a13f"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_budget_report90",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_budget_report90/PROTOCOL.json",
+          "bytes": 4700,
+          "sha256": "cc0d29669f1575e3a14ae67e293828888e7a4928c0d7ffd99947344eb0e24095"
+        },
+        {
+          "path": "runs/report90_20260912/search_budget_report90/SCORE_DIAGNOSTIC.md",
+          "bytes": 1030,
+          "sha256": "9a35c9b9feadcb3a4b23f8779cf3cd75f5658fd39e891ad250fe52b2733a02d6"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_budget_screen",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_budget_screen/PROTOCOL.json",
+          "bytes": 1905,
+          "sha256": "8728e19ac45c961d87b45fe68c5bc52e7d04fb1219015c09545d81accacc29c8"
+        },
+        {
+          "path": "runs/report90_20260912/search_budget_screen/REPORT.md",
+          "bytes": 619,
+          "sha256": "f38bf179865e1fa9895057d9dac64f7d876b82f1738eaf1ef5d5e747bdecf0f3"
+        },
+        {
+          "path": "runs/report90_20260912/search_budget_screen/RESULT.json",
+          "bytes": 1618187,
+          "sha256": "7d083678e8d3dbb3c90001ebc9da6e8047e85aac50e0ac19c9f745b9141d2529"
+        },
+        {
+          "path": "runs/report90_20260912/search_budget_screen/SUMMARY.json",
+          "bytes": 157,
+          "sha256": "11a60665aad0247479e5c8c22d148a3533aaf9ae1f120136f0755f836940e1ac"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_budget_sql",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_budget_sql/PROTOCOL.json",
+          "bytes": 1931,
+          "sha256": "4870d3cd74ac8ae92021f03df1508b071d05fe3e841489ad87344e2812b5dc0a"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_convergence_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_convergence_20260913/PROTOCOL.json",
+          "bytes": 2140,
+          "sha256": "6eabef703729c45b4edfe6632bac18e97553db053ed0cb9e8f1fffe59c0b1961"
+        },
+        {
+          "path": "runs/report90_20260912/search_convergence_20260913/REPORT.md",
+          "bytes": 1188,
+          "sha256": "69f520b2478319e8f2dec1460c3cbdb9080894460fa707f5ec5199d61959d903"
+        },
+        {
+          "path": "runs/report90_20260912/search_convergence_20260913/STATUS.json",
+          "bytes": 68,
+          "sha256": "dbed37fa869ae1b1a524553e0c334900e0b1bdbea6c25609d7594509c5e003a0"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_refinement_complement",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_refinement_complement/PROTOCOL.json",
+          "bytes": 3269,
+          "sha256": "137b02a840d5f3d938f9056f9dab91750929efe4c9dfc73a8a9fb298b3d1d11d"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_complement/pilot/REPORT.md",
+          "bytes": 1030,
+          "sha256": "562c7b0d7f1aa88b6cd6bf42111fc452822591c8ce418f4b4e3269aad149839a"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_complement/pilot/RESULT.json",
+          "bytes": 6064,
+          "sha256": "33d61e1e2e972def2b262e1b14698b9c357716977e4f476c665f90db23fbcc50"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_complement/pilot/STATUS.json",
+          "bytes": 47,
+          "sha256": "9b1f12017caf6f8bb947b23a2ed90ff1960e94744ebea1a9867a00ce7dc74efc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_refinement_development",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_refinement_development/PROTOCOL.json",
+          "bytes": 2704,
+          "sha256": "4e9ca8551d73d756bf27fc6881904b96bd45e129c441ce2e0d4e054cd8ccf872"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_development/pilot/REPORT.md",
+          "bytes": 1030,
+          "sha256": "6070e704d7800b9c01c2462d18c1ad92b14bfbf3b84565eb2a41bee169bda2ab"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_development/pilot/RESULT.json",
+          "bytes": 6049,
+          "sha256": "2998021be6a23778557de066357a3d3d18cb27c67b3291e55ec12b74d3ce1522"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_development/pilot/STATUS.json",
+          "bytes": 47,
+          "sha256": "9b1f12017caf6f8bb947b23a2ed90ff1960e94744ebea1a9867a00ce7dc74efc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_refinement_report90",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_refinement_report90/COST_REPORT.md",
+          "bytes": 979,
+          "sha256": "20834d3eb012b204d18ff4bdeeeb55fdcbeac68383056de8692000db9aec31fd"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_report90/PROTOCOL.json",
+          "bytes": 5831,
+          "sha256": "7c91040e4b17cbba28b5d8cbcf4d575e2832a517758413d20ed056328298bd4c"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_report90/full/REPORT.md",
+          "bytes": 1080,
+          "sha256": "befb35b2db45881433b5618a491b2ae0d9ed80efe30d7c6b2cf7652147a73e42"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_report90/full/RESULT.json",
+          "bytes": 38913,
+          "sha256": "f6d4fb004a2371da86a503beb2ce0d6b633cd50a22d3a3dfafc334899b2551f0"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_report90/full/STATUS.json",
+          "bytes": 47,
+          "sha256": "9b1f12017caf6f8bb947b23a2ed90ff1960e94744ebea1a9867a00ce7dc74efc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/search_refinement_summary",
+      "records": [
+        {
+          "path": "runs/report90_20260912/search_refinement_summary/REPORT.md",
+          "bytes": 1314,
+          "sha256": "c6a5286e66c1330b48bca74346683cc84d8b45322b9a79024b14a9e031463790"
+        },
+        {
+          "path": "runs/report90_20260912/search_refinement_summary/RESULT.json",
+          "bytes": 11891,
+          "sha256": "f7ddeba55e5356475b4733172f6a99816a4675747c21f986ad870c21975919f1"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/six_model_control_20260919",
+      "records": [
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/REPRODUCE.md",
+          "bytes": 1293,
+          "sha256": "7c83be20ec9a4e9c4cc848147d79d3a1e2daf841857bc2d6183e825b4994c3c7"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/full/FINAL_AUDIT.json",
+          "bytes": 3077,
+          "sha256": "4d8f43c1f701a13441b1162829dce5a6f9ac08e7cd54365318a220815ff2df14"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/full/REPORT.md",
+          "bytes": 2754,
+          "sha256": "ad4c76a20e91675f7375a5029c7522627f918e3fc4424817425d9a12b21357ac"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/full/RESULT.json",
+          "bytes": 286087,
+          "sha256": "17e77467dd0968bcc85d73474a919b0c941a3fa0ac1b6e42680a205c6eacd715"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/full/STATUS.json",
+          "bytes": 78,
+          "sha256": "659c7eed9a883c627ee1a319c0a00251d0eeb6a0d1190e1db5d3075fbb01cbbc"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/full/UNIFIED_REPORT.md",
+          "bytes": 5273,
+          "sha256": "7aa048a87bfe5ff7ead93114681aeb2fc7efb8e3afaf67c58fd09ba0be3536d4"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/pilot/REPORT.md",
+          "bytes": 1995,
+          "sha256": "0a44891008967da3b291f93410f0c17cd4d4861f617a3a5cfa6bcbd06ddfaeb2"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/pilot/RESULT.json",
+          "bytes": 68371,
+          "sha256": "9382554e13a2dfdc25d4ed6e4449983e39f7e274f81ca4f6ce6df8cdcdf7d635"
+        },
+        {
+          "path": "runs/report90_20260912/six_model_control_20260919/pilot/STATUS.json",
+          "bytes": 76,
+          "sha256": "8b696c971549a922b27d2ef34b11e024404376db0cf3d9034cfdd7c2dee84f7e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/structure_coverage20",
+      "records": [
+        {
+          "path": "runs/report90_20260912/structure_coverage20/INTERACTION_DIAGNOSIS.md",
+          "bytes": 3163,
+          "sha256": "e08305198da160ba3775b24c4aab8b4fd1a9b86f842fc9ae4a28637ef0c1a12e"
+        },
+        {
+          "path": "runs/report90_20260912/structure_coverage20/PROTOCOL.json",
+          "bytes": 2296,
+          "sha256": "45fdd479b96d0d7539657ae77c795dd5c7c3bc7b4519db15e9b697c26fd74d17"
+        },
+        {
+          "path": "runs/report90_20260912/structure_coverage20/RECOVERY_NOTE.md",
+          "bytes": 1550,
+          "sha256": "818c0eab4c784b4c332f699473322db4d2a608c475fb9539c9583f23935a54a2"
+        },
+        {
+          "path": "runs/report90_20260912/structure_coverage20/REPORT.md",
+          "bytes": 1701,
+          "sha256": "50b35a25a5f9089320e11abba7e376d7d93660311be115b5466836f8e6b9479e"
+        },
+        {
+          "path": "runs/report90_20260912/structure_coverage20/STATUS.json",
+          "bytes": 121,
+          "sha256": "cdb335a1bae1533bef6c8197d42bc1dddad6b722a08a76298893f319f3a3cfba"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/teacher_extension_20260913",
+      "records": [
+        {
+          "path": "runs/report90_20260912/teacher_extension_20260913/PROTOCOL.json",
+          "bytes": 1425,
+          "sha256": "2e9b7533fe18897ebd4c952f9bff011763bf4cdedd50920f18f84d02e897e478"
+        },
+        {
+          "path": "runs/report90_20260912/teacher_extension_20260913/STATUS.json",
+          "bytes": 150,
+          "sha256": "59e2a303689ce1bd5054852e3e05ffbaa8d19e2515dad29d9637012c7bcdfb34"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_conditional_contrasts",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/CONTEXT_COMPARISON.md",
+          "bytes": 1689,
+          "sha256": "b1ca2c6d3df2eb99e39b2947db3229382eeca9b1badb4c5a673a7b570897ada2"
+        },
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/FORMAL_REPEAT_REPORT.md",
+          "bytes": 1359,
+          "sha256": "a248cf5dfc052ce754db5fd51b44da2919863e546fe7182bdbb521c364aa4335"
+        },
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/PROTOCOL.json",
+          "bytes": 2163,
+          "sha256": "289d2369f6bcf80dcdf24f9e6772d7c4f5260ca651e4523409c5792757e0892f"
+        },
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/REPORT.md",
+          "bytes": 2380,
+          "sha256": "d4c576dd8af346bc6936280c58338face0d4f123a1c3e47f39f55baac5e84441"
+        },
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/STATUS.json",
+          "bytes": 60,
+          "sha256": "f23a479a5c70565bead2ed32e2294a606b5f0db97f440c7aaeb27108dec6a66e"
+        },
+        {
+          "path": "runs/report90_20260912/training_conditional_contrasts/SUMMARY.json",
+          "bytes": 10471,
+          "sha256": "37ee8a4e2680f65f20e4e6f94618b55464a6a99f619e7735fdbaefe82e291177"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_contrast_case_study",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_contrast_case_study/REPLICATION_UPDATE.md",
+          "bytes": 552,
+          "sha256": "e328d98678c92a9f3515943a1d7aedcb78d9fa406ac267e7a9ffeeb875d10de3"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrast_case_study/REPORT.md",
+          "bytes": 841,
+          "sha256": "0e7f70800a397ddf73318de40a5363bbaba49e1234e0daf49bb7d2d44fc449ac"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrast_case_study/RESULT.json",
+          "bytes": 2913,
+          "sha256": "03f16688872718242b307937d8437b3c2114ca4d892eeca458dec35a1ad7e909"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_contrasts_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot/PROTOCOL.json",
+          "bytes": 2200,
+          "sha256": "3258703249d1898e57f786b71ac55d85f22a106d088821a85a8c92c9443219ea"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot/STATUS.json",
+          "bytes": 224,
+          "sha256": "855d3ec519bc7ab661515716ab0307d5948c1de59e4d8446c74c63d10e0a6e6b"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_contrasts_pilot_v2",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot_v2/PROTOCOL.json",
+          "bytes": 2246,
+          "sha256": "d057ca480cecd9fd3d4e944982c0427cb911a6b2772146982ec32c12b8836995"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot_v2/REPORT.md",
+          "bytes": 2750,
+          "sha256": "a942c68b126099ca9e3f308eead54134dc1be9efdd5ed943f79072bd12f1b316"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot_v2/STATUS.json",
+          "bytes": 60,
+          "sha256": "dff1b171506e712b8fb02f846e2111631b9bf2c311da872dbe0db87a3acff127"
+        },
+        {
+          "path": "runs/report90_20260912/training_contrasts_pilot_v2/SUMMARY.json",
+          "bytes": 12675,
+          "sha256": "dc37e2a9b116d414c1b649f57484ffcf743789cf0d2070919496aa400cca9a40"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_neighborhood_pilot",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_neighborhood_pilot/PROTOCOL.json",
+          "bytes": 2177,
+          "sha256": "e5fc5871e73c6ee2a5f3b7b91fa4fe36fc6d1eaec3bb3141d664a41b14b78665"
+        },
+        {
+          "path": "runs/report90_20260912/training_neighborhood_pilot/REPORT.md",
+          "bytes": 1879,
+          "sha256": "43ca74cbc839752f3b59568045dcbdd201552e983f34c40cbcbe1aaa0175f2f7"
+        },
+        {
+          "path": "runs/report90_20260912/training_neighborhood_pilot/STATUS.json",
+          "bytes": 60,
+          "sha256": "9052979d5ee3f72eb5ccc6156e94a0829e3159bf938a611c4bb6336afae6c7a9"
+        },
+        {
+          "path": "runs/report90_20260912/training_neighborhood_pilot/SUMMARY.json",
+          "bytes": 4765,
+          "sha256": "c493f1d0e7b4299030f09e54322e50eb4cc97762a5182922bbde75a58efbedbd"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_probe_model_diagnostic",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_probe_model_diagnostic/REPORT.md",
+          "bytes": 2177,
+          "sha256": "16fb4c52164153c36fe88ed694c96b811d04cb55ad10bad5fdef92aef62b2a45"
+        },
+        {
+          "path": "runs/report90_20260912/training_probe_model_diagnostic/RESULT.json",
+          "bytes": 448980,
+          "sha256": "79a88e52984bb2d8bd8b3bd3af057838e3576de0827782e982349d1358ca9853"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/training_structure_audit",
+      "records": [
+        {
+          "path": "runs/report90_20260912/training_structure_audit/REPORT.md",
+          "bytes": 720,
+          "sha256": "d102cc8ba2a6d54b23db87a5e3abed26384577d6f2f3907baf179c6ba24a3284"
+        },
+        {
+          "path": "runs/report90_20260912/training_structure_audit/RESULT.json",
+          "bytes": 1933,
+          "sha256": "1f3f61cc07f36b71ed08ece3a31cd32f3da5bd1792a998475bb642e3951302b0"
+        }
+      ]
+    },
+    {
+      "directory": "runs/report90_20260912/word_report",
+      "records": [
+        {
+          "path": "runs/report90_20260912/word_report/\u5b9e\u9a8c\u62a5\u544a\u6b63\u6587.md",
+          "bytes": 45335,
+          "sha256": "be4f192038fb2c6e225cdfee581ec3a45b706e5a2e41f7572b8cb17e020a6768"
         }
       ]
     }

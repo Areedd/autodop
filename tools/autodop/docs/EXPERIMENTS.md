@@ -17,6 +17,13 @@
 
 90 条查询来自已测 200 条查询的事后正收益筛选，不能据此声称独立泛化或所有工作负载收益。有限窗口的并发测试不构成长期吞吐保证。验收范围和未完成项以各报告原文为准。
 
+## 9 月 19–20 日追加实验
+
+- [六模型对照](reports/report90_20260912/six_model_control_20260919/full/UNIFIED_REPORT.md)
+- [四种基础模型对照](reports/report90_20260912/basic_four_control_20260920/full/UNIFIED_REPORT.md)
+
+同目录附原始 STATUS 和 FINAL_AUDIT 快照；索引还包含 182 个 report90 子实验的报告入口。
+
 ## 原始实验目录
 
 以下路径相对 `tools/autodop/`，仅在保留了本机实验数据时可用。

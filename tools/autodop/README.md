@@ -4,6 +4,7 @@ AutoDOP 为 StarRocks 查询的 fragment 预测并行度：离线成本学习与
 
 - [使用文档](docs/USAGE.md)：离线完整 FE/BE 包、HTTP 服务、训练、测试、停止与排障。
 - [实验日志索引](docs/EXPERIMENTS.md)：104 个本地实验目录、主要报告快照与结论限制。
+- [交付验证记录](docs/VALIDATION.md)：源码回归和离线运行检查。
 - [清理说明](docs/CLEANUP.md)：保留与归档范围。
 - [历史脚本恢复](archive/README.md)：411 个历史 report90 批次脚本，附 SHA-256 清单。
 

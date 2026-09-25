@@ -59,10 +59,14 @@ def main():
         result = cursor.fetchone()
         assert result == {'n': 3, 'total': 60}, result
         cursor.execute('SELECT VERSION() AS version')
-        version = cursor.fetchone()['version']
+        compatibility_version = cursor.fetchone()['version']
+        cursor.execute('SHOW FRONTENDS')
+        frontend_versions = [row['Version'] for row in cursor.fetchall()]
     print(json.dumps({'status': 'passed', 'health': True,
         'http_decisions': len(decision['decisions']), 'confidence': decision['confidence'],
-        'sql': result, 'starrocks_version': version,
+        'sql': result, 'mysql_compatibility_version': compatibility_version,
+        'frontend_versions': frontend_versions,
+        'backend_versions': [row['Version'] for row in backends],
         'scope': 'Real HTTP policy inference, FE/BE startup, SQL create/insert/aggregate. '
                  'Small SQL may bypass AutoDOP; this is not a performance benchmark.'}, indent=2))
 

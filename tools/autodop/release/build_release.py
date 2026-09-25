@@ -74,14 +74,24 @@ def main():
     run('docker', 'build', '--network=host', '-f', context / 'Dockerfile.autodop',
         '-t', 'autodop/service:20260925', context)
     (context / '.dockerignore').write_text('autodop/\nmodels/\n')
-    run('docker', 'build', '--build-arg', 'BE_IMAGE=' + base['Id'], '-f', context / 'Dockerfile.starrocks',
+    # BuildKit interprets a bare image ID as a registry name in FROM. A unique
+    # local tag pins the already-audited base without a registry lookup.
+    base_tag = 'autodop/be-release-base:' + base['Id'].split(':')[1][:16]
+    run('docker', 'tag', base['Id'], base_tag)
+    run('docker', 'build', '--build-arg', 'BE_IMAGE=' + base_tag, '-f', context / 'Dockerfile.starrocks',
         '-t', 'autodop/starrocks:20260925', context)
     images = ['autodop/service:20260925', 'autodop/starrocks:20260925']
     shutil.copy2(templates / 'compose.yaml', out)
     shutil.copy2(templates / 'smoke.py', out)
     shutil.copytree(context / 'models', out / 'models')
     shutil.copytree(AUTODOP / 'docs', out / 'docs')
-    shutil.copy2(AUTODOP / 'README.md', out)
+    (out / 'README.md').write_text(
+        '# AutoDOP 离线运行包\n\n'
+        '- [使用文档](docs/USAGE.md)\n'
+        '- [验证记录](docs/VALIDATION.md)\n'
+        '- [实验报告索引](docs/EXPERIMENTS.md)\n\n'
+        '先导入 images.tar，再按使用文档启动 Compose 和运行 check。\n'
+        '源码入口和历史脚本在交付源码归档 source.tar.gz 内。\n', encoding='utf-8')
     shutil.copy2(ROOT / 'LICENSE.txt', out)
     shutil.copy2(ROOT / 'NOTICE.txt', out)
     shutil.copytree(ROOT / 'licenses-binary', out / 'licenses-binary')

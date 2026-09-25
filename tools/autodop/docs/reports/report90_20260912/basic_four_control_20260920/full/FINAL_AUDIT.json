@@ -1,0 +1,87 @@
+{
+  "status": "verified_product_removal_and_replay",
+  "records": [
+    {
+      "kind": "mlp_rank",
+      "seed": 17,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "mlp_regression",
+      "seed": 17,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_rank",
+      "seed": 17,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_regression",
+      "seed": 17,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "mlp_rank",
+      "seed": 29,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "mlp_regression",
+      "seed": 29,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_rank",
+      "seed": 29,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_regression",
+      "seed": 29,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "mlp_rank",
+      "seed": 43,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "mlp_regression",
+      "seed": 43,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_rank",
+      "seed": 43,
+      "replay_exact": true,
+      "effective_pairs": 920
+    },
+    {
+      "kind": "xgb_regression",
+      "seed": 43,
+      "replay_exact": true,
+      "effective_pairs": 920
+    }
+  ],
+  "removed_columns": 532,
+  "retained_columns": 556,
+  "mlp_initialization_matches_full": true,
+  "non_product_values_unchanged": true,
+  "source_sha256": {
+    "/home/shaokun/starrocks/tools/autodop/scripts/report90_basic_four_audit.py": "00f34a58d89eef576a4a88b6d253ca618993b00a5d640dad0e10e6da42982878",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/basic_four_control_20260920/full/RESULT.json": "faab117ad70eabb2051bd239af2e93a2d2574252c57138ed1613735289758369",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/six_model_control_20260919/full/RESULT.json": "17e77467dd0968bcc85d73474a919b0c941a3fa0ac1b6e42680a205c6eacd715"
+  },
+  "report_sha256": "edc1beb92e905c4c515d8b933324da7fc9a55282d3f56aeb71e0ed94d5d72fde"
+}

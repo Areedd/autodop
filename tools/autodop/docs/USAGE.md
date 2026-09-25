@@ -143,7 +143,7 @@ python tools/autodop/release/build_release.py \
   --be-build-proof /absolute/path/to/BUILD_COMPLETE.json
 ```
 
-该命令构建镜像并导出 `images.tar`，不自动把未经测试的结果标记为可交付。进入输出目录，按本文运行 `check`，保存测试日志后再压缩。构建时需要网络下载镜像和 Python 依赖，运行已交付的镜像无需下载。实际安装版本与镜像 ID 记录在交付清单中。
+该命令构建镜像并导出 `images.tar`，不自动把未经测试的结果标记为可交付。可从源码运行 `python tools/autodop/release/check_release.py dist/my-autodop-release`，它会导入镜像，以随机项目名和随机回环端口创建全新测试卷，运行 HTTP/SQL 检查，并仅删除该次临时测试卷。日志保存在输出目录的 `validation/` 中。也可进入输出目录，按本文手动运行 `check`，保存测试日志后再压缩。构建时需要网络下载镜像和 Python 依赖，运行已交付的镜像无需下载。实际安装版本与镜像 ID 记录在交付清单中。
 
 ## 实验记录与清理范围
 

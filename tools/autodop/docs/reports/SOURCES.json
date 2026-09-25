@@ -38,5 +38,35 @@
     "source": "runs/ablation_cost_20260912/REPORT.md",
     "snapshot": "reports/ablation_cost_20260912/REPORT.md",
     "sha256": "8206ab40dc42641b1378ab87a58b5fbf4034a2af7c7c6aee86842d567d048a05"
+  },
+  {
+    "source": "runs/report90_20260912/basic_four_control_20260920/full/UNIFIED_REPORT.md",
+    "snapshot": "reports/report90_20260912/basic_four_control_20260920/full/UNIFIED_REPORT.md",
+    "sha256": "edc1beb92e905c4c515d8b933324da7fc9a55282d3f56aeb71e0ed94d5d72fde"
+  },
+  {
+    "source": "runs/report90_20260912/basic_four_control_20260920/full/FINAL_AUDIT.json",
+    "snapshot": "reports/report90_20260912/basic_four_control_20260920/full/FINAL_AUDIT.json",
+    "sha256": "275efa89154bea509bb5e73e9cc66666cb1c7c67dceddcab629fae6820271d0b"
+  },
+  {
+    "source": "runs/report90_20260912/basic_four_control_20260920/full/STATUS.json",
+    "snapshot": "reports/report90_20260912/basic_four_control_20260920/full/STATUS.json",
+    "sha256": "4085273477d1c3e8c3833994347d673eb0f8656a417549a1cde2523a4a2ecba6"
+  },
+  {
+    "source": "runs/report90_20260912/six_model_control_20260919/full/UNIFIED_REPORT.md",
+    "snapshot": "reports/report90_20260912/six_model_control_20260919/full/UNIFIED_REPORT.md",
+    "sha256": "7aa048a87bfe5ff7ead93114681aeb2fc7efb8e3afaf67c58fd09ba0be3536d4"
+  },
+  {
+    "source": "runs/report90_20260912/six_model_control_20260919/full/FINAL_AUDIT.json",
+    "snapshot": "reports/report90_20260912/six_model_control_20260919/full/FINAL_AUDIT.json",
+    "sha256": "4d8f43c1f701a13441b1162829dce5a6f9ac08e7cd54365318a220815ff2df14"
+  },
+  {
+    "source": "runs/report90_20260912/six_model_control_20260919/full/STATUS.json",
+    "snapshot": "reports/report90_20260912/six_model_control_20260919/full/STATUS.json",
+    "sha256": "659c7eed9a883c627ee1a319c0a00251d0eeb6a0d1190e1db5d3075fbb01cbbc"
   }
 ]

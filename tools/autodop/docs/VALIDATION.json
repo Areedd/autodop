@@ -1,0 +1,35 @@
+{
+  "python": {
+    "passed": 211,
+    "subtests_passed": 40
+  },
+  "fe": {
+    "passed": 83,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "be_cpu": {
+    "fixtures": [
+      1,
+      8,
+      192
+    ],
+    "tests_per_fixture": 2,
+    "passed": true
+  },
+  "archive": {
+    "files_verified": 411
+  },
+  "offline_runtime": {
+    "status": "passed",
+    "project": "autodop-check-f01b225e4e02",
+    "scope": "offline_images_fresh_volumes",
+    "cleanup_returncode": 0
+  },
+  "sql": {
+    "n": 3,
+    "total": 60
+  },
+  "scope": "Functional tests and selected regressions; not the full StarRocks test suite or a performance benchmark."
+}
