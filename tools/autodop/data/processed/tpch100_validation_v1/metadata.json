@@ -1,0 +1,96 @@
+{
+  "category_features": [
+    "root_node",
+    "leftmost_node",
+    "data_partition",
+    "output_partition",
+    "sink_type",
+    "is_colocated",
+    "is_replicated",
+    "is_bucket_shuffle",
+    "is_gather_root"
+  ],
+  "category_vocab": {
+    "data_partition": {
+      "<UNK>": 0,
+      "HASH_PARTITIONED": 1,
+      "RANDOM": 2,
+      "UNPARTITIONED": 3
+    },
+    "is_bucket_shuffle": {
+      "<UNK>": 0,
+      "False": 1
+    },
+    "is_colocated": {
+      "<UNK>": 0,
+      "False": 1,
+      "True": 2
+    },
+    "is_gather_root": {
+      "<UNK>": 0,
+      "False": 1,
+      "True": 2
+    },
+    "is_replicated": {
+      "<UNK>": 0,
+      "False": 1
+    },
+    "leftmost_node": {
+      "<UNK>": 0,
+      "EXCHANGE": 1,
+      "MERGING-EXCHANGE": 2,
+      "OlapScanNode": 3
+    },
+    "output_partition": {
+      "<UNK>": 0,
+      "HASH_PARTITIONED": 1,
+      "UNPARTITIONED": 2
+    },
+    "root_node": {
+      "<UNK>": 0,
+      "AGGREGATE (merge finalize)": 1,
+      "AGGREGATE (update serialize)": 2,
+      "MERGING-EXCHANGE": 3,
+      "SORT": 4
+    },
+    "sink_type": {
+      "<UNK>": 0,
+      "DataStreamSink": 1,
+      "ResultSink": 2
+    }
+  },
+  "dop_classes": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "feature_mean": [
+    22.096877636215478,
+    14.877538841803496,
+    2.9009268062809173,
+    2.110402830539734,
+    1.126364168409911,
+    1.126364168409911
+  ],
+  "feature_std": [
+    7.070636592336485,
+    8.191885458361503,
+    0.4062826713105608,
+    2.7427990602071857,
+    0.3355684358474117,
+    0.3355684358474117
+  ],
+  "numeric_features": [
+    "fragment_cost",
+    "estimated_cardinality",
+    "estimated_avg_row_size",
+    "scan_range_count",
+    "instance_count",
+    "worker_count"
+  ],
+  "pair_count": 94,
+  "sample_count": 21
+}

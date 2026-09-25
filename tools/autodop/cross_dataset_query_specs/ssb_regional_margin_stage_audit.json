@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "query_id": "ssb_regional_margin_stage_audit",
+  "template": "ssb_regional_margin_stage_audit",
+  "parameters": {
+    "core_start_year": 1992,
+    "core_years": 7,
+    "audit_start_month_seq": 1194,
+    "audit_months": 36
+  }
+}

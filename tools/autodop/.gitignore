@@ -1,0 +1,10 @@
+# Python caches (temp artifacts)
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# AutoDOP experiment runtime artifacts: large/volatile logs, traces, and
+# node data. Keep them on disk; do not add them to git.
+runs/
+edge_be/log/
+edge_be/storage/

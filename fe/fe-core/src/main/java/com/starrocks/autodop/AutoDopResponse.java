@@ -26,6 +26,11 @@ public class AutoDopResponse {
     @SerializedName("query_id")
     public String queryId = "";
 
+    // Conservative confidence of the full DOP vector: the minimum masked-softmax
+    // confidence across all fragment decisions.
+    @SerializedName("confidence")
+    public Double confidence;
+
     @SerializedName("decisions")
     public List<Decision> decisions = new ArrayList<>();
 

@@ -1,5 +1,12 @@
 # DD01–DD04 设计文档实现完整度核对与效果评估报告
 
+> **Historical snapshot (2026-08-11):** This report records the implementation and experiments
+> that existed at the audit date. On 2026-09-02 the instance-level second DOP adjustment,
+> heuristic online engines, and tree-policy implementation were intentionally removed to align
+> the active runtime with the paper's distilled `PolicyEngine` plus fragment-level load
+> correction. References below to those removed paths are historical evidence, not descriptions
+> of the current executable code.
+
 - 核对日期：2026-08-11
 - 核对对象：仓库根目录四份设计文档（DD01 总体方案 / DD02 细粒度预测 / DD03 调度与资源管理 / DD04 分布式调度系统）
 - 核对方式：4 个并行 research 子代理逐文档核对草稿 + 主会话逐条复核与关键代码抽查（GAT 编码器形态、负载修正常量、资源视图归一化、决策窗口插入点、轨迹三阶段字段、蒸馏策略效果 JSON 等均已人工验证）

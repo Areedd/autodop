@@ -172,8 +172,7 @@ public class Config extends ConfigBase {
     public static String auto_dop_trace_dir = "log/autodop";
     // Interval of the AutoDOP resource view sampling task, in milliseconds.
     // The view reads the resource usage reported by BE (cpu_used_permille / mem_used_bytes) and
-    // exposes per-worker smoothed load to both the load correction (DD03) and the instance-level
-    // adjustment (DD04) paths.
+    // exposes per-worker smoothed load to the fragment-level load correction path.
     @ConfField(mutable = true)
     public static int auto_dop_resource_view_interval_ms = 2000;
     // EWMA smoothing factor applied to raw per-worker load samples.
@@ -188,12 +187,29 @@ public class Config extends ConfigBase {
     // Floor of the fragment-level load correction factor (fully loaded nodes touch this value).
     @ConfField(mutable = true)
     public static double auto_dop_load_factor_floor = 0.1;
-    // Floor of the instance-level DOP adjustment factor (more conservative than the fragment-level floor).
+    // Minimum conservative confidence accepted for a complete PolicyModel DOP vector.
+    // Lower-confidence decisions are rejected and fall back to the native DOP.
     @ConfField(mutable = true)
-    public static double auto_dop_instance_adjust_floor = 0.5;
-    // Master switch of the instance-level DOP adjustment.
+    public static double auto_dop_min_confidence = 0.5;
+    // Paper-aligned default: decision IO errors, timeouts, low confidence, and invalid responses
+    // skip AutoDOP and preserve the native DOP. Set true only for diagnostic fail-fast behavior.
     @ConfField(mutable = true)
-    public static boolean auto_dop_instance_adjust_enabled = true;
+    public static boolean auto_dop_fail_on_error = false;
+    // 资源使用率过期（非 fresh）时使用的 CPU 中性负载值（默认 0.0，即不做修正）。
+    @ConfField(mutable = true)
+    public static double auto_dop_resource_neutral_cpu = 0.0;
+    // 资源使用率过期（非 fresh）时使用的内存中性负载值（默认 0.0，即不做修正）。
+    @ConfField(mutable = true)
+    public static double auto_dop_resource_neutral_mem = 0.0;
+    // 资源视图自定义新鲜度窗口（毫秒）：>0 时按"上次见到 fresh 上报"的时间戳 + 该窗口判定过期；
+    // -1（默认）沿用 ComputeNode.isResourceUsageFresh() 的全局窗口。
+    @ConfField(mutable = true)
+    public static int auto_dop_resource_fresh_interval_ms = -1;
+    // 容量归一化强度（0–1）：>0 时资源视图对采样负载施加
+    // tension = min(1, usage * (1 + weight * (1 - normalized_capacity)))（normalized_capacity 为
+    // 相对集群 P99 容量的归一化值），使用率相同的节点容量越小紧张度越高；0（默认）关闭，输出与历史一致。
+    @ConfField(mutable = true)
+    public static double auto_dop_capacity_weight = 0.0;
     @ConfField
     public static String audit_log_roll_interval = "DAY";
     @ConfField
@@ -835,7 +851,7 @@ public class Config extends ConfigBase {
     @ConfField(mutable = true)
     public static int query_queue_v2_concurrency_level = 4;
 
-    @ConfField(mutable = true, comment = "Schedule strategy of pending queries: SWRR/SJF")
+    @ConfField(mutable = true, comment = "Schedule strategy of pending queries: SWRR/SJF/FIFO")
     public static String query_queue_v2_schedule_strategy = QueryQueueOptions.SchedulePolicy.createDefault().name();
 
     @ConfField(mutable = true, comment = "Slot estimator strategy of queue based queries: MBE/PBE/MAX/MIN")

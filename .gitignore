@@ -97,3 +97,7 @@ fe/fe-core/pseudo_cluster_*
 contrib/java-udf/target/
 java-extensions/*/bin/
 .codex/
+
+# Local release bundles and build contexts
+/dist/
+/.venv-autodop/

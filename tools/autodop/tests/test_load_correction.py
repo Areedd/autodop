@@ -9,7 +9,7 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from autodop.engine import FixedEngine, PolicyEngine
+from autodop.engine import PolicyEngine
 from autodop.load_correction import (
     apply_to_decision,
     corrected_dop,
@@ -163,15 +163,6 @@ class EngineIntegrationTest(unittest.TestCase):
             response = engine.decide(request())
             self.assertEqual(2, len(response["decisions"]))
             self.assertTrue(all("load_corrected" not in d["reason"] for d in response["decisions"]))
-
-    def test_fixed_engine_ignores_worker_loads(self):
-        fixed = FixedEngine({"F00": 4, "F01": 2})
-        req = request()
-        req["worker_loads"] = {"10": load(0.95, 0.95), "11": load(0.95, 0.95)}
-        response = fixed.decide(req)
-        self.assertEqual([4, 2], [decision["dop"] for decision in response["decisions"]])
-        self.assertTrue(all(decision["reason"] == "fixed" for decision in response["decisions"]))
-
 
 if __name__ == "__main__":
     unittest.main()

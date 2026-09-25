@@ -27,6 +27,20 @@ public class HttpAutoDopClient implements AutoDopClient {
     private final String endpoint;
     private final int timeoutMs;
 
+    /**
+     * @param endpoint  decision service base URL
+     * @param timeoutMs per-phase timeout in milliseconds: it bounds the TCP connect phase and,
+     *                  separately, each read phase of the request. The total wall time of
+     *                  {@link #decide} can therefore reach up to {@code 2 * timeoutMs} (or more
+     *                  when the server streams a large response body).
+     *                  <p>Note the measurement difference: this timeout covers the FE-side
+     *                  network round trip (connect + read). The decision service reports its own
+     *                  {@code decision_latency_ms} (AutoDopResult#decisionLatencyMs, sampled
+     *                  around {@code client().decide()}), which measures server-side processing
+     *                  only and excludes the network transport. When comparing the two, the FE
+     *                  wall time is expected to be larger by roughly the RTT (and by up to a full
+     *                  extra timeout on failure).
+     */
     public HttpAutoDopClient(String endpoint, int timeoutMs) {
         this.endpoint = endpoint == null ? "" : endpoint;
         this.timeoutMs = Math.max(1, timeoutMs);

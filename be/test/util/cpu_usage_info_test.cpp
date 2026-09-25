@@ -17,8 +17,29 @@
 #include <gtest/gtest.h>
 
 #include "testutil/parallel_test.h"
+#include "util/cpu_info.h"
 
 namespace starrocks {
+
+class CpuUsageRecorderTestPeer {
+public:
+    static void set_one_second_usage(CpuUsageRecorder& recorder, int permille) {
+        recorder._curr_idx = 1;
+        recorder._timestamp[0] = 0;
+        recorder._timestamp[1] = 1'000'000'000;
+        recorder._proc_time[0] = 0;
+        recorder._proc_time[1] =
+                static_cast<uint64_t>(CpuInfo::num_cores()) * recorder.SECOND_CLOCK_TICK * permille / 1000;
+    }
+};
+
+PARALLEL_TEST(CpuUsageRecorderTest, available_cpu_capacity) {
+    CpuUsageRecorder recorder;
+    for (int expected : {0, 500, 1000}) {
+        CpuUsageRecorderTestPeer::set_one_second_usage(recorder, expected);
+        ASSERT_EQ(expected, recorder.cpu_used_permille());
+    }
+}
 
 PARALLEL_TEST(CpuUsageRecorderTest, normal) {
     CpuUsageRecorder recorder;

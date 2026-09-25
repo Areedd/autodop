@@ -14,6 +14,7 @@
 
 package com.starrocks.autodop;
 
+import com.starrocks.common.Config;
 import com.starrocks.common.StarRocksException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,22 @@ public class AutoDopDecisionValidatorTest {
                 request(), response("q1")));
     }
 
+    @Test
+    public void testRejectLowConfidenceDecision() {
+        AutoDopResponse response = response("q1", new AutoDopResponse.Decision("F01", 4, "test"));
+        response.confidence = Config.auto_dop_min_confidence / 2.0;
+        Assertions.assertThrows(StarRocksException.class,
+                () -> AutoDopDecisionValidator.validateOrThrow(request(), response));
+    }
+
+    @Test
+    public void testRejectMissingConfidenceDecision() {
+        AutoDopResponse response = response("q1", new AutoDopResponse.Decision("F01", 4, "test"));
+        response.confidence = null;
+        Assertions.assertThrows(StarRocksException.class,
+                () -> AutoDopDecisionValidator.validateOrThrow(request(), response));
+    }
+
     private AutoDopRequest request() {
         AutoDopRequest request = new AutoDopRequest();
         request.queryId = "q1";
@@ -55,6 +72,7 @@ public class AutoDopDecisionValidatorTest {
     private AutoDopResponse response(String queryId, AutoDopResponse.Decision... decisions) {
         AutoDopResponse response = new AutoDopResponse();
         response.queryId = queryId;
+        response.confidence = 1.0;
         response.decisions = Arrays.asList(decisions);
         return response;
     }

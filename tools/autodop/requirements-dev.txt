@@ -1,0 +1,4 @@
+-r requirements-autodop.txt
+pytest>=9,<10
+numpy>=1.26,<3
+PyMySQL==1.1.2

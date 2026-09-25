@@ -1,5 +1,0 @@
-{"file": ".trellis/spec/index.md", "reason": "项目 spec 索引，派发子代理前确认 frontend 层编码约定与检索边界"}
-{"file": "tools/autodop/REPRESENTATIVE_SERIAL_V2_REPORT.md", "reason": "代表性查询串行实验报告，DD01/DD03 决策质量效果证据"}
-{"file": "tools/autodop/HETEROGENEOUS_TPCDS_SF100_AUTODOP_REPORT.md", "reason": "异构集群实验报告，DD04 实例调整与资源感知效果证据"}
-{"file": "tools/autodop/THREE_DATASET_EXPERIMENT_REPORT.md", "reason": "三数据集实验汇总，DD02/DD03 跨数据集效果证据"}
-{"file": ".trellis/workspace/shaokun/journal-1.md", "reason": "M5 集成实验记录（AC1-AC5 数据），DD03/DD04 负载修正与实例调整效果证据"}

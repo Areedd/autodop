@@ -4,6 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
+import torch
+
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -11,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 from autodop.data import load_dataset, write_jsonl
 from autodop.mcts import search
 from autodop.model import load_cost_model
+from autodop.training import label_lineage, select_partition
 
 
 def main():
@@ -19,7 +22,7 @@ def main():
     parser.add_argument("--cost-model", default="")
     parser.add_argument("--output", required=True)
     parser.add_argument("--iterations", type=int, default=500)
-    parser.add_argument("--exploration", type=float, default=1.414)
+    parser.add_argument("--exploration", type=float, default=2 ** 0.5)
     parser.add_argument(
         "--measured-only",
         action="store_true",
@@ -32,18 +35,22 @@ def main():
     )
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--threads", type=int, default=1)
     args = parser.parse_args()
     if args.measured_only and args.measured_best:
         raise ValueError("--measured-only and --measured-best are mutually exclusive")
-    if not args.measured_best and not args.cost_model:
-        raise ValueError("--cost-model is required unless --measured-best is used")
-
-    samples, _, metadata = load_dataset(args.dataset)
-    model = None
-    if not args.measured_best:
-        model, checkpoint = load_cost_model(args.cost_model, args.device)
-        if checkpoint["metadata"]["dop_classes"] != metadata["dop_classes"]:
-            raise ValueError("dataset and CostModel use different DOP classes")
+    if not args.cost_model:
+        raise ValueError("--cost-model is required to enforce the training split")
+    if args.threads <= 0:
+        raise ValueError("threads must be positive")
+    torch.set_num_threads(args.threads)
+    samples, pairs, _ = load_dataset(args.dataset)
+    model, checkpoint = load_cost_model(args.cost_model, args.device)
+    training = checkpoint.get("training")
+    samples, _ = select_partition(samples, pairs, training, "train")
+    metadata = checkpoint["metadata"]
+    lineage = label_lineage(training, args.cost_model,
+                            "measured_best" if args.measured_best else "mcts")
     by_plan = {}
     samples_by_plan = {}
     configs_by_plan = {}
@@ -71,7 +78,10 @@ def main():
                 args.device,
                 configs_by_plan[plan_key] if args.measured_only else None,
             )
-        label = {"plan_key": plan_key, "best_dop_config": config, "best_score": score}
+        label = {"plan_key": plan_key, "best_dop_config": config, "best_score": score,
+                 "lineage": lineage, "search": {"seed": args.seed + index,
+                 "iterations": args.iterations, "exploration": args.exploration,
+                 "measured_only": args.measured_only}}
         if measured_latency_ms is not None:
             label["measured_latency_ms"] = measured_latency_ms
         labels.append(label)

@@ -2,7 +2,12 @@ import math
 
 import torch
 
-from .data import fragment_operator_signature, normalized_operator_counts, transformed_numeric
+from .data import fragment_operator_signature, normalized_operator_counts, operator_count, supported_dops, transformed_numeric
+
+
+COMPETITION_BASE = 0.05
+COMPETITION_ALPHA = 0.95
+PIPELINE_START_FRACTION = 0.25
 
 
 def sample_from_request(request):
@@ -39,19 +44,169 @@ def sample_from_request(request):
     return {"fragments": fragments, "edges": edges, "fragment_ids": fragment_ids}
 
 
-def _competition(fragments):
+def _operator_count(fragment, token):
+    token = token.upper()
+    count = operator_count(fragment, token)
+    if count:
+        return count
+    names = " ".join([
+        str(fragment.get("root_node", "")),
+        str(fragment.get("leftmost_node", "")),
+        str(fragment.get("operator_signature", "")),
+    ]).upper()
+    return int(token in names)
+
+
+def _duration(fragment):
+    cardinality = max(0.0, float(fragment.get("estimated_cardinality", 0.0)))
+    row_size = max(0.0, float(fragment.get("estimated_avg_row_size", 0.0)))
+    data_bytes = cardinality * row_size
+    base = (
+        1.0
+        + math.log1p(max(0.0, float(fragment.get("fragment_cost", 0.0))))
+        + 0.5 * math.log1p(data_bytes)
+        + 0.25 * math.log1p(max(0, int(fragment.get("scan_range_count", 0))))
+    )
+    complexity = (
+        1.0
+        + 0.20 * _operator_count(fragment, "SCAN")
+        + 0.45 * _operator_count(fragment, "JOIN")
+        + 0.30 * _operator_count(fragment, "AGGREGATE")
+        + 0.35 * _operator_count(fragment, "SORT")
+    )
+    return base * complexity
+
+
+def _execution_windows(fragments, edges):
     size = len(fragments)
-    matrix = torch.zeros((size, size), dtype=torch.float32)
+    predecessors = [[] for _ in range(size)]
+    successors = [[] for _ in range(size)]
+    indegree = [0] * size
+    for edge in edges:
+        source = int(edge["source"])
+        destination = int(edge["destination"])
+        predecessors[destination].append(source)
+        successors[source].append(destination)
+        indegree[destination] += 1
+
+    durations = [_duration(fragment) for fragment in fragments]
+    starts = [0.0] * size
+    ready = [index for index, degree in enumerate(indegree) if degree == 0]
+    visited = 0
+    while ready:
+        node = ready.pop()
+        visited += 1
+        if predecessors[node]:
+            starts[node] = max(
+                starts[parent] + durations[parent] * PIPELINE_START_FRACTION
+                for parent in predecessors[node]
+            )
+        for child in successors[node]:
+            indegree[child] -= 1
+            if indegree[child] == 0:
+                ready.append(child)
+    if visited != size:
+        raise ValueError("fragment dependency graph contains a cycle")
+    return [(start, start + duration) for start, duration in zip(starts, durations)]
+
+
+def _reachability(size, edges):
+    successors = [[] for _ in range(size)]
+    for edge in edges:
+        successors[int(edge["source"])].append(int(edge["destination"]))
+    reachable = [[False] * size for _ in range(size)]
+    for source in range(size):
+        stack = list(successors[source])
+        while stack:
+            destination = stack.pop()
+            if reachable[source][destination]:
+                continue
+            reachable[source][destination] = True
+            stack.extend(successors[destination])
+    return reachable
+
+
+def _overlap(left, right):
+    overlap = max(0.0, min(left[1], right[1]) - max(left[0], right[0]))
+    shorter = min(left[1] - left[0], right[1] - right[0])
+    return overlap / shorter if shorter > 0 else 0.0
+
+
+def _resource_demands(fragments, dop_config, unknown_dop):
+    raw_scales = []
+    for fragment in fragments:
+        cardinality = max(0.0, float(fragment.get("estimated_cardinality", 0.0)))
+        row_size = max(0.0, float(fragment.get("estimated_avg_row_size", 0.0)))
+        raw_scales.append(
+            math.log1p(max(0.0, float(fragment.get("fragment_cost", 0.0))))
+            + math.log1p(cardinality * row_size)
+            + math.log1p(max(0, int(fragment.get("scan_range_count", 0))))
+        )
+    scale_max = max(max(raw_scales, default=0.0), 1.0)
+
+    demands = []
+    for index, (fragment, raw_scale) in enumerate(zip(fragments, raw_scales)):
+        candidates = [int(value) for value in fragment.get("candidate_dops", [])]
+        max_dop = max(candidates, default=1)
+        width = 1.0 if unknown_dop else min(1.0, max(1, int(dop_config[index])) / max_dop)
+        scale = max(0.05, raw_scale / scale_max) * width
+        scan = min(1.0, _operator_count(fragment, "SCAN"))
+        join = min(1.0, _operator_count(fragment, "JOIN"))
+        aggregate = min(1.0, _operator_count(fragment, "AGGREGATE"))
+        sort = min(1.0, _operator_count(fragment, "SORT"))
+        output_partition = str(fragment.get("output_partition", "")).upper()
+        exchange = float(
+            "STREAM" in str(fragment.get("sink_type", "")).upper()
+            or output_partition not in ("", "UNPARTITIONED")
+        )
+        demands.append((
+            min(1.0, scale * (0.35 + 0.30 * scan + 0.45 * join + 0.30 * aggregate)),
+            min(1.0, scale * (0.20 + 0.55 * join + 0.45 * aggregate + 0.60 * sort)),
+            min(1.0, scale * (0.10 + 0.75 * exchange + 0.20 * scan)),
+            min(1.0, scale * (0.05 + 0.90 * exchange)),
+        ))
+    return demands
+
+
+def _competition(fragments, edges, dop_config, unknown_dop):
+    size = len(fragments)
+    matrices = {
+        name: torch.zeros((size, size), dtype=torch.float32)
+        for name in ("competition", "competition_overlap", "worker_share", "resource_pressure")
+    }
     workers = [set(fragment.get("worker_ids", [])) for fragment in fragments]
+    windows = _execution_windows(fragments, edges)
+    reachable = _reachability(size, edges)
+    demands = _resource_demands(fragments, dop_config, unknown_dop)
     for left in range(size):
         for right in range(left + 1, size):
+            if reachable[left][right] or reachable[right][left]:
+                continue
             union = workers[left] | workers[right]
             if not union:
                 continue
-            weight = len(workers[left] & workers[right]) / len(union)
-            matrix[left, right] = weight
-            matrix[right, left] = weight
-    return matrix
+            worker_share = len(workers[left] & workers[right]) / len(union)
+            if worker_share == 0.0:
+                continue
+            overlap = _overlap(windows[left], windows[right])
+            pressure = sum(
+                min(1.0, demands[left][dimension] + demands[right][dimension])
+                for dimension in range(4)
+            ) / 4.0
+            weight = min(
+                1.0,
+                COMPETITION_BASE + COMPETITION_ALPHA * overlap * worker_share * pressure,
+            )
+            values = {
+                "competition": weight,
+                "competition_overlap": overlap,
+                "worker_share": worker_share,
+                "resource_pressure": pressure,
+            }
+            for name, value in values.items():
+                matrices[name][left, right] = value
+                matrices[name][right, left] = value
+    return matrices
 
 
 def build_graph(sample, metadata, unknown_dop=False, device="cpu"):
@@ -93,7 +248,7 @@ def build_graph(sample, metadata, unknown_dop=False, device="cpu"):
         except KeyError as exc:
             raise ValueError(f"unsupported DOP {exc.args[0]}") from exc
     candidate_mask = [
-        [dop in set(int(value) for value in fragment.get("candidate_dops", dop_classes)) for dop in dop_classes]
+        [dop in supported_dops(fragment, dop_classes) for dop in dop_classes]
         for fragment in fragments
     ]
     if any(not any(row) for row in candidate_mask):
@@ -101,11 +256,12 @@ def build_graph(sample, metadata, unknown_dop=False, device="cpu"):
 
     root_index = next(
         (index for index, fragment in enumerate(fragments) if fragment.get("is_gather_root", False)), 0)
+    competition = _competition(fragments, sample.get("edges", []), dop_config, unknown_dop)
     graph = {
         "categorical": torch.tensor(categorical, dtype=torch.long),
         "numerical": torch.tensor(numerical, dtype=torch.float32),
         "dependency": dependency,
-        "competition": _competition(fragments),
+        **competition,
         "dop_ids": torch.tensor(dop_ids, dtype=torch.long),
         "candidate_mask": torch.tensor(candidate_mask, dtype=torch.bool),
         "root_index": root_index,

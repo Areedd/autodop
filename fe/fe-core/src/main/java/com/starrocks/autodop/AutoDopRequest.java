@@ -129,6 +129,9 @@ public class AutoDopRequest {
         @SerializedName("sink_type")
         public String sinkType = "";
 
+        @SerializedName("join_type")
+        public String joinType = "";
+
         @SerializedName("fragment_cost")
         public double fragmentCost;
 

@@ -1,0 +1,697 @@
+{
+  "scope": "Top-level reports and status files only; raw nested logs/data remain in runs/.",
+  "experiments": [
+    {
+      "directory": "runs/ablation_cost_20260912",
+      "records": [
+        {
+          "name": "REPORT.md",
+          "bytes": 8713,
+          "sha256": "8206ab40dc42641b1378ab87a58b5fbf4034a2af7c7c6aee86842d567d048a05"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 64093,
+          "sha256": "1a2de377d3d8db5d34e97fe98f6d223138ce42734f69eb866b7539ad19d321f2"
+        }
+      ]
+    },
+    {
+      "directory": "runs/acceptance_preservation_policy03_20260910",
+      "records": [
+        {
+          "name": "RESULT.json",
+          "bytes": 73923,
+          "sha256": "c03eebd00069e40e8217f3adcc5ec0c09b4694fb4c1526d7aa86c92757452259"
+        }
+      ]
+    },
+    {
+      "directory": "runs/broad_analytical_20260907",
+      "records": [
+        {
+          "name": "README.md",
+          "bytes": 3047,
+          "sha256": "c3f77d8eb9031aaa054a2f0b84df3ba93ac70ac3c278562636f8d12920c0255d"
+        },
+        {
+          "name": "RESULT.md",
+          "bytes": 923,
+          "sha256": "680b5c7ba887e5555a3dc901a69929ee8e5f291bacdade2920a912d5896216e5"
+        }
+      ]
+    },
+    {
+      "directory": "runs/calibrated_structure_evaluation01_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_batch09_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_double_left_batch29_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_double_union_batch38_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_full_join_batch32_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_full_outer_batch33_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_full_union_batch34_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_inner_batch24_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_inner_full_batch26_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_inner_left_batch25_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_inner_union_batch27_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_left_full_batch30_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_left_inner_batch28_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_union_full_batch31_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_union_nesting_batch35_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_union_outer_batch37_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_abd_union_right_batch36_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_ac_binary_batch22_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_double_full_batch49_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_double_left_batch44_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_double_union_batch54_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_full_inner_batch47_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_full_left_batch48_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_full_union_batch50_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_inner_batch39_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_inner_full_batch41_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_inner_left_batch40_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_inner_union_batch42_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_left_full_batch45_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_left_inner_batch43_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_left_union_batch46_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_union_full_batch53_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_union_inner_batch51_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_acd_union_left_batch52_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_ad_binary_batch23_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_binary_ab_batch08_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_branch_grammar_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_double_full_batch18_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_double_union_batch21_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_full_batch03_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_full_right_batch17_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_high_pair_batch06_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_inner_batch04_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_inner_full_batch12_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_join_chain_batch05_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_left_chain_batch14_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_left_outer_batch15_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_mid_pair_batch07_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_nested_batch02_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_pure_join_batch10_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_right_join_batch11_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_union_full_batch16_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_union_join_batch13_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_union_nesting_batch19_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/composable_union_outer_batch20_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/date_partition_layout_20260908",
+      "records": []
+    },
+    {
+      "directory": "runs/fragment_vs_query_20260907",
+      "records": []
+    },
+    {
+      "directory": "runs/frozen_structure_generalization01_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 12215,
+          "sha256": "fb6d97883b6a97847cef50d0236a49d3b3af80e1bbb21cf63dbd4ce2f41ae9b9"
+        }
+      ]
+    },
+    {
+      "directory": "runs/frozen_structure_transfer04_20260911",
+      "records": []
+    },
+    {
+      "directory": "runs/independent_window_candidates01_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/inventory_targeted_training_20260908",
+      "records": []
+    },
+    {
+      "directory": "runs/legacy_branch_development01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/legacy_cost_repair01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/legacy_cost_repair02_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/legacy_cost_repair03_20260909",
+      "records": [
+        {
+          "name": "RESULT.json",
+          "bytes": 4397,
+          "sha256": "952879ca204dca6d7b9afd37c36d1728b6d7cd6e893bc34150064fb3e3249d5d"
+        }
+      ]
+    },
+    {
+      "directory": "runs/legacy_cost_repair04_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/legacy_policy_repair02_20260910",
+      "records": [
+        {
+          "name": "RESULT.json",
+          "bytes": 91713,
+          "sha256": "a9a91d1df032ee7da33665b57f6bd03f06734cee2303be2bb917e6f8545177dd"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_branch_expansion01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/multi_low_cost_repair01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/multi_low_cost_repair02_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/multi_low_cost_repair03_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/multi_low_coverage_cost01_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 3653,
+          "sha256": "a891d87d4bec8a36eff7ac35744ecd188805f9c2dc9ce97a02366d0fdc6c6aa1"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 4890,
+          "sha256": "4ed0de2a6b8cf52387597ce700ed53853966c02d06dedf4ffa5ef2fdb0f1b677"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_coverage_cost02_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 3982,
+          "sha256": "857acc7ba926597df7af3cc5be33712a0e291a5e05aa9dd7548f5ab5c55914c8"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 4908,
+          "sha256": "9ac81b068910ff0cf7ed28abb956226efcbd5ccc0fa49864e3a13d8531954691"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_coverage_cost03_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 4063,
+          "sha256": "e32dca69661c4db4f0e5ac35cf895dca2551248935049dfae4b1bf1e7f7f3cd3"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 5043,
+          "sha256": "80502391b27a30302be7ec585d04701d76e7c2d71501b6db53693ad68e96224e"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_coverage_development01_20260910",
+      "records": [
+        {
+          "name": "FINDINGS.md",
+          "bytes": 1522,
+          "sha256": "b061def2a8c87d90cddd24a0f97a01e8ba9ab0f8ade4e318385d5a4ce9de7c98"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_development01_20260909",
+      "records": [
+        {
+          "name": "RESULT.md",
+          "bytes": 1080,
+          "sha256": "a7f86e06413d0e5eb88c9c5134f1393bde625742b2989176ef2b43f005fb24b7"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_low_policy_repair04_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/multi_low_retention_cost04_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 5228,
+          "sha256": "210e25e86c3c8843134c5a751e81619aeb4a1609e691bd305d88f87567e294b2"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 5081,
+          "sha256": "81a4816de615054c2b01e5bba5870040a5d7253a85c164da17731b215f1613d4"
+        }
+      ]
+    },
+    {
+      "directory": "runs/multi_structure_feedback_cost05_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 13145,
+          "sha256": "6b19e78d6fd3a26b4b80b6f1a35cc2514cbd60be16ec05847ebd3e4823d74ff5"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 5418,
+          "sha256": "5c37e7f85041967f6edd8b9c7b1361a89b702fdeaebd14fd55d01c9ecbf465fc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/novel_structure_development01_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 11422,
+          "sha256": "121ce71b361e3cec3e73b759d6af31c8ffb040a08bcc7f2302a6323519a831cc"
+        }
+      ]
+    },
+    {
+      "directory": "runs/novel_structure_policy01_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/paper_campaign_20260905",
+      "records": []
+    },
+    {
+      "directory": "runs/preference_random200_20260911",
+      "records": [
+        {
+          "name": "BRANCH_PREFERENCES.md",
+          "bytes": 1683,
+          "sha256": "2cce8d2aebad71f002ef5a0d7e7028def262e5a0b242ed596ade337f82a20d20"
+        },
+        {
+          "name": "CONTRACT_ACCEPTANCE_ASSESSMENT.md",
+          "bytes": 2631,
+          "sha256": "11606b5f3d7ce9642eef1c3b6b5780b2a03140caae86806f711c04a2ac5490b4"
+        },
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 2556,
+          "sha256": "295e8acec98068cd5357a3b894d940a88630a29d7756e9a4f76d56665a644551"
+        },
+        {
+          "name": "README.md",
+          "bytes": 1580,
+          "sha256": "5fcc2a24cf14a73f9d5a5e899882afd7a448fe019d9c48fd71a6c5f4835d0d68"
+        }
+      ]
+    },
+    {
+      "directory": "runs/range_branch_compositions01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_coverage_cost01_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 3361,
+          "sha256": "4bede69b99409d77500d2bf98f0e14ab6f9c50b9040a0d03d55b8036abe58942"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 4629,
+          "sha256": "9a24f774c9f9dcfa44c7a3177ca7d975d8e3680d2b51bc4dc899618b905ee78c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/range_coverage_cost02_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 3839,
+          "sha256": "4c64ea0e0e3cabbaa01a4b791a60bea188bc080f569e3eb113ffb78dc64ca138"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 4777,
+          "sha256": "018074569930ec6dd6e9cc8b5233b94f3998faad51aed984ddd263a64f7e9332"
+        }
+      ]
+    },
+    {
+      "directory": "runs/range_coverage_development01_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/range_coverage_policy01_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/range_coverage_policy02_20260910",
+      "records": []
+    },
+    {
+      "directory": "runs/range_embedding_repair03_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_model_development01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_model_validation01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_policy_embedding_repair07_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_temporal_transfer01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/range_topology_expansion01_20260909",
+      "records": []
+    },
+    {
+      "directory": "runs/report90_20260912",
+      "records": [
+        {
+          "name": "DELIVERY_EVIDENCE_CHECK.md",
+          "bytes": 20553,
+          "sha256": "4e70e5ffe6f4a3509e9182d7614b67cd605089cdc15b576e1b772b2ba18f22fe"
+        },
+        {
+          "name": "DELIVERY_SCOPE_AUDIT.md",
+          "bytes": 20693,
+          "sha256": "dcd02f3a1e9be0d6e97670ee3b3bfc5d65daf6713de9e57d3c037738d229de62"
+        },
+        {
+          "name": "EXTENSION_SUMMARY.md",
+          "bytes": 15913,
+          "sha256": "a15c17d83c9ab8ce432789d60d213bf24f76a0452a11e2728381419ad4a89f4b"
+        },
+        {
+          "name": "FINAL_DELIVERY.json",
+          "bytes": 4605,
+          "sha256": "6ca02348276d7dbcd0e0cc3ae8ac97202808c7d827c75dff22e1f91a9c11239e"
+        },
+        {
+          "name": "FINAL_REPORT.md",
+          "bytes": 17620,
+          "sha256": "864a4fa21339dbedaa12d0b040f70da18c81e35a42ab882879fb6684b1f5c427"
+        },
+        {
+          "name": "FINAL_REPORT_EXTENDED.md",
+          "bytes": 26814,
+          "sha256": "178e9f8d2efd14fc9ec4926a2d2d8af2a5305fc2b75becd5870222c63d21ca9a"
+        },
+        {
+          "name": "FULL_REPORT.md",
+          "bytes": 123625,
+          "sha256": "fbd8bf7cadbe5e5fa7cca4ea8e1c09d4e58240d8eeb71457f27738291903ce34"
+        },
+        {
+          "name": "MAIN_REPORT.md",
+          "bytes": 17620,
+          "sha256": "864a4fa21339dbedaa12d0b040f70da18c81e35a42ab882879fb6684b1f5c427"
+        },
+        {
+          "name": "MODEL_ACCEPTANCE.md",
+          "bytes": 5278,
+          "sha256": "2a4474877d59495c894460338b7c6c3f95030a54b67ae4219503516ddee4646e"
+        },
+        {
+          "name": "PAPER_EXPERIMENT_SCOPE.md",
+          "bytes": 6146,
+          "sha256": "d7f97137691c13170d4eb9a21f8048b171b533b660fb2488f395d3433a2e2fdc"
+        },
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 3766,
+          "sha256": "e087708d143979e1dc16258c2e755ca89486b18fcfd4d9881b07186894ae2e97"
+        },
+        {
+          "name": "README.md",
+          "bytes": 4874,
+          "sha256": "4ddc6e876aac0a3179a282ba8f5409af14a3391de85da9e470a934248b4e48cc"
+        },
+        {
+          "name": "REPORT.md",
+          "bytes": 2965,
+          "sha256": "3e174e41314d3af9a3c5385a82c578762ff52c464992a58e78679f8f8469c2c2"
+        },
+        {
+          "name": "REPRODUCE.md",
+          "bytes": 8909,
+          "sha256": "5333154cedc5a722018b8913ed35a3efc1f198b8b9142f75497d1b3e03d02220"
+        },
+        {
+          "name": "SUMMARY.json",
+          "bytes": 264047,
+          "sha256": "92cc9f8f4b2c929a76ebc0be35686240e7b827e017187082611377aba1e32ffe"
+        }
+      ]
+    },
+    {
+      "directory": "runs/statistics_repair_20260908",
+      "records": []
+    },
+    {
+      "directory": "runs/structural_scale_development01_20260911",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 11233,
+          "sha256": "615290b2478e8de6d74d92e58ab08cc217bce91f16a339a14b2b0709254e792f"
+        },
+        {
+          "name": "SMALLTEST48_REPORT.md",
+          "bytes": 5802,
+          "sha256": "c5e09d8bed81e56a67c199fc80dbf8a5471c4a838de96c6d4f9ebf786a7856c4"
+        },
+        {
+          "name": "STRUCTURE_INVENTORY.md",
+          "bytes": 1581,
+          "sha256": "9434c5e84e72834be0f804fd41036d56ec6349f337f8212ee55ee4ff8092a003"
+        }
+      ]
+    },
+    {
+      "directory": "runs/supplier_network_balanced_cost_20260908",
+      "records": []
+    },
+    {
+      "directory": "runs/uniform_teacher_policy01_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 5673,
+          "sha256": "b222e95bda5cb3d3d5181ee9bd3f811b1f51385edc8758d9e70cd98275d8b0a3"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 115227,
+          "sha256": "94b1ab9f65a59fb9bb8f2b7cbef98d18aa3fcf7f01e49cc5bb468ebbbf8d073c"
+        }
+      ]
+    },
+    {
+      "directory": "runs/uniform_teacher_policy02_budget5000_20260910",
+      "records": [
+        {
+          "name": "PROTOCOL.json",
+          "bytes": 7427,
+          "sha256": "e47ad1039ebd5a64b6cd2e3ca3fa29b036dce181c5f4087dc18787be81ff5750"
+        },
+        {
+          "name": "RESULT.json",
+          "bytes": 115743,
+          "sha256": "3db09af1e5da30e5af58ed1f263da2bd41885dd55f43b32f9b842d365d1767f0"
+        }
+      ]
+    }
+  ]
+}

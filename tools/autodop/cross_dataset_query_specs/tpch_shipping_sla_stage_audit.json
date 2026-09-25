@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "query_id": "tpch_shipping_sla_stage_audit",
+  "template": "tpch_shipping_sla_stage_audit",
+  "parameters": {
+    "core_start_year": 1995,
+    "core_years": 2,
+    "audit_start_year": 1992,
+    "audit_years": 5
+  }
+}

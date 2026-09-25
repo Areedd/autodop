@@ -60,11 +60,23 @@ public final class AutoDopTraceManager {
     }
 
     public static void register(AutoDopResult result) {
-        if (result == null || result.getRequest() == null) {
+        if (result == null) {
+            LOG.warn("AutoDOP trace skipped: null result");
+            return;
+        }
+        if (result.getRequest() == null) {
+            LOG.warn("AutoDOP trace skipped: result carries no request");
             return;
         }
         TraceRecord record = new TraceRecord();
         record.queryId = result.getRequest().queryId;
+        record.skipReason = result.getSkipReason();
+        if (result.getSkipReason() != null) {
+            // Degraded decision: AutoDOP was skipped, the query keeps the original DOP.
+            // Only the skip reason is persisted (no request/response payload, no dop maps).
+            TRACES.put(record.queryId, record);
+            return;
+        }
         record.autoDop.decisionLatencyMs = result.getDecisionLatencyMs();
         record.autoDop.originalDop = result.getOriginalDop();
         record.autoDop.decidedDop = result.getDecidedDop();
@@ -107,58 +119,6 @@ public final class AutoDopTraceManager {
         record.autoDop.actualInstanceDop = actualInstanceDop;
     }
 
-    /**
-     * Captures a per-instance DOP snapshot at one of the two intermediate stages of the
-     * decision window: {@link InstanceDopStage#BASELINE} right after instances are materialized
-     * (before the instance-level adjustment) and {@link InstanceDopStage#ADJUSTED} right after
-     * {@link AutoDopInstanceAdjuster} runs. The final snapshot is captured by
-     * {@link #captureActualDop} after {@code finalizeDAG}.
-     */
-    public static void captureInstanceDop(TUniqueId queryId, ExecutionDAG executionDAG,
-                                          InstanceDopStage stage) {
-        TraceRecord record = TRACES.get(DebugUtil.printId(queryId));
-        if (record == null || executionDAG == null) {
-            return;
-        }
-        if (record.actualFragments.isEmpty()) {
-            for (ExecutionFragment execFragment : executionDAG.getFragmentsInCreatedOrder()) {
-                ActualFragmentDop actual = new ActualFragmentDop();
-                actual.fragmentId = execFragment.getFragmentId().toString();
-                actual.planDop = execFragment.getPlanFragment().getPipelineDop();
-                for (FragmentInstance instance : execFragment.getInstances()) {
-                    actual.workerIds.add(instance.getWorkerId());
-                    actual.scanRangeCounts.add(scanRangeCount(instance));
-                    actual.driverSeqScanRangeCounts.add(driverSeqScanRangeCount(instance));
-                }
-                record.actualFragments.add(actual);
-            }
-        }
-        Map<String, ActualFragmentDop> fragmentsById = new java.util.HashMap<>();
-        for (ActualFragmentDop actual : record.actualFragments) {
-            fragmentsById.put(actual.fragmentId, actual);
-        }
-        for (ExecutionFragment execFragment : executionDAG.getFragmentsInCreatedOrder()) {
-            ActualFragmentDop actual = fragmentsById.get(execFragment.getFragmentId().toString());
-            if (actual == null) {
-                continue;
-            }
-            List<Integer> snapshot = new java.util.ArrayList<>();
-            for (FragmentInstance instance : execFragment.getInstances()) {
-                snapshot.add(instance.getPipelineDop());
-            }
-            if (stage == InstanceDopStage.BASELINE) {
-                actual.baselineInstanceDops = snapshot;
-            } else {
-                actual.adjustedInstanceDops = snapshot;
-            }
-        }
-    }
-
-    public enum InstanceDopStage {
-        BASELINE,
-        ADJUSTED
-    }
-
     public static void finishAndPersist(ConnectContext context, QueryDetail queryDetail, PQueryStatistics statistics) {
         if (context == null || context.getExecutionId() == null) {
             return;
@@ -186,9 +146,7 @@ public final class AutoDopTraceManager {
         traceDirForTest = traceDir;
     }
 
-    /**
-     * Test hook: exposes the three-stage instance DOP snapshots of the active trace record.
-     */
+    /** Test hook: exposes the actual fragment DOP records of the active trace. */
     public static List<ActualFragmentDop> traceFragmentsForTest(TUniqueId queryId) {
         TraceRecord record = TRACES.get(DebugUtil.printId(queryId));
         return record == null ? null : record.actualFragments;
@@ -259,6 +217,11 @@ public final class AutoDopTraceManager {
         @SerializedName("error_message")
         public String errorMessage = "";
 
+        // Non-null when the AutoDOP decision was skipped (degraded path): the query kept the
+        // original DOP and the request/response payload is not persisted.
+        @SerializedName("skip_reason")
+        public String skipReason;
+
         @SerializedName("auto_dop")
         public AutoDopSection autoDop = new AutoDopSection();
 
@@ -298,14 +261,6 @@ public final class AutoDopTraceManager {
 
         @SerializedName("plan_dop")
         public int planDop;
-
-        // Instance DOP right after materialization, before the instance-level adjustment.
-        @SerializedName("baseline_instance_dops")
-        public List<Integer> baselineInstanceDops;
-
-        // Instance DOP right after the instance-level adjustment, before finalizeDAG.
-        @SerializedName("adjusted_instance_dops")
-        public List<Integer> adjustedInstanceDops;
 
         // Instance DOP after finalizeDAG: the actual DOP sent to the BE.
         @SerializedName("instance_dops")

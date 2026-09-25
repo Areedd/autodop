@@ -185,6 +185,8 @@ public class SlotSelectionStrategyV2 implements SlotSelectionStrategy {
                 newQueue = new WeightedRoundRobinQueue(opts.v2().getTotalSlots(), opts.v2().getNumWorkers());
             } else if (opts.getPolicy().equals(QueryQueueOptions.SchedulePolicy.SJF)) {
                 newQueue = new ShortJobFirstAlgo();
+            } else if (opts.getPolicy().equals(QueryQueueOptions.SchedulePolicy.FIFO)) {
+                newQueue = new FifoSlotQueue();
             } else {
                 Preconditions.checkState(false, "unknown schedule policy: " + opts.getPolicy());
             }

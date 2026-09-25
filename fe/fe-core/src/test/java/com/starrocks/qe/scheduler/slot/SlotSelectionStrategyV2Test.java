@@ -341,6 +341,40 @@ public class SlotSelectionStrategyV2Test {
         assertThat(strategy.getCurrentOptions().getPolicy()).isEqualTo(QueryQueueOptions.SchedulePolicy.SWRR);
     }
 
+    @Test
+    public void testFifoRespectsCapacityAndPreservesSmallSlotLane() {
+        String previousPolicy = Config.query_queue_v2_schedule_strategy;
+        try {
+            Config.query_queue_v2_schedule_strategy = "FIFO";
+            QueryQueueOptions opts = QueryQueueOptions.createFromEnv(WarehouseManager.DEFAULT_WAREHOUSE_ID);
+            SlotSelectionStrategyV2 strategy = createSlotSelectionStrategy();
+            SlotTracker tracker = new SlotTracker(slotManager, ImmutableList.of(strategy));
+            LogicalSlot running = generateSlot(opts.v2().getTotalSlots() - 2);
+            tracker.requireSlot(running);
+            assertThat(strategy.peakSlotsToAllocate(tracker)).containsExactly(running);
+            tracker.allocateSlot(running);
+
+            LogicalSlot olderLarge = generateSlot(4);
+            LogicalSlot newerSmall = generateSlot(2);
+            tracker.requireSlot(olderLarge);
+            tracker.requireSlot(newerSmall);
+            // The newer normal request fits, but cannot pass the FIFO head.
+            assertThat(strategy.peakSlotsToAllocate(tracker)).isEmpty();
+            LogicalSlot tiny = generateSlot(1);
+            tracker.requireSlot(tiny);
+            assertThat(strategy.peakSlotsToAllocate(tracker)).containsExactly(tiny);
+            tracker.allocateSlot(tiny);
+            tracker.releaseSlot(running.getSlotId());
+            assertThat(strategy.peakSlotsToAllocate(tracker)).containsExactly(olderLarge, newerSmall);
+            tracker.allocateSlot(olderLarge);
+            tracker.allocateSlot(newerSmall);
+            assertThat(strategy.peakSlotsToAllocate(tracker)).isEmpty();
+            assertThat(strategy.getCurrentOptions().getPolicy()).isEqualTo(QueryQueueOptions.SchedulePolicy.FIFO);
+        } finally {
+            Config.query_queue_v2_schedule_strategy = previousPolicy;
+        }
+    }
+
     private static LogicalSlot generateSlot(int numSlots) {
         return new LogicalSlot(UUIDUtil.genTUniqueId(), "fe", WarehouseManager.DEFAULT_WAREHOUSE_ID,
                 LogicalSlot.ABSENT_GROUP_ID, numSlots, 0, 0, 0, 0, 0);

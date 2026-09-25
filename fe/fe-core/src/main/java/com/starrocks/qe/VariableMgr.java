@@ -135,12 +135,25 @@ public class VariableMgr {
     // Whenever a new session is established, the value in this object is copied to the session-level variable.
     private final SessionVariable defaultSessionVariable;
 
+    // Checkpoint image loading and journal replay must not overwrite the serving
+    // process's static GlobalVariable fields. Keep the historical values in this
+    // VariableMgr so that the checkpoint also saves the correct historical image.
+    private final boolean checkpoint;
+    private final Map<String, String> checkpointGlobalValues = new HashMap<>();
+
     // Global read/write lock to protect access of globalSessionVariable.
     private final ReadWriteLock rwLock = new ReentrantReadWriteLock();
     private final Lock rLock = rwLock.readLock();
     private final Lock wLock = rwLock.writeLock();
 
     public VariableMgr() {
+        this(GlobalStateMgr.isCheckpointThread());
+    }
+
+    // Package-private to test checkpoint state without changing the process's
+    // checkpoint thread identity or starting a checkpoint worker.
+    VariableMgr(boolean checkpoint) {
+        this.checkpoint = checkpoint;
         // Session value
         defaultSessionVariable = new SessionVariable();
         ImmutableSortedMap.Builder<String, VarContext> ctxBuilder =
@@ -175,6 +188,9 @@ public class VariableMgr {
             }
 
             field.setAccessible(true);
+            if (checkpoint) {
+                checkpointGlobalValues.put(field.getName(), getValue(null, field));
+            }
             ctxBuilder.put(attr.name(),
                     new VarContext(field, null, GLOBAL | attr.flag(), getValue(null, field), attr));
 
@@ -189,6 +205,14 @@ public class VariableMgr {
 
     public SessionVariable getDefaultSessionVariable() {
         return defaultSessionVariable;
+    }
+
+    private void setFieldValue(Object obj, Field field, Object value) throws IllegalAccessException {
+        if (checkpoint && field.getDeclaringClass() == GlobalVariable.class) {
+            checkpointGlobalValues.put(field.getName(), value == null ? null : value.toString());
+        } else {
+            field.set(obj, value);
+        }
     }
 
     // Set value to a variable
@@ -209,35 +233,35 @@ public class VariableMgr {
                     if (convertedVal.equalsIgnoreCase("ON")
                             || convertedVal.equalsIgnoreCase("TRUE")
                             || convertedVal.equalsIgnoreCase("1")) {
-                        field.setBoolean(obj, true);
+                        setFieldValue(obj, field, true);
                     } else if (convertedVal.equalsIgnoreCase("OFF")
                             || convertedVal.equalsIgnoreCase("FALSE")
                             || convertedVal.equalsIgnoreCase("0")) {
-                        field.setBoolean(obj, false);
+                        setFieldValue(obj, field, false);
                     } else {
                         throw new IllegalAccessException();
                     }
                     break;
                 case "byte":
-                    field.setByte(obj, Byte.parseByte(convertedVal));
+                    setFieldValue(obj, field, Byte.parseByte(convertedVal));
                     break;
                 case "short":
-                    field.setShort(obj, Short.parseShort(convertedVal));
+                    setFieldValue(obj, field, Short.parseShort(convertedVal));
                     break;
                 case "int":
-                    field.setInt(obj, Integer.parseInt(convertedVal));
+                    setFieldValue(obj, field, Integer.parseInt(convertedVal));
                     break;
                 case "long":
-                    field.setLong(obj, Long.parseLong(convertedVal));
+                    setFieldValue(obj, field, Long.parseLong(convertedVal));
                     break;
                 case "float":
-                    field.setFloat(obj, Float.parseFloat(convertedVal));
+                    setFieldValue(obj, field, Float.parseFloat(convertedVal));
                     break;
                 case "double":
-                    field.setDouble(obj, Double.parseDouble(convertedVal));
+                    setFieldValue(obj, field, Double.parseDouble(convertedVal));
                     break;
                 case "String":
-                    field.set(obj, convertedVal);
+                    setFieldValue(obj, field, convertedVal);
                     break;
                 default:
                     // Unsupported type variable.
@@ -375,7 +399,7 @@ public class VariableMgr {
                     case "float":
                     case "double":
                     case "String":
-                        g.put(attr.name(), field.get(null).toString());
+                        g.put(attr.name(), getValue(null, field));
                         break;
                     default:
                         // Unsupported type variable.
@@ -530,6 +554,10 @@ public class VariableMgr {
     }
 
     private String getValue(Object obj, Field field) {
+        if (checkpoint && field.getDeclaringClass() == GlobalVariable.class
+                && checkpointGlobalValues.containsKey(field.getName())) {
+            return checkpointGlobalValues.get(field.getName());
+        }
         try {
             switch (field.getType().getSimpleName()) {
                 case "boolean":

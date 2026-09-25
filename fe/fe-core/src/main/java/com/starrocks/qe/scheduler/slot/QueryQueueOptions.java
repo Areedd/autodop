@@ -247,7 +247,8 @@ public class QueryQueueOptions {
 
     public enum SchedulePolicy {
         SWRR, // Smooth Weighted Round Robin, which is suitable for hybrid workload without significant priority
-        SJF; // Short Job First + Aging, which is suitable for workload needs significant priority
+        SJF, // Short Job First + Aging, which is suitable for workload needs significant priority
+        FIFO; // Enqueue order for normal slots; the dedicated small-slot lane is unchanged
 
         public static SchedulePolicy createDefault() {
             return SWRR;

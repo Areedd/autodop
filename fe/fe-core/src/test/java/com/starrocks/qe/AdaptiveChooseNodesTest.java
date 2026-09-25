@@ -21,7 +21,6 @@ import com.starrocks.autodop.AutoDopResponse;
 import com.starrocks.autodop.AutoDopTraceManager;
 import com.starrocks.common.ConfigBase;
 import com.starrocks.common.FeConstants;
-import com.starrocks.common.StarRocksException;
 import com.starrocks.qe.scheduler.assignment.RemoteFragmentAssignmentStrategy;
 import com.starrocks.qe.scheduler.dag.ExecutionDAG;
 import com.starrocks.sql.plan.DistributedEnvPlanTestBase;
@@ -140,8 +139,10 @@ public class AdaptiveChooseNodesTest extends DistributedEnvPlanTestBase {
             capturedRequest.set(request);
             AutoDopResponse response = new AutoDopResponse();
             response.queryId = request.queryId;
+            response.confidence = 1.0;
             for (AutoDopRequest.FragmentInfo fragment : request.fragments) {
-                response.decisions.add(new AutoDopResponse.Decision(fragment.fragmentId, 2, "test"));
+                int dop = fragment.candidateDops.contains(2) ? 2 : fragment.candidateDops.get(0);
+                response.decisions.add(new AutoDopResponse.Decision(fragment.fragmentId, dop, "test"));
             }
             return response;
         });
@@ -151,11 +152,20 @@ public class AdaptiveChooseNodesTest extends DistributedEnvPlanTestBase {
         connectContext.setExecutionId(new TUniqueId(0x44, 0x0));
 
         try {
-            ExecPlan execPlan = getExecPlan("select count(*) from lineorder_new_l group by P_SIZE");
+            // AutoDOP bypasses plans with fewer than five fragments. Separate aggregate
+            // branches exercise the decision path instead of the small-plan fallback.
+            ExecPlan execPlan = getExecPlan(
+                    "select P_SIZE, count(*) from lineorder_new_l where P_SIZE < 10 group by P_SIZE "
+                            + "union all select P_SIZE, count(*) from lineorder_new_l "
+                            + "where P_SIZE between 10 and 20 group by P_SIZE "
+                            + "union all select P_SIZE, count(*) from lineorder_new_l "
+                            + "where P_SIZE > 20 group by P_SIZE");
+            Assertions.assertTrue(execPlan.getFragments().size() >= 5);
             CoordinatorPreprocessor prepare = new CoordinatorPreprocessor(
                     execPlan.getFragments(), execPlan.getScanNodes(), connectContext);
             prepare.computeFragmentInstances();
 
+            Assertions.assertNotNull(capturedRequest.get(), "AutoDOP must receive the eligible plan");
             Map<String, Set<Long>> actualWorkers = prepare.getExecutionDAG().getFragmentsInPreorder().stream()
                     .collect(Collectors.toMap(
                             fragment -> fragment.getFragmentId().toString(),
@@ -177,7 +187,10 @@ public class AdaptiveChooseNodesTest extends DistributedEnvPlanTestBase {
 
     @Test
     @Order(4)
-    void testAutoDopRejectsRuntimeAdaptiveDop() throws Exception {
+    void testAutoDopFallsBackForRuntimeAdaptiveDop() throws Exception {
+        AutoDopController.setClientForTest(request -> {
+            throw new AssertionError("AutoDOP service must not be called for runtime adaptive DOP");
+        });
         connectContext.getSessionVariable().setEnableAutoDop(true);
         connectContext.getSessionVariable().setEnableRuntimeAdaptiveDop(true);
         connectContext.setExecutionId(new TUniqueId(0x45, 0x0));
@@ -186,10 +199,12 @@ public class AdaptiveChooseNodesTest extends DistributedEnvPlanTestBase {
             ExecPlan execPlan = getExecPlan("select count(*) from lineorder_new_l");
             CoordinatorPreprocessor prepare = new CoordinatorPreprocessor(
                     execPlan.getFragments(), execPlan.getScanNodes(), connectContext);
-            Assertions.assertThrows(StarRocksException.class, prepare::computeFragmentInstances);
+            Assertions.assertDoesNotThrow(prepare::computeFragmentInstances);
+            Assertions.assertFalse(prepare.getExecutionDAG().getFragmentsInCreatedOrder().isEmpty());
         } finally {
             connectContext.getSessionVariable().setEnableAutoDop(false);
             connectContext.getSessionVariable().setEnableRuntimeAdaptiveDop(false);
+            AutoDopController.resetClientForTest();
         }
     }
 

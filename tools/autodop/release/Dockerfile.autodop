@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+WORKDIR /opt/autodop
+RUN pip install --no-cache-dir torch==2.9.0 --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --no-cache-dir PyMySQL==1.1.2
+COPY autodop/ ./autodop/
+COPY autodop_server.py smoke.py ./
+COPY models/ ./models/
+ENV OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONUNBUFFERED=1
+EXPOSE 18080
+CMD ["python", "autodop_server.py", "--host", "0.0.0.0", "--policy-model", "models/policy.pt"]

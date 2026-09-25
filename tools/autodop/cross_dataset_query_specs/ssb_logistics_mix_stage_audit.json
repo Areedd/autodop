@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "query_id": "ssb_logistics_mix_stage_audit",
+  "template": "ssb_logistics_mix_stage_audit",
+  "parameters": {
+    "core_start_year": 1994,
+    "core_years": 5,
+    "audit_start_month_seq": 1194,
+    "audit_months": 36
+  }
+}

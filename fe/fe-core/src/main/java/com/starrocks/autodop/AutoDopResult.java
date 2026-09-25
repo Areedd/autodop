@@ -23,16 +23,25 @@ public class AutoDopResult {
     private final Map<String, Integer> decidedDop;
     private final Map<String, Integer> installedDop;
     private final long decisionLatencyMs;
+    // null = normal decision; non-null = degraded (AutoDOP skipped, query keeps the original DOP).
+    private final String skipReason;
 
     public AutoDopResult(AutoDopRequest request, AutoDopResponse response,
                          Map<String, Integer> originalDop, Map<String, Integer> decidedDop,
                          Map<String, Integer> installedDop, long decisionLatencyMs) {
+        this(request, response, originalDop, decidedDop, installedDop, decisionLatencyMs, null);
+    }
+
+    public AutoDopResult(AutoDopRequest request, AutoDopResponse response,
+                         Map<String, Integer> originalDop, Map<String, Integer> decidedDop,
+                         Map<String, Integer> installedDop, long decisionLatencyMs, String skipReason) {
         this.request = request;
         this.response = response;
         this.originalDop = originalDop;
         this.decidedDop = decidedDop;
         this.installedDop = installedDop;
         this.decisionLatencyMs = decisionLatencyMs;
+        this.skipReason = skipReason;
     }
 
     public AutoDopRequest getRequest() {
@@ -57,5 +66,9 @@ public class AutoDopResult {
 
     public long getDecisionLatencyMs() {
         return decisionLatencyMs;
+    }
+
+    public String getSkipReason() {
+        return skipReason;
     }
 }

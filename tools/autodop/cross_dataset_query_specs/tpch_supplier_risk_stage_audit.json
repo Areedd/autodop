@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "query_id": "tpch_supplier_risk_stage_audit",
+  "template": "tpch_supplier_risk_stage_audit",
+  "parameters": {
+    "core_year": 1995,
+    "core_quarters": 2,
+    "audit_start_month_seq": 1194,
+    "audit_months": 36
+  }
+}

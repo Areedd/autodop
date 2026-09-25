@@ -46,14 +46,24 @@ public class AutoDopJsonSerdeTest {
 
     @Test
     public void testResponseReadsDecisionsWithGsonUtils() {
-        String json = "{\"version\":1,\"query_id\":\"q1\",\"decisions\":[{\"fragment_id\":\"F01\","
+        String json = "{\"version\":1,\"query_id\":\"q1\",\"confidence\":0.92,\"decisions\":[{\"fragment_id\":\"F01\","
                 + "\"dop\":4,\"reason\":\"test\"}]}";
 
         AutoDopResponse response = GsonUtils.GSON.fromJson(json, AutoDopResponse.class);
 
         Assertions.assertEquals("q1", response.queryId);
+        Assertions.assertEquals(0.92, response.confidence, 1e-9);
         Assertions.assertEquals(1, response.decisions.size());
         Assertions.assertEquals("F01", response.decisions.get(0).fragmentId);
         Assertions.assertEquals(4, response.decisions.get(0).dop);
+    }
+
+    @Test
+    public void testResponseDoesNotDefaultMissingConfidence() {
+        String json = "{\"version\":1,\"query_id\":\"q1\",\"decisions\":[]}";
+
+        AutoDopResponse response = GsonUtils.GSON.fromJson(json, AutoDopResponse.class);
+
+        Assertions.assertNull(response.confidence);
     }
 }

@@ -29,14 +29,15 @@ public:
     ~CpuUsageRecorder();
 
     void update_interval();
-    // Return the cpu usage ratio in parts per thousand at an interval.
+    // Return the cpu usage ratio in parts per thousand of the BE's available CPU capacity.
+    // CpuInfo accounts for container CPU limits and must be initialized before sampling.
     int cpu_used_permille() const;
 
 private:
     uint64_t _get_proc_time();
 
 private:
-    static const int NUM_HARDWARE_CORES;
+    friend class CpuUsageRecorderTestPeer;
     static const int SECOND_CLOCK_TICK;
     static constexpr int ABSENT_INDEX = -1;
 

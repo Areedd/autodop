@@ -45,7 +45,8 @@ public class SlotEstimatorFactory {
         MBE, // memory-based slots estimator
         PBE, // parallel-based slots estimator
         MAX, // max of memory and parallel based slots estimator
-        MIN; // min of memory and parallel based slots estimator
+        MIN, // min of memory and parallel based slots estimator
+        MBE_CEIL; // opt-in memory estimator with integer-slot ceiling
 
         public static EstimatorPolicy createDefault() {
             return MAX;
@@ -59,6 +60,8 @@ public class SlotEstimatorFactory {
             switch (this) {
                 case MBE:
                     return new MemoryBasedSlotsEstimator();
+                case MBE_CEIL:
+                    return new IntegerMemoryBasedSlotsEstimator();
                 case PBE:
                     return new ParallelismBasedSlotsEstimator();
                 case MAX:
@@ -93,6 +96,19 @@ public class SlotEstimatorFactory {
     public static class MemoryBasedSlotsEstimator implements SlotEstimator {
         @Override
         public int estimateSlots(QueryQueueOptions opts, ConnectContext context, DefaultCoordinator coord) {
+            long memCost = getMemoryCost(context, coord);
+            long numSlotsPerWorker = memCost / opts.v2().getMemBytesPerSlot();
+            numSlotsPerWorker = Math.max(numSlotsPerWorker, 0);
+            numSlotsPerWorker = computeMinGEPower2((int) numSlotsPerWorker);
+
+            long numSlots = numSlotsPerWorker * opts.v2().getNumWorkers();
+            numSlots = Math.max(numSlots, 1);
+            numSlots = Math.min(numSlots, opts.v2().getTotalSlots());
+
+            return (int) numSlots;
+        }
+
+        protected long getMemoryCost(ConnectContext context, DefaultCoordinator coord) {
             long memCost;
             boolean isCostPredictorAvailable = CostPredictor.getServiceBasedCostPredictor().isAvailable();
             if (isCostPredictorAvailable && coord.getPredictedCost() > 0) {
@@ -108,16 +124,28 @@ public class SlotEstimatorFactory {
                 memCost = (long) Math.max(context.getAuditEventBuilder().build().planMemCosts,
                         context.getAuditEventBuilder().build().planCpuCosts);
             }
-            long numSlotsPerWorker = memCost / opts.v2().getMemBytesPerSlot();
-            numSlotsPerWorker = Math.max(numSlotsPerWorker, 0);
-            numSlotsPerWorker = computeMinGEPower2((int) numSlotsPerWorker);
-
-            long numSlots = numSlotsPerWorker * opts.v2().getNumWorkers();
-            numSlots = Math.max(numSlots, 1);
-            numSlots = Math.min(numSlots, opts.v2().getTotalSlots());
-
-            return (int) numSlots;
+            return memCost;
         }
+    }
+
+    public static class IntegerMemoryBasedSlotsEstimator extends MemoryBasedSlotsEstimator {
+        @Override
+        public int estimateSlots(QueryQueueOptions opts, ConnectContext context, DefaultCoordinator coord) {
+            return estimateIntegerSlots(getMemoryCost(context, coord), opts.v2().getMemBytesPerSlot(),
+                    opts.v2().getNumWorkers(), opts.v2().getTotalSlots());
+        }
+    }
+
+    static int estimateIntegerSlots(long memoryBytes, long bytesPerSlot, int workers, int totalSlots) {
+        if (bytesPerSlot <= 0 || workers <= 0 || totalSlots <= 0) {
+            throw new IllegalArgumentException("Slot capacity and worker count must be positive");
+        }
+        // Division and remainder avoid overflow from memoryBytes + bytesPerSlot - 1.
+        long perWorker = memoryBytes <= 0 ? 1 : memoryBytes / bytesPerSlot
+                + (memoryBytes % bytesPerSlot == 0 ? 0 : 1);
+        // Clamp before multiplying so even Long.MAX_VALUE memory estimates are safe.
+        long perWorkerCap = ((long) totalSlots + workers - 1) / workers;
+        return (int) Math.min(Math.min(perWorker, perWorkerCap) * workers, totalSlots);
     }
 
     public static class ParallelismBasedSlotsEstimator implements SlotEstimator {

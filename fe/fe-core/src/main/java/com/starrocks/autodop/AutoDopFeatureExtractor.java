@@ -21,6 +21,7 @@ import com.starrocks.planner.DataPartition;
 import com.starrocks.planner.DataSink;
 import com.starrocks.planner.DataStreamSink;
 import com.starrocks.planner.ExchangeNode;
+import com.starrocks.planner.JoinNode;
 import com.starrocks.planner.MultiCastDataSink;
 import com.starrocks.planner.MultiCastPlanFragment;
 import com.starrocks.planner.PlanFragment;
@@ -105,6 +106,7 @@ public final class AutoDopFeatureExtractor {
         info.dataPartition = fragment.getDataPartition().getType().name();
         info.outputPartition = fragment.getOutputPartition().getType().name();
         info.sinkType = fragment.getSink() == null ? "" : fragment.getSink().getClass().getSimpleName();
+        info.joinType = firstJoinType(root);
         info.fragmentCost = fragment.getFragmentCost();
         info.estimatedCardinality = root == null ? -1 : root.getCardinality();
         info.estimatedAvgRowSize = root == null ? 0 : root.getAvgRowSize();
@@ -136,6 +138,22 @@ public final class AutoDopFeatureExtractor {
         for (PlanNode child : node.getChildren()) {
             collectOperatorCounts(child, counts);
         }
+    }
+
+    private static String firstJoinType(PlanNode node) {
+        if (node == null || node instanceof ExchangeNode) {
+            return "";
+        }
+        if (node instanceof JoinNode) {
+            return ((JoinNode) node).getJoinOp().name();
+        }
+        for (PlanNode child : node.getChildren()) {
+            String joinType = firstJoinType(child);
+            if (!joinType.isEmpty()) {
+                return joinType;
+            }
+        }
+        return "";
     }
 
     private static String operatorSignature(Map<String, Integer> counts) {

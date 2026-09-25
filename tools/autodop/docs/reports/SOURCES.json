@@ -1,0 +1,42 @@
+[
+  {
+    "source": "runs/report90_20260912/FINAL_REPORT_EXTENDED.md",
+    "snapshot": "reports/report90_20260912/FINAL_REPORT_EXTENDED.md",
+    "sha256": "178e9f8d2efd14fc9ec4926a2d2d8af2a5305fc2b75becd5870222c63d21ca9a"
+  },
+  {
+    "source": "runs/report90_20260912/FINAL_DELIVERY.json",
+    "snapshot": "reports/report90_20260912/FINAL_DELIVERY.json",
+    "sha256": "6ca02348276d7dbcd0e0cc3ae8ac97202808c7d827c75dff22e1f91a9c11239e"
+  },
+  {
+    "source": "runs/report90_20260912/PROTOCOL.json",
+    "snapshot": "reports/report90_20260912/PROTOCOL.json",
+    "sha256": "e087708d143979e1dc16258c2e755ca89486b18fcfd4d9881b07186894ae2e97"
+  },
+  {
+    "source": "runs/report90_20260912/MODEL_ACCEPTANCE.md",
+    "snapshot": "reports/report90_20260912/MODEL_ACCEPTANCE.md",
+    "sha256": "2a4474877d59495c894460338b7c6c3f95030a54b67ae4219503516ddee4646e"
+  },
+  {
+    "source": "runs/report90_20260912/PAPER_EXPERIMENT_SCOPE.md",
+    "snapshot": "reports/report90_20260912/PAPER_EXPERIMENT_SCOPE.md",
+    "sha256": "d7f97137691c13170d4eb9a21f8048b171b533b660fb2488f395d3433a2e2fdc"
+  },
+  {
+    "source": "runs/report90_20260912/distillation_concurrency_extension/REPORT.md",
+    "snapshot": "reports/report90_20260912/distillation_concurrency_extension/REPORT.md",
+    "sha256": "208f7553817853b484a1d86290a1c7f9c02095cf324e5a226b4e2100be06a46b"
+  },
+  {
+    "source": "runs/preference_random200_20260911/random200/positive90/REPORT.md",
+    "snapshot": "reports/preference_random200_20260911/random200/positive90/REPORT.md",
+    "sha256": "1c1778c1bac159355a02d0bafa3592ba02c7a647740f1f70a6220f39b7f468db"
+  },
+  {
+    "source": "runs/ablation_cost_20260912/REPORT.md",
+    "snapshot": "reports/ablation_cost_20260912/REPORT.md",
+    "sha256": "8206ab40dc42641b1378ab87a58b5fbf4034a2af7c7c6aee86842d567d048a05"
+  }
+]

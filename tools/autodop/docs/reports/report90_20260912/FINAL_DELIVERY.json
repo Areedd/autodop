@@ -1,0 +1,41 @@
+{
+  "status": "completed_current_report_experiment_scope",
+  "scope": "90-query report with disclosed evidence limits; not all-method superiority, blind generalization or contract acceptance.",
+  "coverage": {
+    "serial": "completed90_queries",
+    "models": "completed_shared_pairs_three_seeds",
+    "feature_ablation": "completed_mlp_and_disclosed_xgb",
+    "ranking_regression": "completed_matching30epoch_historical_cohort",
+    "retrieval": "completed90_queries_six_methods_three_seeds",
+    "policy": "completed_final_stage_only",
+    "concurrency": "completed_finite_batch_comparisons",
+    "costs": "completed_measured_scopes",
+    "historical_full_training_ablation": "not_required_current_scope",
+    "contract": "not_covered"
+  },
+  "source_sha256": {
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/SUMMARY.json": "92cc9f8f4b2c929a76ebc0be35686240e7b827e017187082611377aba1e32ffe",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/structure_coverage20/basic_feature_stability/RESULT.json": "e7330ac73a47e243c730d32d24ff53d20256b608c610d67cdc3d703bb5535321",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/structure_coverage20/mlp_interaction_stability/RESULT.json": "8a956c535b9a1f4f221f8c8369615d61367bae3b648fc72e17a7fb9340cc471a",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/structure_coverage20/hard_pair_ema_stability/RESULT.json": "da0e85c78f9e769456bb334149648254844360bf7fddcf1eaebc957f9532d44a",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/retrieval_independent_report90/SUMMARY.json": "8758290bd0f02e8c9cd7b2ac4fd394f2e6896dcfb7f45e85ea8c8d0dcad4f709",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/retrieval_independent_report90/RESULT.json": "959bdd4d2076658845764cfd955040486ce8febc2c033ddf831f60a4d9b23436",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/retrieval_independent_report90/FINAL_AUDIT.json": "e3b5eda269a1b878eef8867cdc3c069ab8520282f37849d29c00627d6deb8815",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/retrieval_independent_report90/PROTOCOL.json": "acb4878e46921ac487d3da9c1c7d788a2879256d54af7e4707514a5222f4ffe8",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/ENVIRONMENT.json": "6d0b733e7f67071070c030c2496bde87b20f6ff233f892f8e6c984224a1edcc6",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/RUNTIME_ENVIRONMENT.json": "bf6e8f12bd84f7acfd445bcbf91b5a0d587be7eebe3ddea287ddf69f525dbc0c",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/policy_final_stage_ablation/online_full/SUMMARY.json": "f50b211b733c619cad170410a4de407ea806144d44371f770960798617e1cd74",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/PROTOCOL.json": "e087708d143979e1dc16258c2e755ca89486b18fcfd4d9881b07186894ae2e97",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/search_refinement_report90/PROTOCOL.json": "7c91040e4b17cbba28b5d8cbcf4d575e2832a517758413d20ed056328298bd4c",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/FULL_REPORT.md": "fbd8bf7cadbe5e5fa7cca4ea8e1c09d4e58240d8eeb71457f27738291903ce34",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/policy_final_stage_ablation/online_full/REPORT.md": "2d3f90cca4277b8127a53de76649f0875b664a3927ec5969c01783a76c6c9a3d",
+    "/home/shaokun/starrocks/tools/autodop/scripts/report90_final_delivery.py": "aac070023ead29462d403e8e4c2f75de7288027b41506bd418a889930104da73",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/manifest.json": "cbc15c545f6d0010b56886c7d10e6d875f0b86ac9711c97dd8ead53b7ef3cf14",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/retrieval_independent_report90/CONVERGENCE.png": "e0a70949c001238eb43439bc8640f5c7e8522109c449fc0fcf5631ecbb862642",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/FINAL_MODEL_COMPARISON.png": "a7c8fa018dd8915f6586b37f776c2e4fdc5619fd4167ecf9713d2119d42daaec",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/FINAL_MODEL_COMPARISON.sources.json": "c85098007453a45dccfef6f671f4d328147e258e01c5f0fca1bf92f529c8f0dd",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/REPRODUCE.md": "5333154cedc5a722018b8913ed35a3efc1f198b8b9142f75497d1b3e03d02220",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/PAPER_EXPERIMENT_SCOPE.md": "d7f97137691c13170d4eb9a21f8048b171b533b660fb2488f395d3433a2e2fdc"
+  },
+  "report_sha256": "864a4fa21339dbedaa12d0b040f70da18c81e35a42ab882879fb6684b1f5c427"
+}

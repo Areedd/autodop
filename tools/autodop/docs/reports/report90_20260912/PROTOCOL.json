@@ -1,0 +1,71 @@
+{
+  "status": "frozen_before_new_model_evaluation",
+  "seed": 20260912,
+  "queries": 90,
+  "query_scope": "previously selected positive90, posthoc selection disclosed; no independent generalization claim",
+  "model": "/home/shaokun/starrocks/tools/autodop/runs/structural_scale_development01_20260911/policy_preservation02/model/policy.pt",
+  "model_sha256": "9da02b152dbcf2e7d636ef6b049786d8e903486c1a128a9c3fad8a06617ecdf2",
+  "training_dataset": "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset",
+  "training_plans": 78,
+  "validation_plans": 14,
+  "training_query_sha_overlap": 0,
+  "models": [
+    "transformer_rank",
+    "transformer_regression",
+    "mlp_rank",
+    "xgb_regression",
+    "xgb_rank"
+  ],
+  "model_seeds": [
+    17,
+    29,
+    43
+  ],
+  "hyperparameters": "2 settings per family per seed; validation regret only",
+  "neural_training": "30 fixed epochs, 4 sampled pairs/configurations per plan per epoch, batch16, from scratch, shared training-only graph metadata",
+  "traditional_features": "mean/sum/max/std of numerical, one-hot categories, DOP and DOP-feature products plus dependency/competition degree statistics; fixed-length encoding loses detailed topology, disclosed",
+  "primary_seed": 17,
+  "serial_warmup": 1,
+  "serial_repetitions": 3,
+  "search_budget": 64,
+  "search_seeds": [
+    17,
+    29,
+    43
+  ],
+  "search_scope": "equal candidate-score evaluations; no competing-edge-only comparison",
+  "concurrency": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "concurrent_modes": [
+    "native",
+    "policy_static",
+    "policy_load"
+  ],
+  "concurrent_schedule": "closed loop; at least90 jobs per client per round, aggregate workload repeats the entire90 equally, randomized distribution; 1warmup+2measured rounds",
+  "concurrent_warmup": 1,
+  "concurrent_repetitions": 2,
+  "concurrent_query_timeout_s": 180,
+  "report_limitations": [
+    "positive subset",
+    "small test budgets",
+    "fixed original production policy retained",
+    "FE full feature extraction/installation timing not yet instrumented"
+  ],
+  "source_sha256": {
+    "/home/shaokun/starrocks/tools/autodop/scripts/report90_prepare.py": "243656caa5d07887f4dc6ea43fe888fc7a1b49e2ca9950ffecc93078973a4a4e",
+    "/home/shaokun/starrocks/tools/autodop/scripts/report90_models.py": "79e004d532cf0e1c6df76c09d103c190d4664f7aecfea9bd35a32fc96d8fc512",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/manifest.json": "cbc15c545f6d0010b56886c7d10e6d875f0b86ac9711c97dd8ead53b7ef3cf14",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/pilot.json": "af972ee4cede0ae878c1556ac8423fcaa7e1f26cbeb806efad0bb979b0b3c1c2",
+    "/home/shaokun/starrocks/tools/autodop/runs/report90_20260912/policy_variants.json": "2b99088b9471d7c46fb61825152a11be4e4da2729be55d9689d7c2ff4b579ddb",
+    "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset/samples.jsonl": "fbea2a1d8e698d49d5868c3640edf072d507d76a3f364fa86e634c0d6e472573",
+    "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset/pairs.jsonl": "63179647010cda174bffb2475f03088433eea21e117e74516480f28cb4ac19d9",
+    "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset/model_split.json": "5eab3ba29c7c8403f48a011b71a1b7e3ae6ce53b6e126555af2801d9a17e2abe",
+    "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset/metadata.json": "4f5f277ed811ffe5e10f2162e7675e1ae497308e27f6141b5ff8e4b09135df83",
+    "/home/shaokun/starrocks/tools/autodop/runs/multi_structure_feedback_cost05_20260910/dataset/ASSEMBLY_AUDIT.json": "4a02426620864534c5b2e43d994eb647db9a5311b06578babe7623e9ee932668"
+  }
+}

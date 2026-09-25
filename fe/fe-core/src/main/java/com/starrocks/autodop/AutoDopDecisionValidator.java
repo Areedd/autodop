@@ -14,6 +14,7 @@
 
 package com.starrocks.autodop;
 
+import com.starrocks.common.Config;
 import com.starrocks.common.StarRocksException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,6 +35,13 @@ public final class AutoDopDecisionValidator {
         }
         if (!StringUtils.equals(request.queryId, response.queryId)) {
             throw new StarRocksException("AutoDOP query id mismatch");
+        }
+        if (response.confidence == null || !Double.isFinite(response.confidence)
+                || response.confidence < 0.0 || response.confidence > 1.0) {
+            throw new StarRocksException("AutoDOP response contains invalid confidence");
+        }
+        if (response.confidence < Config.auto_dop_min_confidence) {
+            throw new StarRocksException("AutoDOP policy confidence is below the configured threshold");
         }
         if (request.fragments == null || response.decisions == null
                 || request.fragments.size() != response.decisions.size()) {

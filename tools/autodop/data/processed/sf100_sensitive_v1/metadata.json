@@ -1,0 +1,104 @@
+{
+  "category_features": [
+    "root_node",
+    "leftmost_node",
+    "data_partition",
+    "output_partition",
+    "sink_type",
+    "is_colocated",
+    "is_replicated",
+    "is_bucket_shuffle",
+    "is_gather_root"
+  ],
+  "category_vocab": {
+    "data_partition": {
+      "<UNK>": 0,
+      "HASH_PARTITIONED": 1,
+      "RANDOM": 2,
+      "UNPARTITIONED": 3
+    },
+    "is_bucket_shuffle": {
+      "<UNK>": 0,
+      "False": 1,
+      "True": 2
+    },
+    "is_colocated": {
+      "<UNK>": 0,
+      "False": 1
+    },
+    "is_gather_root": {
+      "<UNK>": 0,
+      "False": 1,
+      "True": 2
+    },
+    "is_replicated": {
+      "<UNK>": 0,
+      "False": 1
+    },
+    "leftmost_node": {
+      "<UNK>": 0,
+      "EXCHANGE": 1,
+      "MERGING-EXCHANGE": 2,
+      "OlapScanNode": 3
+    },
+    "output_partition": {
+      "<UNK>": 0,
+      "BUCKET_SHUFFLE_HASH_PARTITIONED": 1,
+      "HASH_PARTITIONED": 2,
+      "RANDOM": 3,
+      "UNPARTITIONED": 4
+    },
+    "root_node": {
+      "<UNK>": 0,
+      "AGGREGATE (merge finalize)": 1,
+      "AGGREGATE (update serialize)": 2,
+      "MERGING-EXCHANGE": 3,
+      "OlapScanNode": 4,
+      "Project": 5,
+      "SELECT": 6,
+      "SORT": 7,
+      "TOP-N": 8,
+      "UNION": 9
+    },
+    "sink_type": {
+      "<UNK>": 0,
+      "DataStreamSink": 1,
+      "MultiCastDataSink": 2,
+      "ResultSink": 3
+    }
+  },
+  "dop_classes": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+  ],
+  "feature_mean": [
+    16.3940653583957,
+    13.678133938880842,
+    1.6131825583970811,
+    1.3969595841494067,
+    1.3187723011364476,
+    1.3187723011364476
+  ],
+  "feature_std": [
+    7.6132236427507545,
+    4.8557015403274795,
+    0.7333241182707219,
+    1.6594744295413437,
+    0.18654240447463027,
+    0.18654240447463027
+  ],
+  "numeric_features": [
+    "fragment_cost",
+    "estimated_cardinality",
+    "estimated_avg_row_size",
+    "scan_range_count",
+    "instance_count",
+    "worker_count"
+  ],
+  "pair_count": 572,
+  "sample_count": 126
+}

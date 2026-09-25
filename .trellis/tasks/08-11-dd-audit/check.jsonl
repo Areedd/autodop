@@ -1,7 +1,0 @@
-{"file": "tools/autodop/autodop/engine.py", "reason": "在线决策引擎（PolicyEngine/TreePolicyEngine/负载修正接入），核对 DD03 §4 实现形态"}
-{"file": "tools/autodop/autodop/load_correction.py", "reason": "负载修正纯函数，核对 DD03 §4.2 死区/下限/最弱 worker 规则"}
-{"file": "tools/autodop/autodop/model.py", "reason": "排序代价模型/策略网络结构，核对 DD02 §4.1 GAT 描述与 DD03 §3.2 蒸馏"}
-{"file": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopResourceView.java", "reason": "资源视图实现，核对 DD04 §3 采集/聚合/时效处理"}
-{"file": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopInstanceAdjuster.java", "reason": "实例级调整实现，核对 DD04 §4 可调整判定与调整规则"}
-{"file": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopTraceManager.java", "reason": "轨迹三阶段快照，核对 DD04 §1.3/§5.1 与 data.py 兼容性"}
-{"file": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopFeatureExtractor.java", "reason": "特征提取与请求打包，核对 DD02 §3 特征清单逐项落地"}

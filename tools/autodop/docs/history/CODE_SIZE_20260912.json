@@ -1,0 +1,860 @@
+{
+  "base": "041cd014c9435c8c93943e4b266552eb61f1f840",
+  "head": "665a52fff6c1ea56f10edfeefc6b9d4a297eb244",
+  "counting": "physical lines including comments and blank lines; upstream-to-working-tree diff plus untracked source; no runs snapshots, SQL, data, models, docs or build artifacts",
+  "categories": {
+    "FE new implementation": {
+      "files": 12,
+      "added": 1630,
+      "deleted": 0,
+      "net": 1630
+    },
+    "FE integration changes": {
+      "files": 8,
+      "added": 193,
+      "deleted": 41,
+      "net": 152
+    },
+    "FE tests": {
+      "files": 8,
+      "added": 874,
+      "deleted": 0,
+      "net": 874
+    },
+    "Data collection and experiment support": {
+      "files": 15,
+      "added": 3981,
+      "deleted": 0,
+      "net": 3981
+    },
+    "Python algorithm package": {
+      "files": 9,
+      "added": 1426,
+      "deleted": 0,
+      "net": 1426
+    },
+    "Python serving entry": {
+      "files": 1,
+      "added": 80,
+      "deleted": 0,
+      "net": 80
+    },
+    "SQL generation and reproduction": {
+      "files": 20,
+      "added": 2767,
+      "deleted": 0,
+      "net": 2767
+    },
+    "Python training pipeline": {
+      "files": 8,
+      "added": 1040,
+      "deleted": 0,
+      "net": 1040
+    },
+    "Python tests (core and experiment tools)": {
+      "files": 32,
+      "added": 3282,
+      "deleted": 0,
+      "net": 3282
+    }
+  },
+  "core_total": {
+    "files": 38,
+    "added": 4369,
+    "deleted": 41,
+    "net": 4328
+  },
+  "files": [
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopClient.java",
+      "category": "FE new implementation",
+      "added": 21,
+      "deleted": 0,
+      "net": 21
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopController.java",
+      "category": "FE new implementation",
+      "added": 148,
+      "deleted": 0,
+      "net": 148
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopDecisionApplier.java",
+      "category": "FE new implementation",
+      "added": 45,
+      "deleted": 0,
+      "net": 45
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopDecisionValidator.java",
+      "category": "FE new implementation",
+      "added": 78,
+      "deleted": 0,
+      "net": 78
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopFeatureExtractor.java",
+      "category": "FE new implementation",
+      "added": 249,
+      "deleted": 0,
+      "net": 249
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopRequest.java",
+      "category": "FE new implementation",
+      "added": 185,
+      "deleted": 0,
+      "net": 185
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopResourceView.java",
+      "category": "FE new implementation",
+      "added": 344,
+      "deleted": 0,
+      "net": 344
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopResponse.java",
+      "category": "FE new implementation",
+      "added": 56,
+      "deleted": 0,
+      "net": 56
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopResult.java",
+      "category": "FE new implementation",
+      "added": 74,
+      "deleted": 0,
+      "net": 74
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/AutoDopTraceManager.java",
+      "category": "FE new implementation",
+      "added": 308,
+      "deleted": 0,
+      "net": 308
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/autodop/HttpAutoDopClient.java",
+      "category": "FE new implementation",
+      "added": 79,
+      "deleted": 0,
+      "net": 79
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/common/Config.java",
+      "category": "FE integration changes",
+      "added": 48,
+      "deleted": 0,
+      "net": 48
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/CoordinatorPreprocessor.java",
+      "category": "FE integration changes",
+      "added": 38,
+      "deleted": 2,
+      "net": 36
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/SessionVariable.java",
+      "category": "FE integration changes",
+      "added": 24,
+      "deleted": 0,
+      "net": 24
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/StmtExecutor.java",
+      "category": "FE integration changes",
+      "added": 4,
+      "deleted": 0,
+      "net": 4
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/scheduler/assignment/FragmentAssignmentStrategy.java",
+      "category": "FE integration changes",
+      "added": 8,
+      "deleted": 1,
+      "net": 7
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/scheduler/assignment/LocalFragmentAssignmentStrategy.java",
+      "category": "FE integration changes",
+      "added": 47,
+      "deleted": 16,
+      "net": 31
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/scheduler/assignment/RemoteFragmentAssignmentStrategy.java",
+      "category": "FE integration changes",
+      "added": 18,
+      "deleted": 22,
+      "net": -4
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/scheduler/dag/ExecutionFragment.java",
+      "category": "FE integration changes",
+      "added": 6,
+      "deleted": 0,
+      "net": 6
+    },
+    {
+      "path": "fe/fe-core/src/main/java/com/starrocks/qe/scheduler/dag/FragmentPlacement.java",
+      "category": "FE new implementation",
+      "added": 43,
+      "deleted": 0,
+      "net": 43
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopDecisionApplierTest.java",
+      "category": "FE tests",
+      "added": 47,
+      "deleted": 0,
+      "net": 47
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopDecisionValidatorTest.java",
+      "category": "FE tests",
+      "added": 79,
+      "deleted": 0,
+      "net": 79
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopFeatureExtractorTest.java",
+      "category": "FE tests",
+      "added": 156,
+      "deleted": 0,
+      "net": 156
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopJsonSerdeTest.java",
+      "category": "FE tests",
+      "added": 69,
+      "deleted": 0,
+      "net": 69
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopResourceViewTest.java",
+      "category": "FE tests",
+      "added": 202,
+      "deleted": 0,
+      "net": 202
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/qe/AdaptiveChooseNodesTest.java",
+      "category": "FE tests",
+      "added": 74,
+      "deleted": 0,
+      "net": 74
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/autodop/AutoDopControllerTest.java",
+      "category": "FE tests",
+      "added": 209,
+      "deleted": 0,
+      "net": 209
+    },
+    {
+      "path": "fe/fe-core/src/test/java/com/starrocks/qe/scheduler/dag/FragmentPlacementTest.java",
+      "category": "FE tests",
+      "added": 38,
+      "deleted": 0,
+      "net": 38
+    },
+    {
+      "path": "tools/autodop/audit_tpcds_deployment.py",
+      "category": "Data collection and experiment support",
+      "added": 230,
+      "deleted": 0,
+      "net": 230
+    },
+    {
+      "path": "tools/autodop/autodop/__init__.py",
+      "category": "Python algorithm package",
+      "added": 1,
+      "deleted": 0,
+      "net": 1
+    },
+    {
+      "path": "tools/autodop/autodop/data.py",
+      "category": "Python algorithm package",
+      "added": 363,
+      "deleted": 0,
+      "net": 363
+    },
+    {
+      "path": "tools/autodop/autodop/engine.py",
+      "category": "Python algorithm package",
+      "added": 61,
+      "deleted": 0,
+      "net": 61
+    },
+    {
+      "path": "tools/autodop/autodop/fixed_engine.py",
+      "category": "Python algorithm package",
+      "added": 41,
+      "deleted": 0,
+      "net": 41
+    },
+    {
+      "path": "tools/autodop/autodop/graph.py",
+      "category": "Python algorithm package",
+      "added": 293,
+      "deleted": 0,
+      "net": 293
+    },
+    {
+      "path": "tools/autodop/autodop/load_correction.py",
+      "category": "Python algorithm package",
+      "added": 93,
+      "deleted": 0,
+      "net": 93
+    },
+    {
+      "path": "tools/autodop/autodop/mcts.py",
+      "category": "Python algorithm package",
+      "added": 160,
+      "deleted": 0,
+      "net": 160
+    },
+    {
+      "path": "tools/autodop/autodop/model.py",
+      "category": "Python algorithm package",
+      "added": 260,
+      "deleted": 0,
+      "net": 260
+    },
+    {
+      "path": "tools/autodop/autodop/training.py",
+      "category": "Python algorithm package",
+      "added": 154,
+      "deleted": 0,
+      "net": 154
+    },
+    {
+      "path": "tools/autodop/autodop_server.py",
+      "category": "Python serving entry",
+      "added": 80,
+      "deleted": 0,
+      "net": 80
+    },
+    {
+      "path": "tools/autodop/collect_dop_training.py",
+      "category": "Data collection and experiment support",
+      "added": 279,
+      "deleted": 0,
+      "net": 279
+    },
+    {
+      "path": "tools/autodop/collect_paper_evaluations.py",
+      "category": "Data collection and experiment support",
+      "added": 607,
+      "deleted": 0,
+      "net": 607
+    },
+    {
+      "path": "tools/autodop/collect_trusted_dataset.py",
+      "category": "Data collection and experiment support",
+      "added": 495,
+      "deleted": 0,
+      "net": 495
+    },
+    {
+      "path": "tools/autodop/generate_business_report_bundle_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 100,
+      "deleted": 0,
+      "net": 100
+    },
+    {
+      "path": "tools/autodop/generate_composable_branch_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 126,
+      "deleted": 0,
+      "net": 126
+    },
+    {
+      "path": "tools/autodop/generate_customer_quality_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 130,
+      "deleted": 0,
+      "net": 130
+    },
+    {
+      "path": "tools/autodop/generate_integrity_operator_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 88,
+      "deleted": 0,
+      "net": 88
+    },
+    {
+      "path": "tools/autodop/generate_legacy_branch_development_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 58,
+      "deleted": 0,
+      "net": 58
+    },
+    {
+      "path": "tools/autodop/generate_linked_price_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 129,
+      "deleted": 0,
+      "net": 129
+    },
+    {
+      "path": "tools/autodop/generate_mixed_operator_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 215,
+      "deleted": 0,
+      "net": 215
+    },
+    {
+      "path": "tools/autodop/generate_month_keyed_branch_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 94,
+      "deleted": 0,
+      "net": 94
+    },
+    {
+      "path": "tools/autodop/generate_multi_low_branch_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 48,
+      "deleted": 0,
+      "net": 48
+    },
+    {
+      "path": "tools/autodop/generate_opposed_branch_stress.py",
+      "category": "SQL generation and reproduction",
+      "added": 83,
+      "deleted": 0,
+      "net": 83
+    },
+    {
+      "path": "tools/autodop/generate_pair_grain_stress.py",
+      "category": "SQL generation and reproduction",
+      "added": 83,
+      "deleted": 0,
+      "net": 83
+    },
+    {
+      "path": "tools/autodop/generate_product_window_branch_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 46,
+      "deleted": 0,
+      "net": 46
+    },
+    {
+      "path": "tools/autodop/generate_range_branch_compositions.py",
+      "category": "SQL generation and reproduction",
+      "added": 34,
+      "deleted": 0,
+      "net": 34
+    },
+    {
+      "path": "tools/autodop/generate_range_expansion_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 48,
+      "deleted": 0,
+      "net": 48
+    },
+    {
+      "path": "tools/autodop/generate_range_topology_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 60,
+      "deleted": 0,
+      "net": 60
+    },
+    {
+      "path": "tools/autodop/generate_representative_serial_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 1012,
+      "deleted": 0,
+      "net": 1012
+    },
+    {
+      "path": "tools/autodop/generate_statistical_analytical_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 136,
+      "deleted": 0,
+      "net": 136
+    },
+    {
+      "path": "tools/autodop/generate_temporal_activity_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 155,
+      "deleted": 0,
+      "net": 155
+    },
+    {
+      "path": "tools/autodop/generate_three_way_keyed_suite.py",
+      "category": "SQL generation and reproduction",
+      "added": 57,
+      "deleted": 0,
+      "net": 57
+    },
+    {
+      "path": "tools/autodop/prepare_trusted_tpcds.py",
+      "category": "Data collection and experiment support",
+      "added": 157,
+      "deleted": 0,
+      "net": 157
+    },
+    {
+      "path": "tools/autodop/prepare_trusted_tpch.py",
+      "category": "Data collection and experiment support",
+      "added": 145,
+      "deleted": 0,
+      "net": 145
+    },
+    {
+      "path": "tools/autodop/repair_tpcds_fact_mapping.py",
+      "category": "Data collection and experiment support",
+      "added": 293,
+      "deleted": 0,
+      "net": 293
+    },
+    {
+      "path": "tools/autodop/run_tpcds_q22_sweep.py",
+      "category": "Data collection and experiment support",
+      "added": 416,
+      "deleted": 0,
+      "net": 416
+    },
+    {
+      "path": "tools/autodop/scripts/assess_query_uniform_target.py",
+      "category": "Data collection and experiment support",
+      "added": 198,
+      "deleted": 0,
+      "net": 198
+    },
+    {
+      "path": "tools/autodop/scripts/assess_workload_target.py",
+      "category": "Data collection and experiment support",
+      "added": 109,
+      "deleted": 0,
+      "net": 109
+    },
+    {
+      "path": "tools/autodop/scripts/auto_retrain.py",
+      "category": "Python training pipeline",
+      "added": 103,
+      "deleted": 0,
+      "net": 103
+    },
+    {
+      "path": "tools/autodop/scripts/build_dataset.py",
+      "category": "Python training pipeline",
+      "added": 37,
+      "deleted": 0,
+      "net": 37
+    },
+    {
+      "path": "tools/autodop/scripts/build_trusted_dataset.py",
+      "category": "Data collection and experiment support",
+      "added": 206,
+      "deleted": 0,
+      "net": 206
+    },
+    {
+      "path": "tools/autodop/scripts/evaluate_cost.py",
+      "category": "Python training pipeline",
+      "added": 104,
+      "deleted": 0,
+      "net": 104
+    },
+    {
+      "path": "tools/autodop/scripts/reproduce_positive90.py",
+      "category": "SQL generation and reproduction",
+      "added": 65,
+      "deleted": 0,
+      "net": 65
+    },
+    {
+      "path": "tools/autodop/scripts/run_paper_step.py",
+      "category": "Data collection and experiment support",
+      "added": 137,
+      "deleted": 0,
+      "net": 137
+    },
+    {
+      "path": "tools/autodop/scripts/run_pipeline.py",
+      "category": "Python training pipeline",
+      "added": 148,
+      "deleted": 0,
+      "net": 148
+    },
+    {
+      "path": "tools/autodop/scripts/search_mcts.py",
+      "category": "Python training pipeline",
+      "added": 93,
+      "deleted": 0,
+      "net": 93
+    },
+    {
+      "path": "tools/autodop/scripts/summarize_paper_evaluations.py",
+      "category": "Data collection and experiment support",
+      "added": 277,
+      "deleted": 0,
+      "net": 277
+    },
+    {
+      "path": "tools/autodop/scripts/train_cost.py",
+      "category": "Python training pipeline",
+      "added": 322,
+      "deleted": 0,
+      "net": 322
+    },
+    {
+      "path": "tools/autodop/scripts/train_policy.py",
+      "category": "Python training pipeline",
+      "added": 98,
+      "deleted": 0,
+      "net": 98
+    },
+    {
+      "path": "tools/autodop/scripts/verify_paper_dataset.py",
+      "category": "Data collection and experiment support",
+      "added": 156,
+      "deleted": 0,
+      "net": 156
+    },
+    {
+      "path": "tools/autodop/scripts/verify_paper_evaluations.py",
+      "category": "Data collection and experiment support",
+      "added": 276,
+      "deleted": 0,
+      "net": 276
+    },
+    {
+      "path": "tools/autodop/scripts/verify_policy.py",
+      "category": "Python training pipeline",
+      "added": 135,
+      "deleted": 0,
+      "net": 135
+    },
+    {
+      "path": "tools/autodop/tests/test_autodop.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 263,
+      "deleted": 0,
+      "net": 263
+    },
+    {
+      "path": "tools/autodop/tests/test_build_trusted_dataset.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 119,
+      "deleted": 0,
+      "net": 119
+    },
+    {
+      "path": "tools/autodop/tests/test_business_report_bundle_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 55,
+      "deleted": 0,
+      "net": 55
+    },
+    {
+      "path": "tools/autodop/tests/test_composable_branch_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 32,
+      "deleted": 0,
+      "net": 32
+    },
+    {
+      "path": "tools/autodop/tests/test_cost_selection.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 233,
+      "deleted": 0,
+      "net": 233
+    },
+    {
+      "path": "tools/autodop/tests/test_customer_quality_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 86,
+      "deleted": 0,
+      "net": 86
+    },
+    {
+      "path": "tools/autodop/tests/test_explicit_split.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 106,
+      "deleted": 0,
+      "net": 106
+    },
+    {
+      "path": "tools/autodop/tests/test_gap_implementation.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 322,
+      "deleted": 0,
+      "net": 322
+    },
+    {
+      "path": "tools/autodop/tests/test_gather_domain.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 71,
+      "deleted": 0,
+      "net": 71
+    },
+    {
+      "path": "tools/autodop/tests/test_linked_price_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 56,
+      "deleted": 0,
+      "net": 56
+    },
+    {
+      "path": "tools/autodop/tests/test_load_correction.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 168,
+      "deleted": 0,
+      "net": 168
+    },
+    {
+      "path": "tools/autodop/tests/test_month_keyed_branch_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 72,
+      "deleted": 0,
+      "net": 72
+    },
+    {
+      "path": "tools/autodop/tests/test_multi_low_branch_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 26,
+      "deleted": 0,
+      "net": 26
+    },
+    {
+      "path": "tools/autodop/tests/test_opposed_branch_stress.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 115,
+      "deleted": 0,
+      "net": 115
+    },
+    {
+      "path": "tools/autodop/tests/test_pair_grain_stress.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 57,
+      "deleted": 0,
+      "net": 57
+    },
+    {
+      "path": "tools/autodop/tests/test_paper_evaluations.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 224,
+      "deleted": 0,
+      "net": 224
+    },
+    {
+      "path": "tools/autodop/tests/test_paper_summaries.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 67,
+      "deleted": 0,
+      "net": 67
+    },
+    {
+      "path": "tools/autodop/tests/test_pipeline.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 129,
+      "deleted": 0,
+      "net": 129
+    },
+    {
+      "path": "tools/autodop/tests/test_prepare_trusted_tpch.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 43,
+      "deleted": 0,
+      "net": 43
+    },
+    {
+      "path": "tools/autodop/tests/test_product_window_branch_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 22,
+      "deleted": 0,
+      "net": 22
+    },
+    {
+      "path": "tools/autodop/tests/test_query_uniform_target.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 124,
+      "deleted": 0,
+      "net": 124
+    },
+    {
+      "path": "tools/autodop/tests/test_range_branch_compositions.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 24,
+      "deleted": 0,
+      "net": 24
+    },
+    {
+      "path": "tools/autodop/tests/test_range_expansion_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 27,
+      "deleted": 0,
+      "net": 27
+    },
+    {
+      "path": "tools/autodop/tests/test_range_topology_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 26,
+      "deleted": 0,
+      "net": 26
+    },
+    {
+      "path": "tools/autodop/tests/test_run_paper_step.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 58,
+      "deleted": 0,
+      "net": 58
+    },
+    {
+      "path": "tools/autodop/tests/test_statistical_analytical_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 64,
+      "deleted": 0,
+      "net": 64
+    },
+    {
+      "path": "tools/autodop/tests/test_temporal_activity_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 85,
+      "deleted": 0,
+      "net": 85
+    },
+    {
+      "path": "tools/autodop/tests/test_three_way_keyed_suite.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 26,
+      "deleted": 0,
+      "net": 26
+    },
+    {
+      "path": "tools/autodop/tests/test_training_contract.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 118,
+      "deleted": 0,
+      "net": 118
+    },
+    {
+      "path": "tools/autodop/tests/test_trusted_dataset.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 303,
+      "deleted": 0,
+      "net": 303
+    },
+    {
+      "path": "tools/autodop/tests/test_verify_paper_dataset.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 65,
+      "deleted": 0,
+      "net": 65
+    },
+    {
+      "path": "tools/autodop/tests/test_verify_paper_evaluations.py",
+      "category": "Python tests (core and experiment tools)",
+      "added": 96,
+      "deleted": 0,
+      "net": 96
+    }
+  ]
+}
