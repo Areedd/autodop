@@ -33,27 +33,25 @@ FE 定向测试使用 `org.jacoco:jacoco-maven-plugin:0.8.8:prepare-agent -Djaco
 
 BE 本次使用已完成的完整构建，通过原始构建证明核对当前 CPU recorder 源码及镜像内 `starrocks_be` SHA-256；未重新执行全量 BE 测试。全量 StarRocks 测试不属于本次验证范围。
 
-## 交付包验证
+## FE + AutoDOP 包验证
 
-首次离线目录包验证通过，项目名 `autodop-check-b2cb3ff14f61`，使用随机回环端口和全新数据卷：
+当前包移除了 BE，FE 从精简 Java 17 镜像构建，完整项目源码仍单独保存在 GitHub。上面的源码回归结果保留作为实现依据；旧 FE/BE 全栈运行记录见 `history/FULL_FE_BE_RELEASE_VALIDATION_20260926.md`。
 
-- `docker load -i images.tar` 成功导入两张镜像。
-- AutoDOP `/health` 正常，冻结模型完成 2 个 fragment 的真实 HTTP 推理，置信度约 0.999748。
-- FE/BE 首次启动、注册 BE、创建主键表、插入数据和聚合查询全部通过，结果为 `n=3,total=60`。
-- 测试容器和本次新建数据卷清理成功，返回码 0。
+本轮已验证通过，隔离项目为 `autodop-check-c6815e9ea44f`：
 
-最终重建包再次通过同样检查，项目名 `autodop-check-f01b225e4e02`，清理返回码 0。实际 BE 版本字符串为 `branch-3.5.17-665a52f`；FE 显示 `UNKNOWN-UNKNOWN`，以源码提交及 JAR SHA-256 唯一标识本次编译产物，不用兼容版本冒充产品版本。
+- 精简 Java 17 镜像中的 FE 在全新元数据卷中启动成功。
+- `SELECT 1` 返回 `ok=1`，`SHOW FRONTENDS` 和 `SHOW BACKENDS` 正常，注册 BE 数量为 0。
+- AutoDOP `/health` 和冻结模型 HTTP 推理通过，2 个 fragment 返回合法 DOP。
+- 测试容器与元数据卷清理成功，返回码 0。
+- 扫描导出镜像的全部 16 层、35158 个条目，未发现 BE/CN 目录或 `starrocks_be`；检查覆盖祖先层，避免只在上层删除文件造成虚假缩小。
+- FE 仍显示 `UNKNOWN-UNKNOWN` 版本字符串，以 JAR SHA-256 和源码提交标识构建。
 
-`SELECT VERSION()` 返回的是 MySQL 兼容版本；运行软件版本以 `SHOW FRONTENDS`、`SHOW BACKENDS` 及构建哈希为准。最终包再次验证的详细日志保存在包内 `validation/`，源码校验、镜像 ID 和模型来源见 `BUILD_MANIFEST.json`。
-
-重跑完整隔离检查：
+数据表读写不属于本轮范围。详细证据见包内 `validation/`。
 
 ```bash
-python tools/autodop/release/check_release.py dist/autodop-20260925-linux-amd64
+python tools/autodop/release/check_release.py dist/autodop-fe-20260926-linux-amd64
 ```
-
-压缩包附外部 SHA-256，包内附逐文件 SHA-256。完整项目源码单独保存在 GitHub；运行包保留构建来源哈希，不附项目源码归档。本机数据库、私有配置和原始运行数据不在包内。
 
 ## 结果边界
 
-实际 HTTP 推理使用冻结的已训练策略模型。小 SQL 可能因 fragment 门限绕过 AutoDOP，所以单独验证 HTTP 决策，并将 SQL 验证限定为 FE/BE 启动和创建、写入、聚合功能。测试不重放 39 GB 历史实验数据，不复验历史性能收益或独立泛化结论。
+本包不包含 BE，不把旧版建表/写入测试视为当前包的数据查询验收。数据查询需要另行部署和接入兼容 BE。历史性能收益不在本次功能验证范围内。

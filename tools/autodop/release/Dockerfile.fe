@@ -1,0 +1,4 @@
+ARG FE_BASE_IMAGE=eclipse-temurin:17-jre-jammy
+FROM ${FE_BASE_IMAGE}
+COPY fe/ /opt/starrocks/fe/
+COPY fe.conf /opt/starrocks/fe/conf/fe.conf

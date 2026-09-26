@@ -23,13 +23,25 @@
   },
   "offline_runtime": {
     "status": "passed",
-    "project": "autodop-check-f01b225e4e02",
-    "scope": "offline_images_fresh_volumes",
+    "project": "autodop-check-c6815e9ea44f",
+    "scope": "fe_and_autodop_without_be",
     "cleanup_returncode": 0
   },
+  "scope": "Functional tests and selected regressions; not the full StarRocks test suite or a performance benchmark.",
+  "be_included": false,
   "sql": {
-    "n": 3,
-    "total": 60
+    "ok": 1
   },
-  "scope": "Functional tests and selected regressions; not the full StarRocks test suite or a performance benchmark."
+  "registered_backends": 0,
+  "image_layer_audit": {
+    "status": "passed",
+    "image_tags": [
+      "autodop/service:20260926-fe-only",
+      "autodop/fe:20260926"
+    ],
+    "layers_scanned": 16,
+    "entries_scanned": 35158,
+    "be_paths_found": 0,
+    "scope": "Every saved layer, including ancestor layers; not just the merged filesystem."
+  }
 }

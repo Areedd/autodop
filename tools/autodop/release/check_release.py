@@ -27,10 +27,10 @@ def main():
             return subprocess.run(command, env=env, stdout=log, stderr=subprocess.STDOUT,
                                   timeout=timeout, check=check)
 
-    result = {'status': 'running', 'project': project, 'scope': 'offline_images_fresh_volumes'}
+    result = {'status': 'running', 'project': project, 'scope': 'fe_and_autodop_without_be'}
     try:
         run(['docker', 'load', '-i', str(root / 'images.tar')], 'load', timeout=600)
-        run([*compose, 'up', '-d', 'autodop', 'fe', 'be'], 'start')
+        run([*compose, 'up', '-d', 'autodop', 'fe'], 'start')
         run([*compose, '--profile', 'check', 'run', '--rm', '--no-deps', 'check'], 'smoke')
         run([*compose, 'ps', '--format', 'json'], 'containers')
         result['status'] = 'passed'

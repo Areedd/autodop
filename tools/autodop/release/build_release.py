@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build offline Docker images from compiled FE, an audited BE image and a policy."""
+"""Build offline Docker images from compiled FE, a Java runtime image and a policy."""
 import argparse
 import json
 import shutil
 import subprocess
 import sys
+import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -18,29 +19,40 @@ def run(*command):
     subprocess.run(list(map(str, command)), check=True)
 
 
+def audit_image_layers(archive, expected_tags):
+    """Reject BE content even if a later image layer hides or deletes it."""
+    with tarfile.open(archive) as tar:
+        manifests = json.load(tar.extractfile('manifest.json'))
+        tags = [tag for entry in manifests for tag in entry.get('RepoTags', [])]
+        if set(tags) != set(expected_tags):
+            raise ValueError(f'Unexpected images in release: {tags}')
+        layers = sorted({layer for entry in manifests for layer in entry['Layers']})
+        count = 0
+        for name in layers:
+            with tarfile.open(fileobj=tar.extractfile(name), mode='r|*') as layer:
+                for entry in layer:
+                    path = entry.name.lstrip('./')
+                    count += 1
+                    if (path in ('opt/starrocks/be', 'opt/starrocks/cn', 'starrocks_be')
+                            or path.startswith(('opt/starrocks/be/', 'opt/starrocks/cn/'))
+                            or path.endswith('/starrocks_be')):
+                        raise ValueError(f'BE content found in saved image layer: {path}')
+    return {'status': 'passed', 'image_tags': tags, 'layers_scanned': len(layers),
+            'entries_scanned': count, 'be_paths_found': 0,
+            'scope': 'Every saved layer, including ancestor layers; not just the merged filesystem.'}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True, help='New directory only')
     parser.add_argument('--policy-model', type=Path, required=True)
     parser.add_argument('--request', type=Path, required=True)
-    parser.add_argument('--be-image', required=True, help='Existing BE image with matching source provenance')
-    parser.add_argument('--be-build-proof', type=Path, required=True)
+    parser.add_argument('--fe-base-image', default='eclipse-temurin:17-jre-jammy',
+                        help='Java 17 runtime image; must not contain a BE')
     args = parser.parse_args()
     policy = args.policy_model.resolve()
     load_policy_model(policy)  # Fail before creating/building a release.
-    proof = json.loads(args.be_build_proof.read_text())
-    for name, expected in proof['source_sha256'].items():
-        marker = '/be/'
-        if marker in name:
-            source = ROOT / 'be' / name.split(marker, 1)[1]
-            if file_sha256(source) != expected:
-                raise ValueError(f'BE build provenance does not match {source}')
-    base = json.loads(subprocess.check_output(['docker', 'image', 'inspect', args.be_image]))[0]
-    # Check the actual image, not merely the historical build record.
-    digest = subprocess.check_output(['docker', 'run', '--rm', '--network', 'none',
-        '--entrypoint', 'sha256sum', base['Id'], '/opt/starrocks/be/lib/starrocks_be'], text=True).split()[0]
-    if digest != proof['binary_sha256']:
-        raise ValueError('BE binary in image does not match build provenance')
+    base = json.loads(subprocess.check_output(['docker', 'image', 'inspect', args.fe_base_image]))[0]
     jar = ROOT / 'fe/fe-core/target/starrocks-fe.jar'
     if not jar.is_file():
         raise ValueError('Build FE first; fe/fe-core/target/starrocks-fe.jar is missing')
@@ -51,7 +63,7 @@ def main():
     shutil.copytree(AUTODOP / 'autodop', context / 'autodop', ignore=shutil.ignore_patterns('__pycache__'))
     shutil.copy2(AUTODOP / 'autodop_server.py', context)
     templates = Path(__file__).resolve().parent
-    for name in ['Dockerfile.autodop', 'Dockerfile.starrocks', 'fe.conf', 'be.conf', 'smoke.py']:
+    for name in ['Dockerfile.autodop', 'Dockerfile.fe', 'fe.conf', 'smoke.py']:
         shutil.copy2(templates / name, context)
     (context / 'models').mkdir()
     shutil.copy2(policy, context / 'models/policy.pt')
@@ -72,17 +84,18 @@ def main():
     # Independent contexts prevent transferring the large FE libraries into the Python build.
     (context / '.dockerignore').write_text('fe/\n')
     run('docker', 'build', '--network=host', '-f', context / 'Dockerfile.autodop',
-        '-t', 'autodop/service:20260925', context)
+        '-t', 'autodop/service:20260926-fe-only', context)
     (context / '.dockerignore').write_text('autodop/\nmodels/\n')
     # BuildKit interprets a bare image ID as a registry name in FROM. A unique
     # local tag pins the already-audited base without a registry lookup.
-    base_tag = 'autodop/be-release-base:' + base['Id'].split(':')[1][:16]
+    base_tag = 'autodop/fe-release-base:' + base['Id'].split(':')[1][:16]
     run('docker', 'tag', base['Id'], base_tag)
-    run('docker', 'build', '--build-arg', 'BE_IMAGE=' + base_tag, '-f', context / 'Dockerfile.starrocks',
-        '-t', 'autodop/starrocks:20260925', context)
-    images = ['autodop/service:20260925', 'autodop/starrocks:20260925']
+    run('docker', 'build', '--build-arg', 'FE_BASE_IMAGE=' + base_tag, '-f', context / 'Dockerfile.fe',
+        '-t', 'autodop/fe:20260926', context)
+    images = ['autodop/service:20260926-fe-only', 'autodop/fe:20260926']
     shutil.copy2(templates / 'compose.yaml', out)
     shutil.copy2(templates / 'smoke.py', out)
+    shutil.copy2(templates / 'check_release.py', out)
     shutil.copytree(context / 'models', out / 'models')
     shutil.copytree(AUTODOP / 'docs', out / 'docs')
     (out / 'README.md').write_text(
@@ -97,20 +110,23 @@ def main():
     shutil.copy2(ROOT / 'NOTICE.txt', out)
     shutil.copytree(ROOT / 'licenses-binary', out / 'licenses-binary')
     packages = subprocess.check_output(['docker', 'run', '--rm', '--network', 'none',
-        'autodop/service:20260925', 'python', '-m', 'pip', 'freeze'], text=True)
+        'autodop/service:20260926-fe-only', 'python', '-m', 'pip', 'freeze'], text=True)
     (out / 'PYTHON_PACKAGES.txt').write_text(packages)
     manifest = {'status': 'built_not_yet_tested', 'platform': 'linux/amd64',
         'git_head_at_build': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'policy_sha256': file_sha256(policy), 'fe_jar_sha256': file_sha256(jar),
-        'be_binary_sha256': digest, 'be_base_image_id': base['Id'],
+        'be_included': False, 'project_source_archive_included': False, 'fe_base_image_id': base['Id'],
         'images': {tag: json.loads(subprocess.check_output(['docker', 'image', 'inspect', tag]))[0]['Id'] for tag in images},
         'source_sha256': {str(p.relative_to(ROOT)): file_sha256(p)
             for directory, pattern in [(AUTODOP/'autodop', '*.py'), (templates, '*'),
-                (ROOT/'fe/fe-core/src/main/java/com/starrocks', '**/*.java'),
-                (ROOT/'be/src/util', 'cpu_usage_info.*')]
+                (ROOT/'fe/fe-core/src/main/java/com/starrocks', '**/*.java')]
             for p in sorted(directory.glob(pattern)) if p.is_file()}}
     (out / 'BUILD_MANIFEST.json').write_text(json.dumps(manifest, indent=2) + '\n')
     run('docker', 'save', '-o', out / 'images.tar', *images)
+    validation = out / 'validation'
+    validation.mkdir()
+    audit = audit_image_layers(out / 'images.tar', images)
+    (validation / 'NO_BE_LAYERS.json').write_text(json.dumps(audit, indent=2) + '\n')
     shutil.rmtree(context)
     print(f'Built offline images in {out}; run the documented smoke test before archiving.')
 

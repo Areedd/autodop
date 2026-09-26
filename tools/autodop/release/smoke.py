@@ -1,4 +1,4 @@
-"""Check the delivered service and an isolated single-node SQL cluster."""
+"""Check policy inference and FE startup without provisioning a backend."""
 import json
 import os
 import time
@@ -39,25 +39,11 @@ def main():
             time.sleep(2)
     with connection, connection.cursor() as cursor:
         cursor.execute('SHOW BACKENDS')
-        if not cursor.fetchall():
-            cursor.execute('ALTER SYSTEM ADD BACKEND "be:9050"')
-        while True:
-            cursor.execute('SHOW BACKENDS')
-            backends = cursor.fetchall()
-            if any(str(b['Alive']).lower() == 'true' for b in backends):
-                break
-            if time.monotonic() >= deadline:
-                raise RuntimeError('BE did not become alive')
-            time.sleep(2)
-        # A dedicated test database is reusable; the upsert keeps repeats deterministic.
-        cursor.execute('CREATE DATABASE IF NOT EXISTS autodop_release_smoke')
-        cursor.execute('''CREATE TABLE IF NOT EXISTS autodop_release_smoke.items (
-            id INT, value BIGINT) PRIMARY KEY(id) DISTRIBUTED BY HASH(id) BUCKETS 1
-            PROPERTIES ("replication_num"="1")''')
-        cursor.execute('INSERT INTO autodop_release_smoke.items VALUES (1, 10), (2, 20), (3, 30)')
-        cursor.execute('SELECT COUNT(*) AS n, SUM(value) AS total FROM autodop_release_smoke.items')
+        backends = cursor.fetchall()
+        # A constant query verifies the FE SQL endpoint without requiring storage.
+        cursor.execute('SELECT 1 AS ok')
         result = cursor.fetchone()
-        assert result == {'n': 3, 'total': 60}, result
+        assert result == {'ok': 1}, result
         cursor.execute('SELECT VERSION() AS version')
         compatibility_version = cursor.fetchone()['version']
         cursor.execute('SHOW FRONTENDS')
@@ -66,9 +52,9 @@ def main():
         'http_decisions': len(decision['decisions']), 'confidence': decision['confidence'],
         'sql': result, 'mysql_compatibility_version': compatibility_version,
         'frontend_versions': frontend_versions,
-        'backend_versions': [row['Version'] for row in backends],
-        'scope': 'Real HTTP policy inference, FE/BE startup, SQL create/insert/aggregate. '
-                 'Small SQL may bypass AutoDOP; this is not a performance benchmark.'}, indent=2))
+        'registered_backends': len(backends),
+        'scope': 'Real HTTP policy inference, FE startup and constant SQL. '
+                 'Table storage and data queries require an external BE and are not tested here.'}, indent=2))
 
 
 if __name__ == '__main__':

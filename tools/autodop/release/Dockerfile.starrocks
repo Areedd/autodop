@@ -1,6 +1,0 @@
-ARG BE_IMAGE
-FROM ${BE_IMAGE}
-COPY fe/ /opt/starrocks/fe/
-COPY fe.conf /opt/starrocks/fe/conf/fe.conf
-COPY be.conf /opt/starrocks/be/conf/be.conf
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
