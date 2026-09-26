@@ -91,7 +91,8 @@ def main():
         '- [验证记录](docs/VALIDATION.md)\n'
         '- [实验报告索引](docs/EXPERIMENTS.md)\n\n'
         '先导入 images.tar，再按使用文档启动 Compose 和运行 check。\n'
-        '源码入口和历史脚本在交付源码归档 source.tar.gz 内。\n', encoding='utf-8')
+        '项目源码和历史脚本请从 GitHub 获取：\n'
+        'https://github.com/Areedd/autodop/tree/codex/autodop-release-20260925\n', encoding='utf-8')
     shutil.copy2(ROOT / 'LICENSE.txt', out)
     shutil.copy2(ROOT / 'NOTICE.txt', out)
     shutil.copytree(ROOT / 'licenses-binary', out / 'licenses-binary')

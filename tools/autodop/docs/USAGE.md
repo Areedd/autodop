@@ -14,7 +14,6 @@
 | `compose.yaml` | 单节点运行配置及持久化数据卷 |
 | `models/policy.pt` | 已有训练生成的冻结策略模型 |
 | `models/request.json` | HTTP 决策接口示例请求 |
-| `source.tar.gz` | 对应 Git 提交的完整项目源码 |
 | `BUILD_MANIFEST.json` | 模型、FE/BE 二进制、源码和镜像哈希 |
 | `VALIDATION.md`、`validation/` | 本次构建与运行测试结果 |
 | `SHA256SUMS` | 包内文件校验清单 |
@@ -88,6 +87,8 @@ docker compose -p autodop-demo down
 `down` 保留数据卷；下次使用相同 `-p autodop-demo` 启动会继续使用原数据。只有明确希望删除演示数据时才使用 `down -v`。如果启动失败，先查看 `ps` 与容器日志，检查端口、剩余内存及 CPU 架构。
 
 ## 直接从源码运行 AutoDOP
+
+项目源码单独保存在 [GitHub 发布分支](https://github.com/Areedd/autodop/tree/codex/autodop-release-20260925)，运行压缩包不附完整项目源码归档。
 
 在项目根目录，使用 Python 3.11 或 3.12 创建独立环境。CPU 环境示例：
 

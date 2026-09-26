@@ -52,7 +52,7 @@ BE 本次使用已完成的完整构建，通过原始构建证明核对当前 C
 python tools/autodop/release/check_release.py dist/autodop-20260925-linux-amd64
 ```
 
-压缩包附外部 SHA-256，包内附逐文件 SHA-256。源码归档使用交付提交的 `git archive`，不含本机数据库、私有配置或原始运行数据。
+压缩包附外部 SHA-256，包内附逐文件 SHA-256。完整项目源码单独保存在 GitHub；运行包保留构建来源哈希，不附项目源码归档。本机数据库、私有配置和原始运行数据不在包内。
 
 ## 结果边界
 
